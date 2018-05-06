@@ -1,0 +1,20 @@
+{
+  "presets": [
+    "env",
+    "react",
+    "stage-2"
+  ],
+  "env": {
+    "production": {
+      "plugins": [
+        ["emotion", { "hoist": true, "sourceMap": false}],
+        "transform-flow-strip-types"
+      ]
+    },
+    "development": {
+      "plugins": [
+        ["emotion", { "sourceMap": true, "autoLabel": true }]
+      ]
+    }
+  }
+}
