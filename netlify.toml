@@ -4,9 +4,3 @@
 
 [build.environment]
   CI = "true"
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-  force = true # Ensure that we always redirect
