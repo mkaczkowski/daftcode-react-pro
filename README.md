@@ -4,15 +4,20 @@ React boilerplate for everyone
 
 ## 🕹 Features
 * [React (v16.3)](https://reactjs.org) - a JavaScript library for building user interfaces
+* [Flow](https://github.com/facebook/flow) - Adds static typing to JavaScript
 * [Babel](https://babeljs.io) - a JavaScript compiler
 * [Webpack (v4.5)](https://webpack.js.org) with plugins - a module bundler
+* [Jest](https://facebook.github.io/jest/) - complete testing solution
 * [Emotion] - CSS in JS  (https://emotion.sh) - add a bit of style to your website
-* [React Hot Loader (v4)](https://github.com/gaearon/react-hot-loader) Tweak React components in real time
-* [React Snap](https://github.com/stereobooster/react-snap) Prerendering static sites
-* [Lodable Components](https://github.com/smooth-code/loadable-components) React code splitting made easy
+* [React Hot Loader (v4)](https://github.com/gaearon/react-hot-loader) - tweak React components in real time
+* [React Snap](https://github.com/stereobooster/react-snap) - prerendering static sites
+* [Lodable Components](https://github.com/smooth-code/loadable-components) - react code splitting made easy
+* [Storybook](https://github.com/storybooks/storybook) - interactive UI component dev & test
+* [PWA](https://developers.google.com/web/progressive-web-apps/) - progressive Web App ready
+* Assets optimization (png/jpg/svg/webp)
 
-* Linters + [Prettier](https://prettier.io)
 Tweak React components in real time ⚛️⚡️
+* [ESLint](https://eslint.org) + [Prettier](https://prettier.io)
 
 ## 🔧 Installation
 
