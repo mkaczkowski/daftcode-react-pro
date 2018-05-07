@@ -10,7 +10,7 @@ const webpack = require('webpack');
 const getClientEnvironment = require('./env');
 const path = require('path');
 
-const publicUrl = process.env.PUBLIC_URL;
+const publicUrl = 'https://www.mkaczkowski.com';
 const env = getClientEnvironment('production', publicUrl);
 
 // console.info("env.stringified['process.env']:" + JSON.stringify(env.stringified['process.env']));
