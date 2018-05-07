@@ -4,3 +4,4 @@
 
 [build.environment]
   CI = "true"
+  YARN_VERSION = "1.6.0"
