@@ -1,4 +1,4 @@
-import React from "react"
+import React from 'react';
 
 export function getComponentsLists(compStories) {
   let result = [];
@@ -10,7 +10,7 @@ export function getComponentsLists(compStories) {
   return result;
 }
 
-export  function prepareStoryFromComponents(componentLists) {
+export function prepareStoryFromComponents(componentLists) {
   return (
     <div>
       {componentLists.map(compList => (
@@ -23,14 +23,13 @@ export  function prepareStoryFromComponents(componentLists) {
   );
 }
 
-export  function prepareLpStoryFromComponents(componentLists) {
+export function prepareLpStoryFromComponents(componentLists) {
   return (
     <div>
       {componentLists.map((compList, index) => {
-          const Component = compList[0];
-          return Component;
-      }
-      )}
+        const Component = compList[0];
+        return Component;
+      })}
     </div>
   );
 }

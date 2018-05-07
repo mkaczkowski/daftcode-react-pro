@@ -1,7 +1,8 @@
 const webpack = require('webpack');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
-const getClientEnvironment = require('./env');
+const publicUrl = '';
+const getClientEnvironment = require('./env', publicUrl);
 
 const env = getClientEnvironment('development');
 const shouldUseSourceMap = env.stringified['process.env'].GENERATE_SOURCEMAP !== 'false';

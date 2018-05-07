@@ -2,16 +2,25 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
+const WebpackPwaManifest = require('webpack-pwa-manifest');
+const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
+const webpack = require('webpack');
 const getClientEnvironment = require('./env');
 const path = require('path');
 
-const env = getClientEnvironment('production');
-const shouldUseSourceMap = env.stringified['process.env'].GENERATE_SOURCEMAP !== 'false';
-const shouldBundleAnalyze = env.stringified['process.env'].BUNDLE_ANALYZER !== 'false';
+const publicUrl = process.env.PUBLIC_URL;
+const env = getClientEnvironment('production', publicUrl);
+
+// console.info("env.stringified['process.env']:" + JSON.stringify(env.stringified['process.env']));
+// console.info("env.stringified['raw.env']:" + JSON.stringify(env.raw));
+const shouldUseSourceMap = env.raw.GENERATE_SOURCEMAP !== 'false';
+const shouldBundleAnalyze = env.raw.BUNDLE_ANALYZER !== 'false';
 
 module.exports = {
   mode: 'production',
-  devtool: shouldUseSourceMap ? 'source-map' : false,
+  devtool: shouldUseSourceMap ? 'source-map' : undefined,
   entry: [require.resolve('./polyfills'), path.resolve('src/index.js')],
   resolve: {
     modules: [path.resolve('src'), path.resolve('node_modules')],
@@ -23,7 +32,7 @@ module.exports = {
   output: {
     path: path.resolve('build'),
     filename: '[name].[hash].js',
-    publicPath: '',
+    publicPath: publicUrl,
   },
   module: {
     rules: [
@@ -102,14 +111,72 @@ module.exports = {
       // "flattening":true,
       // "placeholders":true
     }),
+    new SWPrecacheWebpackPlugin({
+      cacheId: 'react-pro',
+      filename: 'service-worker.js',
+      dontCacheBustUrlsMatching: /\.\w{8}\./,
+      logger(message) {
+        if (message.indexOf('Total precache size is') === 0) {
+          // This message occurs for every build and is a bit too noisy.
+          return;
+        }
+        console.log(message);
+      },
+      mergeStaticsConfig: true, // if you don't set this to true, you won't see any webpack-emitted assets in your serviceworker config
+      minify: true,
+      navigateFallback: publicUrl + 'index.html',
+      staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
+    }),
+    // new FaviconsWebpackPlugin({
+    //   logo: path.resolve('src/assets/icon.png'),
+    //   prefix: '',
+    //   background: '#ffffff',
+    //   title: 'React Pro1',
+    //   emitStats: false,
+    //   statsFilename: 'iconstats.json',
+    //   // persistentCache: false,
+    // }),
+    new ManifestPlugin({
+      fileName: 'asset-manifest.json',
+    }),
+    new WebpackPwaManifest({
+      filename: 'manifest.json',
+      name: 'React Pro2',
+      short_name: 'ReactPro2',
+      lang: 'en-US',
+      description: 'My awesome Progressive Web App!',
+      background_color: '#ffffff',
+      ios: true,
+      inject: true,
+      icons: [
+        {
+          src: path.resolve('src/assets/icon.png'),
+          sizes: [96, 128, 192, 256, 384, 512], // multiple sizes
+        },
+      ],
+    }),
+    new webpack.DefinePlugin(env.stringified),
     new HTMLWebpackPlugin({
       template: path.resolve('public/index.html'),
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+        removeEmptyAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        keepClosingSlash: true,
+        minifyJS: true,
+        minifyCSS: true,
+        minifyURLs: true,
+      },
     }),
-    shouldBundleAnalyze &&
-      new BundleAnalyzerPlugin({
-        analyzerMode: 'static',
-        openAnalyzer: true,
-      }),
+    shouldBundleAnalyze
+      ? new BundleAnalyzerPlugin({
+          analyzerMode: 'static',
+          openAnalyzer: true,
+        })
+      : () => ({}),
   ],
   node: {
     dgram: 'empty',
@@ -118,6 +185,7 @@ module.exports = {
     tls: 'empty',
     child_process: 'empty',
   },
+
   performance: {
     hints: 'error',
   },

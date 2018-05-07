@@ -1,4 +1,4 @@
-const path = require("path");
+const path = require('path');
 
 module.exports = {
   module: {
@@ -9,34 +9,34 @@ module.exports = {
             test: /\.svg$/,
             use: [
               {
-                loader: "babel-loader"
+                loader: 'babel-loader',
               },
               {
-                loader: "react-svg-loader"
-              }
-            ]
+                loader: 'react-svg-loader',
+              },
+            ],
           },
           {
             test: /\.modernizrrc.js$/,
-            use: [ 'modernizr-loader' ]
+            use: ['modernizr-loader'],
           },
           {
             test: /\.modernizrrc(\.json)?$/,
-            use: [ 'modernizr-loader', 'json-loader' ]
+            use: ['modernizr-loader', 'json-loader'],
           },
           {
             test: /\.(jpe?g|jpg|gif|png|woff|woff2|eot|ttf|webp)$/,
-            use: [{loader: "file-loader"}]
-          }
-        ]
-      }
-    ]
+            use: [{ loader: 'file-loader' }],
+          },
+        ],
+      },
+    ],
   },
   resolve: {
     modules: ['node_modules'],
-    extensions: [".js", ".json"],
+    extensions: ['.js', '.json'],
     alias: {
-      modernizr$: path.resolve(__dirname, "../.modernizrrc")
-    }
-  }
+      modernizr$: path.resolve(__dirname, '../.modernizrrc'),
+    },
+  },
 };

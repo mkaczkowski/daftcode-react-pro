@@ -22,8 +22,7 @@ function ensureSlash(path, needsSlash) {
   }
 }
 
-const getPublicUrl = appPackageJson =>
-  envPublicUrl || require(appPackageJson).homepage;
+const getPublicUrl = appPackageJson => envPublicUrl || require(appPackageJson).homepage;
 
 // We use `PUBLIC_URL` environment variable or "homepage" field to infer
 // "public path" at which the app is served.
@@ -33,8 +32,7 @@ const getPublicUrl = appPackageJson =>
 // like /todos/42/static/js/bundle.7289d.js. We have to know the root.
 function getServedPath(appPackageJson) {
   const publicUrl = getPublicUrl(appPackageJson);
-  const servedUrl =
-    envPublicUrl || (publicUrl ? url.parse(publicUrl).pathname : `/`);
+  const servedUrl = envPublicUrl || (publicUrl ? url.parse(publicUrl).pathname : `/`);
   return ensureSlash(servedUrl, true);
 }
 
@@ -56,8 +54,8 @@ module.exports = {
   appIndexJs: resolveApp(root + `products/${PRODUCT_NAME}/landings/${LANDING_HASH}/${LANDING_TYPE}/config.js`),
   appPackageJson: resolveApp(root + `products/${PRODUCT_NAME}/package.json`),
   appSrc: resolveApp(root + `products/${PRODUCT_NAME}`),
-  coreSrc: resolveApp(root+`DEV7LP-core/src`),
-  componentsSrc: resolveApp(root+`DEV7LP-components/src`),
+  coreSrc: resolveApp(root + `DEV7LP-core/src`),
+  componentsSrc: resolveApp(root + `DEV7LP-components/src`),
   yarnLockFile: resolveApp(root + `yarn.lock`),
   testsSetup: resolveApp(root + `DEV7LP-core/src/setupTests.js`),
   appNodeModules: resolveApp(root + `node_modules`),

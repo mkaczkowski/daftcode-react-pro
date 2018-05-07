@@ -1,17 +1,17 @@
-import React from "react";
-import { configure } from "@storybook/react";
-import { setOptions } from "@storybook/addon-options";
+import React from 'react';
+import { configure } from '@storybook/react';
+import { setOptions } from '@storybook/addon-options';
 
 setOptions({
-  name: "React-Pro",
-  url: "#",
+  name: 'React-Pro',
+  url: '#',
   addonPanelInRight: true,
   sortStoriesByKind: true,
   hierarchySeparator: /\//,
-  hierarchyRootSeparator: /\|/
+  hierarchyRootSeparator: /\|/,
 });
 
-const req = require.context("../src", true, /.stories.js$/);
+const req = require.context('../src', true, /.stories.js$/);
 // const req = require.context("../src/products/linguotica/landings/ldc/register/sections/msisdn", true, /.stories.js$/);
 
 configure(() => {

@@ -2,8 +2,8 @@ import React from 'react';
 import { hydrate, render } from 'react-dom';
 import { loadComponents, getState } from 'loadable-components';
 import App from './App';
-import './assets/favicon.ico';
 import './injectGlobal';
+import registerServiceWorker from './registerServiceWorker';
 
 window.snapSaveState = () => getState();
 
@@ -15,4 +15,11 @@ if (rootElement.hasChildNodes()) {
   });
 } else {
   render(<App />, rootElement);
+}
+
+if (process.env.SERVICE_WORKER === 'true') {
+  console.info('go sw!');
+  registerServiceWorker();
+} else {
+  console.info("don't go sw :(");
 }

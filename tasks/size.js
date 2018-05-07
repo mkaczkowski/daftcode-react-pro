@@ -14,9 +14,9 @@ gulp.task('size', () =>
       fail: true,
       gzip: true,
       '*': {
-        maxGzippedSize: 200000,
+        maxGzippedSize: 250000,
       },
-      'en.html': {
+      'index.html': {
         maxSize: 100000,
         maxGzippedSize: 30000,
       },

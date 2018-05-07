@@ -11,11 +11,11 @@ process.env.NODE_PATH = (process.env.NODE_PATH || '')
   .map(folder => path.resolve(appDirectory, folder))
   .join(path.delimiter);
 
-function getClientEnvironment(env) {
+function getClientEnvironment(env, publicUrl) {
   //prettier-ignore
   var dotenvFiles = [
     path.resolve(`.env.${env}.local`),
-    path.resolve(`/.env.${env}`),
+    path.resolve(`.env.${env}`),
       env !== 'test' && path.resolve(`.env.local`),
       path.resolve(`.env`)
     ].filter(Boolean);
@@ -41,6 +41,7 @@ function getClientEnvironment(env) {
         // Useful for determining whether we’re running in production mode.
         // Most importantly, it switches React into the correct mode.
         NODE_ENV: env,
+        PUBLIC_URL: publicUrl,
       },
     }
   );
