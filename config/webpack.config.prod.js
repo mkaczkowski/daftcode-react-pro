@@ -114,17 +114,10 @@ module.exports = {
     new SWPrecacheWebpackPlugin({
       cacheId: 'react-pro',
       filename: 'service-worker.js',
-      dontCacheBustUrlsMatching: /\.\w{8}\./,
-      logger(message) {
-        if (message.indexOf('Total precache size is') === 0) {
-          // This message occurs for every build and is a bit too noisy.
-          return;
-        }
-        console.log(message);
-      },
+      // dontCacheBustUrlsMatching: /\.\w{8}\./,
       mergeStaticsConfig: true, // if you don't set this to true, you won't see any webpack-emitted assets in your serviceworker config
       minify: true,
-      navigateFallback: publicUrl + 'index.html',
+      navigateFallback: publicUrl + '/index.html',
       staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
     }),
     // new FaviconsWebpackPlugin({
