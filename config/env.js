@@ -3,24 +3,6 @@
 const fs = require('fs');
 const path = require('path');
 
-var dotenvFiles = [
-  `../.env.${process.env.NODE_ENV}.local`,
-  `../.env.${process.env.NODE_ENV}`,
-  process.env.NODE_ENV !== 'test' && `../.env.local`,
-  `../.env`,
-].filter(Boolean);
-
-// Load environment variables from .env* files. Suppress warnings using silent
-dotenvFiles.forEach(dotenvFile => {
-  if (fs.existsSync(dotenvFile)) {
-    require('dotenv-expand')(
-      require('dotenv').config({
-        path: dotenvFile,
-      })
-    );
-  }
-});
-
 const packageJson = require(path.resolve('../package.json'));
 // We support resolving modules according to `NODE_PATH`.
 const appDirectory = fs.realpathSync(process.cwd());
@@ -30,7 +12,26 @@ process.env.NODE_PATH = (process.env.NODE_PATH || '')
   .map(folder => path.resolve(appDirectory, folder))
   .join(path.delimiter);
 
-function getClientEnvironment() {
+function getClientEnvironment(env) {
+  //prettier-ignore
+  var dotenvFiles = [
+      `../.env.${env}.local`,
+      `../.env.${env}`,
+      env !== 'test' && `../.env.local`,
+      `../.env`
+    ].filter(Boolean);
+
+  // Load environment variables from .env* files. Suppress warnings using silent
+  dotenvFiles.forEach(dotenvFile => {
+    if (fs.existsSync(dotenvFile)) {
+      require('dotenv-expand')(
+        require('dotenv').config({
+          path: dotenvFile,
+        })
+      );
+    }
+  });
+
   const raw = Object.keys(process.env).reduce(
     (env, key) => {
       env[key] = process.env[key];
@@ -40,7 +41,7 @@ function getClientEnvironment() {
       ...{
         // Useful for determining whether we’re running in production mode.
         // Most importantly, it switches React into the correct mode.
-        NODE_ENV: process.env.NODE_ENV || 'development',
+        // NODE_ENV: env,
         PRODUCT_VERSION: packageJson.version,
       },
     }
