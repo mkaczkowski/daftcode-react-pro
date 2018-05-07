@@ -1,7 +1,8 @@
 {
+    "parser": "flow",
     "trailingComma": "es5",
+    "printWidth": 120,
     "semi": true,
     "tabWidth": 2,
-    "singleQuote": true,
-    "width": 120
+    "singleQuote": true
 }

@@ -30,7 +30,7 @@ class HeaderComponent extends React.Component<HeaderProps, HeaderState> {
   };
   render() {
     const { children } = this.props;
-    const { stage } = this.state;
+    // const { stage } = this.state;
     return <div>{children}</div>;
 
     // const children = React.Children.map(this.props.children, child => {

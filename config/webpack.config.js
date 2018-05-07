@@ -1,14 +1,22 @@
 const webpack = require('webpack');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const getClientEnvironment = require('./env');
 
+const env = getClientEnvironment();
+const shouldUseSourceMap = env.stringified['process.env'].GENERATE_SOURCEMAP !== 'false';
+
+// module.exports = (env, argv) => {
 module.exports = {
   mode: 'development',
-  devtool: 'cheap-module-source-map',
+  devtool: shouldUseSourceMap ? 'cheap-module-source-map' : false,
   entry: ['react-dev-utils/webpackHotDevClient', path.resolve('src/index.js')],
   resolve: {
     modules: [path.resolve('src'), path.resolve('node_modules')],
     extensions: ['.js'],
+    alias: {
+      modernizr$: path.resolve('.modernizrrc'),
+    },
   },
   output: {
     path: path.resolve('.tmp'),
@@ -52,16 +60,45 @@ module.exports = {
         ],
       },
       {
-        test: /\.(jpe?g|png|gif|ico)$/i,
+        test: /\.svg$/,
         use: [
+          'babel-loader',
           {
-            loader: 'file-loader',
+            loader: 'react-svg-loader',
             options: {
-              name: '[name].[ext]',
+              jsx: true, // true outputs JSX tags,
+              svgo: {
+                floatPrecision: 3,
+              },
             },
           },
         ],
       },
+      {
+        test: /\.modernizrrc.js$/,
+        use: ['modernizr-loader'],
+      },
+      {
+        test: /\.modernizrrc(\.json)?$/,
+        use: ['modernizr-loader', 'json-loader'],
+      },
+      {
+        exclude: [/\.(js|jsx|mjs|html|json)$/],
+        loader: require.resolve('file-loader'),
+        options: {
+          name: '[name].[ext]',
+        },
+      },
     ],
+  },
+  node: {
+    dgram: 'empty',
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty',
+    child_process: 'empty',
+  },
+  performance: {
+    hints: false,
   },
 };

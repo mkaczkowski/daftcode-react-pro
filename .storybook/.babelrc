@@ -1,0 +1,7 @@
+{
+  "presets": ["env", "react", "stage-2"],
+  "plugins": [
+    ["emotion", { "sourceMap": true, "autoLabel": true }],
+    "transform-flow-strip-types"
+  ]
+}

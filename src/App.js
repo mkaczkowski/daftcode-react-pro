@@ -2,11 +2,11 @@
 import { hot } from 'react-hot-loader';
 import * as React from 'react';
 import loadableVisibility from 'react-loadable-visibility/loadable-components';
-import Home from './view/Home';
+import Home from './view/home/Home';
 import I18nProvider from './providers/i18n';
 import { Header } from './components/header';
 
-const Contact = loadableVisibility(() => import('./view/Contact'));
+const Contact = loadableVisibility(() => import('./view/contact/Contact'));
 
 const App = () => (
   <I18nProvider language="en">

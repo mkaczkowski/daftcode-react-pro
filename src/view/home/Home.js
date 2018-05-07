@@ -3,7 +3,6 @@
 import React from 'react';
 import { css } from 'emotion';
 import styled, { keyframes } from 'react-emotion';
-
 type HomeProps = {
   username: string,
 };
@@ -75,16 +74,13 @@ class Home extends React.Component<HomeProps> {
   state = {
     welcomeText: 'Hello',
   };
-
   render() {
     const { welcomeText } = this.state;
     const { username } = this.props;
 
     return (
       <div>
-        <div
-          className={!this.props.test ? welcomeClassName : welcomeClassName2}
-        >
+        <div className={!this.props.test ? welcomeClassName : welcomeClassName2}>
           {welcomeText}
           <UsernameLabel>{`: ${username}`}</UsernameLabel>
         </div>
