@@ -62,7 +62,6 @@ const welcomeClassName = css`
   color: gray;
   font-size: 3rem;
   text-align: center;
-  transform: rotate(-5deg);
 `;
 
 const welcomeClassName2 = css`
