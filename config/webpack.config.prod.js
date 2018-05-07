@@ -143,7 +143,7 @@ module.exports = {
       filename: 'manifest.json',
       name: 'React Pro2',
       short_name: 'ReactPro2',
-      start_url: '.',
+      start_url: './index.html',
       lang: 'en-US',
       description: 'My awesome Progressive Web App!',
       background_color: '#ffffff',
