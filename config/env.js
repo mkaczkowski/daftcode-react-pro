@@ -3,7 +3,6 @@
 const fs = require('fs');
 const path = require('path');
 
-const packageJson = require(path.resolve('../package.json'));
 // We support resolving modules according to `NODE_PATH`.
 const appDirectory = fs.realpathSync(process.cwd());
 process.env.NODE_PATH = (process.env.NODE_PATH || '')
@@ -41,8 +40,7 @@ function getClientEnvironment(env) {
       ...{
         // Useful for determining whether we’re running in production mode.
         // Most importantly, it switches React into the correct mode.
-        // NODE_ENV: env,
-        PRODUCT_VERSION: packageJson.version,
+        NODE_ENV: env,
       },
     }
   );
