@@ -10,7 +10,7 @@ const webpack = require('webpack');
 const getClientEnvironment = require('./env');
 const path = require('path');
 
-const publicUrl = 'https://www.mkaczkowski.com';
+const publicUrl = 'https://www.mkaczkowski.com/';
 const env = getClientEnvironment('production', publicUrl);
 
 // console.info("env.stringified['process.env']:" + JSON.stringify(env.stringified['process.env']));
@@ -117,7 +117,7 @@ module.exports = {
       // dontCacheBustUrlsMatching: /\.\w{8}\./,
       mergeStaticsConfig: true, // if you don't set this to true, you won't see any webpack-emitted assets in your serviceworker config
       minify: true,
-      navigateFallback: publicUrl + '/index.html',
+      navigateFallback: publicUrl + 'index.html',
       staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
     }),
     // new FaviconsWebpackPlugin({
