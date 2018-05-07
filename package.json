@@ -3,7 +3,7 @@
   "license": "MIT",
   "name": "daftcode-react-pro",
   "version": "1.0.0",
-  "homepage": "https://www.mkaczkowski.com/",
+  "homepage": "/",
   "main": "index.js",
   "scripts": {
     "optimize": "gulp optimize",
