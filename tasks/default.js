@@ -11,7 +11,3 @@ gulp.task('optimize', cb => {
 gulp.task('postbuild', cb => {
   runSequence('gzip', 'size', cb);
 });
-
-gulp.task('analyze', cb => {
-  runSequence('louis', cb);
-});

@@ -3,10 +3,9 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const getClientEnvironment = require('./env');
 
-const env = getClientEnvironment();
+const env = getClientEnvironment('development');
 const shouldUseSourceMap = env.stringified['process.env'].GENERATE_SOURCEMAP !== 'false';
 
-// module.exports = (env, argv) => {
 module.exports = {
   mode: 'development',
   devtool: shouldUseSourceMap ? 'cheap-module-source-map' : false,

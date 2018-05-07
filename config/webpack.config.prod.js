@@ -5,8 +5,9 @@ const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const getClientEnvironment = require('./env');
 const path = require('path');
 
-const env = getClientEnvironment();
+const env = getClientEnvironment('production');
 const shouldUseSourceMap = env.stringified['process.env'].GENERATE_SOURCEMAP !== 'false';
+const shouldBundleAnalyze = env.stringified['process.env'].BUNDLE_ANALYZER !== 'false';
 
 module.exports = {
   mode: 'production',
@@ -80,7 +81,9 @@ module.exports = {
     ],
   },
   plugins: [
-    new CleanWebpackPlugin(['build']),
+    new CleanWebpackPlugin([path.resolve('build')], {
+      root: path.resolve('.'),
+    }),
     new LodashModuleReplacementPlugin({
       paths: true,
       // "shorthands":true,
@@ -102,7 +105,11 @@ module.exports = {
     new HTMLWebpackPlugin({
       template: path.resolve('public/index.html'),
     }),
-    new BundleAnalyzerPlugin({ analyzerMode: 'static' }),
+    shouldBundleAnalyze &&
+      new BundleAnalyzerPlugin({
+        analyzerMode: 'static',
+        openAnalyzer: true,
+      }),
   ],
   node: {
     dgram: 'empty',

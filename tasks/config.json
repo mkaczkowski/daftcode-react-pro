@@ -1,6 +1,6 @@
 {
   "root": {
-    "dist": "./../../build"
+    "dist": "./../build"
   },
   "img": {
     "src": "assets/**",
