@@ -18,8 +18,5 @@ if (rootElement.hasChildNodes()) {
 }
 
 if (process.env.SERVICE_WORKER === 'true') {
-  console.info('go sw!');
   registerServiceWorker();
-} else {
-  console.info("don't go sw :(");
 }
