@@ -14,10 +14,10 @@ process.env.NODE_PATH = (process.env.NODE_PATH || '')
 function getClientEnvironment(env) {
   //prettier-ignore
   var dotenvFiles = [
-      `../.env.${env}.local`,
-      `../.env.${env}`,
-      env !== 'test' && `../.env.local`,
-      `../.env`
+    path.resolve(`.env.${env}.local`),
+    path.resolve(`/.env.${env}`),
+      env !== 'test' && path.resolve(`.env.local`),
+      path.resolve(`.env`)
     ].filter(Boolean);
 
   // Load environment variables from .env* files. Suppress warnings using silent
