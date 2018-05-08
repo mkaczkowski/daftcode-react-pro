@@ -94,6 +94,7 @@ module.exports = {
         loader: require.resolve('file-loader'),
         options: {
           name: '[name].[ext]',
+          emitFile: true,
         },
       },
     ],
@@ -174,8 +175,7 @@ module.exports = {
     tls: 'empty',
     child_process: 'empty',
   },
-
   performance: {
-    hints: 'error',
+    hints: 'warning',
   },
 };

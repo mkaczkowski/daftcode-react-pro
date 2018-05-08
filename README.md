@@ -15,6 +15,7 @@ React boilerplate for everyone
 * [Storybook](https://github.com/storybooks/storybook) - interactive UI component dev & test
 * [PWA](https://developers.google.com/web/progressive-web-apps/) - progressive Web App ready
 * Assets optimization (png/jpg/svg/webp)
+* Critical fonts optimization
 * Async/Defer/Preload scripts
 
 Tweak React components in real time ⚛️⚡️
@@ -75,3 +76,20 @@ MIT
 ## 👨 Author
 
 Mariusz Kaczkowski from [DaftCode](http://daftcode.pl)
+
+
+// AUTOMATE FONT OPTIMIZATION via scripts
+
+pip install fonttools
+pip install brotli
+pip install zopfli
+
+cd build
+glyphhanger http://localhost:5000/index.html --family='Ubuntu' --string
+glyphhanger http://localhost:5000/index.html --family='Ubuntu' --subset=*.ttf
+
+
+npx cross-env GENERATE_SOURCEMAP=false node scripts/build.js
+
+glyphhanger http://localhost:5000/en.html --family='Ubuntu' --subset=static/**/*.ttf
+glyphhanger http://localhost:5000/de.html --family='Ubuntu' --subset=static/**/*de.ttf
