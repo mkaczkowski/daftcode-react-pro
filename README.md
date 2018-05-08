@@ -15,6 +15,7 @@ React boilerplate for everyone
 * [Storybook](https://github.com/storybooks/storybook) - interactive UI component dev & test
 * [PWA](https://developers.google.com/web/progressive-web-apps/) - progressive Web App ready
 * Assets optimization (png/jpg/svg/webp)
+* Async/Defer/Preload scripts
 
 Tweak React components in real time ⚛️⚡️
 * [ESLint](https://eslint.org) + [Prettier](https://prettier.io)

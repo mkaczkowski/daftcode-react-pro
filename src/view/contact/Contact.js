@@ -13,7 +13,7 @@ class Contact extends React.Component<ContactProps> {
   state = {};
   render() {
     return (
-      <div style={{ display: 'none' }} className={welcomeClassName3}>
+      <div style={{ color: 'red' }} className={welcomeClassName3}>
         CONTACT
       </div>
     );

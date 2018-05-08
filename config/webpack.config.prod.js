@@ -1,5 +1,7 @@
 const HTMLWebpackPlugin = require('html-webpack-plugin');
+const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
@@ -164,6 +166,13 @@ module.exports = {
         minifyJS: true,
         minifyCSS: true,
         minifyURLs: true,
+      },
+    }),
+    new ScriptExtHtmlWebpackPlugin({
+      defaultAttribute: 'defer',
+      preload: {
+        test: /\.js$/,
+        chunks: 'async',
       },
     }),
     shouldBundleAnalyze
