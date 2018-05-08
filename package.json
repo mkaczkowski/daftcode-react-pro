@@ -1,10 +1,9 @@
 {
-  "author": "Mariusz Kaczkowski",
-  "license": "MIT",
   "name": "daftcode-react-pro",
   "version": "1.0.0",
-  "homepage": "/",
   "main": "index.js",
+  "license": "MIT",
+  "author": "Mariusz Kaczkowski",
   "scripts": {
     "optimize": "gulp optimize",
     "start": "webpack-dev-server --config config/webpack.config.js",

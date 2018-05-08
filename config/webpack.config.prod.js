@@ -1,7 +1,6 @@
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
@@ -14,15 +13,19 @@ const path = require('path');
 
 const publicUrl = '/';
 const env = getClientEnvironment('production', publicUrl);
-
 const shouldUseSourceMap = env.raw.GENERATE_SOURCEMAP !== 'false';
 const shouldBundleAnalyze = env.raw.BUNDLE_ANALYZER !== 'false';
-
-const APP_TITLE = env.raw.APP_TITLE;
-const PWA_SHORT_TITLE = env.raw.PWA_SHORT_TITLE;
-const APP_DESCRIPTION = env.raw.APP_DESCRIPTION;
-const PWA_BACKGROUND_COLOR = env.raw.PWA_BACKGROUND_COLOR;
-const PWA_THEME_COLOR = env.raw.PWA_THEME_COLOR;
+const metadata = {
+  name: env.raw.APP_TITLE,
+  author: env.raw.APP_AUTHOR,
+  short_name: env.raw.PWA_SHORT_TITLE,
+  description: env.raw.APP_DESCRIPTION,
+  background_color: env.raw.PWA_BACKGROUND_COLOR,
+  theme_color: env.raw.PWA_THEME_COLOR,
+  filename: 'manifest.json',
+  start_url: './index.html',
+  lang: 'en-US',
+};
 
 module.exports = {
   mode: 'production',
@@ -99,28 +102,11 @@ module.exports = {
     new CleanWebpackPlugin([path.resolve('build')], {
       root: path.resolve('.'),
     }),
-    new LodashModuleReplacementPlugin({
-      paths: true,
-      // "shorthands":true,
-      // "cloning":true,
-      // "currying":true,
-      // "caching":true,
-      // "collections":true,
-      // "exotics":true,
-      // "guards":true,
-      // "metadata":true,
-      // "deburring":true,
-      // "unicode":true,
-      // "chaining":true,
-      // "memoizing":true,
-      // "coercions":true,
-      // "flattening":true,
-      // "placeholders":true
-    }),
+    new LodashModuleReplacementPlugin({ paths: true }),
     new FaviconsWebpackPlugin({
       logo: './src/assets/icon.png',
       prefix: '',
-      background: '#ffffff',
+      background: '#ffff00',
       emitStats: false,
       persistentCache: false,
       icons: {
@@ -140,28 +126,21 @@ module.exports = {
       fileName: 'asset-manifest.json',
     }),
     new WebpackPwaManifest({
-      name: APP_TITLE,
-      short_name: PWA_SHORT_TITLE,
-      description: APP_DESCRIPTION,
-      background_color: PWA_BACKGROUND_COLOR,
-      theme_color: PWA_THEME_COLOR,
-      filename: 'manifest.json',
-      start_url: './index.html',
-      lang: 'en-US',
+      ...metadata,
       ios: true,
       inject: true,
       icons: [
         {
           src: path.resolve('src/assets/icon.png'),
-          sizes: [96, 128, 192, 256, 384, 512], // multiple sizes
+          sizes: [96, 128, 192, 256], // multiple sizes
         },
       ],
     }),
     new webpack.DefinePlugin(env.stringified),
     new HTMLWebpackPlugin({
       template: path.resolve('public/index.html'),
-      title: APP_TITLE,
-      description: APP_DESCRIPTION,
+      title: metadata.name,
+      description: metadata.description,
       minify: {
         removeComments: true,
         collapseWhitespace: true,
@@ -182,13 +161,12 @@ module.exports = {
         chunks: 'async',
       },
     }),
-    shouldBundleAnalyze
-      ? new BundleAnalyzerPlugin({
-          analyzerMode: 'static',
-          openAnalyzer: true,
-        })
-      : () => ({}),
-  ],
+    shouldBundleAnalyze &&
+      new BundleAnalyzerPlugin({
+        analyzerMode: 'static',
+        openAnalyzer: true,
+      }),
+  ].filter(plugin => plugin !== false),
   node: {
     dgram: 'empty',
     fs: 'empty',
