@@ -15,10 +15,14 @@ const path = require('path');
 const publicUrl = '/';
 const env = getClientEnvironment('production', publicUrl);
 
-// console.info("env.stringified['process.env']:" + JSON.stringify(env.stringified['process.env']));
-// console.info("env.stringified['raw.env']:" + JSON.stringify(env.raw));
 const shouldUseSourceMap = env.raw.GENERATE_SOURCEMAP !== 'false';
 const shouldBundleAnalyze = env.raw.BUNDLE_ANALYZER !== 'false';
+
+const APP_TITLE = env.raw.APP_TITLE;
+const APP_SHORT_TITLE = env.raw.APP_SHORT_TITLE;
+const APP_DESCRIPTION = env.raw.APP_DESCRIPTION;
+const PWA_BACKGROUND_COLOR = env.raw.PWA_BACKGROUND_COLOR;
+const PWA_THEME_COLOR = env.raw.PWA_THEME_COLOR;
 
 module.exports = {
   mode: 'production',
@@ -113,6 +117,16 @@ module.exports = {
       // "flattening":true,
       // "placeholders":true
     }),
+    new FaviconsWebpackPlugin({
+      logo: './src/assets/icon.png',
+      prefix: '',
+      background: '#ffffff',
+      emitStats: false,
+      persistentCache: false,
+      icons: {
+        appleStartup: false,
+      },
+    }),
     new SWPrecacheWebpackPlugin({
       cacheId: 'react-pro',
       filename: 'service-worker.js',
@@ -122,27 +136,18 @@ module.exports = {
       navigateFallback: publicUrl + 'index.html',
       staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
     }),
-    // new FaviconsWebpackPlugin({
-    //   logo: path.resolve('src/assets/icon.png'),
-    //   prefix: '',
-    //   background: '#ffffff',
-    //   title: 'React Pro1',
-    //   emitStats: false,
-    //   statsFilename: 'iconstats.json',
-    //   // persistentCache: false,
-    // }),
     new ManifestPlugin({
       fileName: 'asset-manifest.json',
     }),
     new WebpackPwaManifest({
+      name: APP_TITLE,
+      short_name: APP_SHORT_TITLE,
+      description: APP_DESCRIPTION,
+      background_color: PWA_BACKGROUND_COLOR,
+      theme_color: PWA_THEME_COLOR,
       filename: 'manifest.json',
-      name: 'React Pro2',
-      short_name: 'ReactPro2',
       start_url: './index.html',
       lang: 'en-US',
-      description: 'My awesome Progressive Web App!',
-      background_color: '#ffffff',
-      theme_color: '#000000',
       ios: true,
       inject: true,
       icons: [
@@ -155,6 +160,8 @@ module.exports = {
     new webpack.DefinePlugin(env.stringified),
     new HTMLWebpackPlugin({
       template: path.resolve('public/index.html'),
+      title: APP_TITLE,
+      description: APP_DESCRIPTION,
       minify: {
         removeComments: true,
         collapseWhitespace: true,
