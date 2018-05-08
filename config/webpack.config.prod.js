@@ -19,7 +19,7 @@ const shouldUseSourceMap = env.raw.GENERATE_SOURCEMAP !== 'false';
 const shouldBundleAnalyze = env.raw.BUNDLE_ANALYZER !== 'false';
 
 const APP_TITLE = env.raw.APP_TITLE;
-const APP_SHORT_TITLE = env.raw.APP_SHORT_TITLE;
+const PWA_SHORT_TITLE = env.raw.PWA_SHORT_TITLE;
 const APP_DESCRIPTION = env.raw.APP_DESCRIPTION;
 const PWA_BACKGROUND_COLOR = env.raw.PWA_BACKGROUND_COLOR;
 const PWA_THEME_COLOR = env.raw.PWA_THEME_COLOR;
@@ -141,7 +141,7 @@ module.exports = {
     }),
     new WebpackPwaManifest({
       name: APP_TITLE,
-      short_name: APP_SHORT_TITLE,
+      short_name: PWA_SHORT_TITLE,
       description: APP_DESCRIPTION,
       background_color: PWA_BACKGROUND_COLOR,
       theme_color: PWA_THEME_COLOR,
@@ -176,7 +176,7 @@ module.exports = {
       },
     }),
     new ScriptExtHtmlWebpackPlugin({
-      defaultAttribute: 'defer',
+      defaultAttribute: 'async',
       preload: {
         test: /\.js$/,
         chunks: 'async',
