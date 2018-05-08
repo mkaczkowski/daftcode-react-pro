@@ -59,7 +59,7 @@ const UsernameLabel = styled.div`
 
 const welcomeClassName = css`
   min-height: 1000px;
-  color: gray;
+  color: black;
   font-size: 3rem;
   text-align: center;
 `;
