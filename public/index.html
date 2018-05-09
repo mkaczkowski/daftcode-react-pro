@@ -21,7 +21,7 @@
   <meta name="format-detection" content="telephone=yes"/>
   <meta name="HandheldFriendly" content="true"/>
   <meta name="format-detection" content="telephone=yes">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover"/>
 
   <!--customize pinned sites for IE/EDGE -->
   <meta name="application-name" content="<%= htmlWebpackPlugin.options.title %>">
@@ -29,7 +29,7 @@
   <meta name="msapplication-starturl" content="/"/>
 
   <!-- PWA manifest -->
-  <link rel="manifest" href="manifest.json"/>
+  <link rel="manifest" href="<%= htmlWebpackPlugin.options.manifest %>"/>
 
   <!-- icons / to be generated -->
 </head>

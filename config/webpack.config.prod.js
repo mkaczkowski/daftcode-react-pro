@@ -1,3 +1,4 @@
+const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
@@ -9,23 +10,14 @@ const WebpackPwaManifest = require('webpack-pwa-manifest');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const webpack = require('webpack');
 const getClientEnvironment = require('./env');
-const path = require('path');
+const getMetaData = require('./metadata');
 
 const publicUrl = '/';
 const env = getClientEnvironment('production', publicUrl);
+const metadata = getMetaData(env.raw);
+
 const shouldUseSourceMap = env.raw.GENERATE_SOURCEMAP !== 'false';
 const shouldBundleAnalyze = env.raw.BUNDLE_ANALYZER !== 'false';
-const metadata = {
-  name: env.raw.APP_TITLE,
-  author: env.raw.APP_AUTHOR,
-  short_name: env.raw.PWA_SHORT_TITLE,
-  description: env.raw.APP_DESCRIPTION,
-  background_color: env.raw.PWA_BACKGROUND_COLOR,
-  theme_color: env.raw.PWA_THEME_COLOR,
-  filename: 'manifest.json',
-  start_url: './index.html',
-  lang: 'en-US',
-};
 
 module.exports = {
   mode: 'production',
@@ -142,6 +134,7 @@ module.exports = {
       template: path.resolve('public/index.html'),
       title: metadata.name,
       description: metadata.description,
+      manifest: metadata.filename,
       minify: {
         removeComments: true,
         collapseWhitespace: true,

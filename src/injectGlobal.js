@@ -2,10 +2,10 @@
 import { injectGlobal } from 'emotion';
 import emotionNormalize from 'emotion-normalize';
 
-import './assets/fonts/Ubuntu.eot';
 // import './assets/fonts/Ubuntu.ttf';
 // import './assets/fonts/Ubuntu.woff';
 // import './assets/fonts/Ubuntu.woff2';
+import './assets/fonts/Ubuntu.eot';
 import './assets/fonts/Ubuntu-subset.ttf';
 import './assets/fonts/Ubuntu-subset.zopfli.woff';
 import './assets/fonts/Ubuntu-subset.woff2';
@@ -29,9 +29,9 @@ injectGlobal`
   body {
     background: aquamarine;
     font-family: Ubuntu;
-  }
-  
-  a {
-    color: #000;
+    
+    @media (display-mode: standalone) {
+      /* All installed PWAs styles media-query*/
+    }
   }
 `;
