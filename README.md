@@ -6,7 +6,7 @@ React boilerplate for everyone
 * [React (v16.3)](https://reactjs.org) - a JavaScript library for building user interfaces
 * [Flow](https://github.com/facebook/flow) - Adds static typing to JavaScript
 * [Babel](https://babeljs.io) - a JavaScript compiler
-* [Webpack (v4.5)](https://webpack.js.org) with plugins - a module bundler
+* [Webpack (v4)](https://webpack.js.org) with plugins - a module bundler
 * [Jest](https://facebook.github.io/jest/) - complete testing solution
 * [Emotion] - CSS in JS  (https://emotion.sh) - add a bit of style to your website
 * [React Hot Loader (v4)](https://github.com/gaearon/react-hot-loader) - tweak React components in real time
@@ -17,6 +17,7 @@ React boilerplate for everyone
 * Assets optimization (png/jpg/svg/webp)
 * Critical fonts optimization
 * Async/Defer/Preload scripts
+* GZip compression
 
 Tweak React components in real time ⚛️⚡️
 * [ESLint](https://eslint.org) + [Prettier](https://prettier.io)
@@ -69,6 +70,25 @@ Open in your browser:
 http://localhost:5000
 ```
 
+## 🔠 Critical Font
+We can limit generate subset of fonts to use only unicode-ranges that are used on a web site (optionally for a font-family or for each font-family).
+ 
+#### Install
+```bash
+pip install fonttools
+pip install brotli
+pip install zopfli
+```
+#### Run local server
+```bash
+yarn serve
+```
+
+#### Generate subset webfonts
+```bash
+glyphhanger http://localhost:5000/index.html --family='<YourFamilyName>' --subset=build/*.ttf --css
+```
+
 ## 📜 License
 
 MIT
@@ -76,20 +96,3 @@ MIT
 ## 👨 Author
 
 Mariusz Kaczkowski from [DaftCode](http://daftcode.pl)
-
-
-// AUTOMATE FONT OPTIMIZATION via scripts
-
-pip install fonttools
-pip install brotli
-pip install zopfli
-
-cd build
-glyphhanger http://localhost:5000/index.html --family='Ubuntu' --string
-glyphhanger http://localhost:5000/index.html --family='Ubuntu' --subset=*.ttf
-
-
-npx cross-env GENERATE_SOURCEMAP=false node scripts/build.js
-
-glyphhanger http://localhost:5000/en.html --family='Ubuntu' --subset=static/**/*.ttf
-glyphhanger http://localhost:5000/de.html --family='Ubuntu' --subset=static/**/*de.ttf
