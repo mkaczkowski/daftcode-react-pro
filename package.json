@@ -16,6 +16,7 @@
   "dependencies": {
     "emotion": "^9.1.2",
     "emotion-normalize": "^7.0.1",
+    "grid-styled": "^4.1.0",
     "loadable-components": "^1.4.0",
     "modernizr": "^3.6.0",
     "react": "^16.3.0",
@@ -23,7 +24,8 @@
     "react-emotion": "^9.1.2",
     "react-hot-loader": "^4.0.1",
     "react-loadable-visibility": "^2.4.2",
-    "react-media": "^1.8.0"
+    "react-media": "^1.8.0",
+    "styled-system": "^2.2.5"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.4.2",
@@ -42,6 +44,7 @@
     "babel-preset-react": "^6.23.0",
     "babel-preset-stage-2": "^6.22.0",
     "clean-webpack-plugin": "^0.1.19",
+    "copy-webpack-plugin": "^4.5.1",
     "cross-env": "^5.1.4",
     "dotenv": "4.0.0",
     "dotenv-expand": "^4.2.0",

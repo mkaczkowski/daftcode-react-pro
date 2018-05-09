@@ -8,6 +8,7 @@ const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack');
 const getClientEnvironment = require('./env');
 const getMetaData = require('./metadata');
@@ -92,9 +93,8 @@ module.exports = {
     ],
   },
   plugins: [
-    new CleanWebpackPlugin([path.resolve('build')], {
-      root: path.resolve('.'),
-    }),
+    new CleanWebpackPlugin([path.resolve('build')], { root: path.resolve('.') }),
+    new CopyWebpackPlugin([path.resolve('public')]),
     new LodashModuleReplacementPlugin({ paths: true }),
     new FaviconsWebpackPlugin({
       logo: './src/assets/icon.png',

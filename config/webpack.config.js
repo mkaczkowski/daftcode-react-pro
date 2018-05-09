@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
 const publicUrl = '';
 const getClientEnvironment = require('./env', publicUrl);
@@ -25,6 +26,7 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new CopyWebpackPlugin([path.resolve('public')], {}),
     new HTMLWebpackPlugin({
       template: path.resolve('public/index.html'),
     }),

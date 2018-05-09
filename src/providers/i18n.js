@@ -1,5 +1,4 @@
 // @flow
-
 import * as React from 'react';
 
 type I18nProviderState = {
@@ -18,10 +17,7 @@ export type I18nContextProps = {
 
 export const I18nContext = React.createContext();
 
-class I18nProvider extends React.Component<
-  I18nProviderProps,
-  I18nProviderState
-> {
+class I18nProvider extends React.Component<I18nProviderProps, I18nProviderState> {
   state = {
     language: this.props.language,
   };
@@ -30,11 +26,7 @@ class I18nProvider extends React.Component<
       language: this.state.language,
       changeLanguage: language => this.setState({ language }),
     };
-    return (
-      <I18nContext.Provider value={value}>
-        {this.props.children}
-      </I18nContext.Provider>
-    );
+    return <I18nContext.Provider value={value}>{this.props.children}</I18nContext.Provider>;
   }
 }
 
