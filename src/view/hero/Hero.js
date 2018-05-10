@@ -1,10 +1,9 @@
 // @flow
 import React from 'react';
-
 import { space, width, fontSize, color, textAlign, hover, propTypes } from 'styled-system';
+import styled from 'styled-components';
+// $FlowIssue
 import { Flex, Box } from 'grid-styled';
-
-import styled from 'react-emotion';
 
 // Add styled-system functions to your component
 //http://jxnblk.com/styled-system/

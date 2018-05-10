@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import Hero from './Hero';
+import Hero from './../hero/Hero';
 
 const props: any = {};
 

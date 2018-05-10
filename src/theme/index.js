@@ -1,7 +1,7 @@
 const breakpoints = ['300px', '600px', '1200px'];
 
 const colors = {
-  text: '#024',
+  text: '#000',
   blue: '#07c',
   gray: ['#333', '#666', '#999', '#ccc', '#eee', '#f6f6f6'],
 };

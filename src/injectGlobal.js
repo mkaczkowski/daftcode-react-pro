@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-expressions */
-import { injectGlobal } from 'emotion';
-import emotionNormalize from 'emotion-normalize';
+import { injectGlobal } from 'styled-components';
 
 // import './assets/fonts/Ubuntu.ttf';
 // import './assets/fonts/Ubuntu.woff';
@@ -11,8 +10,6 @@ import './assets/fonts/Ubuntu-subset.zopfli.woff';
 import './assets/fonts/Ubuntu-subset.woff2';
 
 injectGlobal`
-  ${emotionNormalize}
-  
   @font-face {
     font-family: Ubuntu;
     src: url('Ubuntu.eot');

@@ -14,17 +14,15 @@
     "storybook": "start-storybook -p 6006"
   },
   "dependencies": {
-    "emotion": "^9.1.2",
-    "emotion-normalize": "^7.0.1",
     "grid-styled": "^4.1.0",
     "loadable-components": "^1.4.0",
     "modernizr": "^3.6.0",
     "react": "^16.3.0",
     "react-dom": "^16.3.0",
-    "react-emotion": "^9.1.2",
     "react-hot-loader": "^4.0.1",
     "react-loadable-visibility": "^2.4.2",
     "react-media": "^1.8.0",
+    "styled-components": "^3.2.6",
     "styled-system": "^2.2.5"
   },
   "devDependencies": {
@@ -38,7 +36,7 @@
     "babel-eslint": "^8.2.2",
     "babel-jest": "^23.0.0-alpha.0",
     "babel-loader": "^7.1.2",
-    "babel-plugin-emotion": "^9.1.2",
+    "babel-plugin-styled-components": "^1.5.1",
     "babel-plugin-transform-flow-strip-types": "^6.22.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.23.0",
