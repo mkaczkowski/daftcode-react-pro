@@ -7,7 +7,7 @@
   "scripts": {
     "optimize": "gulp optimize",
     "start": "webpack-dev-server --config config/webpack.config.js",
-    "build": "webpack --config config/webpack.config.prod.js",
+    "build": "cross-env NODE_ENV=production webpack --config config/webpack.config.prod.js",
     "postbuild": "react-snap && gulp postbuild",
     "serve": "serve -s build",
     "test": "jest",
