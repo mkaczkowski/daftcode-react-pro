@@ -28,6 +28,7 @@ module.exports = {
     modules: [path.resolve('src'), path.resolve('node_modules')],
     extensions: ['.js', '.jsx'],
     alias: {
+      '@assets': path.resolve('src/assets'),
       modernizr$: path.resolve('.modernizrrc'),
     },
   },

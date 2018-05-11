@@ -9,8 +9,8 @@ import Skills from './view/skills/Skills';
 import Clients from './view/clients/Clients';
 import { ThemeProvider } from 'styled-components';
 import theme from './theme';
+import Modernizr from "modernizr";
 import Hero from './view/hero/Hero';
-import Home from './view/home/Home';
 
 const App = () => {
   const Contact = loadableVisibility(() => import('./view/contact/Contact'));
@@ -22,9 +22,9 @@ const App = () => {
           <Header.Menu />
           <Header.LanguageChooser />
         </Header>
-        <Home username="DaftCoder" />
-        {/*<Hero />*/}
-        {/*<Introduction />*/}
+        {/*<Home username="DaftCoder" />*/}
+        <Hero nextSectionId="introduction" />
+        <Introduction />
         {/*<Skills />*/}
         {/*<Clients />*/}
         {/*<Contact />*/}

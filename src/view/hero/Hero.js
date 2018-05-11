@@ -1,48 +1,95 @@
 // @flow
-import React from 'react';
-import { space, width, fontSize, color, textAlign, hover, propTypes } from 'styled-system';
+import * as React from 'react';
+import { Parallax, ParallaxProvider } from 'react-scroll-parallax';
 import styled from 'styled-components';
-// $FlowIssue
-import { Flex, Box } from 'grid-styled';
+import HeroBanner from './HeroBanner';
+import {media} from './../../theme';
+// import Modernizr from "modernizr";
 
-// Add styled-system functions to your component
-//http://jxnblk.com/styled-system/
-const MyBox = styled(Box)`
-  ${fontSize}
-  ${textAlign}
-  ${color}
-  ${hover}
+const Intro = styled.div`
+  margin: auto 0;
+  cursor: pointer;
+  text-align: center;
+  
+  & > h1 {
+    position: relative;
+    font-size: 4.2rem;
+    color: ${({theme}) => theme.colors.text};
+    display: inline-block;
+    margin: 1.6rem auto 2.3rem;
+    font-weight: 600;
+    opacity: 1;
+    transform: scale(1);
+    transition: transform 0.5s ease, opacity 1s ease;
+    
+    //@include xsMax {
+    //.hero {
+    //    max-width: 32rem;
+    //  & > h1 {
+    //      font-size: 3.2rem;
+    //    }
+    //  }
+    //}
 `;
 
-type HeroProps = {};
+const ButtonIntro = styled.button`
+  width: auto;
+  min-width: 28rem;
+  ${media.phone`min-width: 358px;`};
+  font-weight: 500;
+`;
 
-class Hero extends React.Component<HeroProps> {
+const ScrollDown = styled.div`
+  width: 3.8rem;
+  text-align: center;
+  margin-bottom: 10rem;
+  box-shadow: 0 0 2px 0 white;
+  border-radius: 8px;
+
+  //@include xsMax {
+  //    margin-bottom: 15rem;
+  //  }
+  &:hover {
+    box-shadow: 0 0 4px 0 white;
+  }
+`;
+
+const LoadingHeader = styled.h1`
+  //transform: scale(0.9);
+  //opacity: 0;
+`;
+
+
+type HeroProps = {
+  nextSectionId: string,
+};
+
+class Hero extends React.PureComponent<HeroProps> {
+  introNode: any;
+
+  componentDidMount(){
+  }
+  // compomage />
+  //  t() {
+  //   setTimeout(() => {
+  //     this.heroNode && this.heroNode.classList.remove(theme['is-loading']);
+    // }, 100);
+  // }
+
   render() {
     return (
-      <div>
-        <Flex>
-          <Box w={[1, 1 / 2, 1 / 4]} px={2}>
-            Half width
-          </Box>
-          <Box width={1 / 2} px={2}>
-            Half width
-          </Box>
-        </Flex>
-
-        <MyBox color="blue">11</MyBox>
-        <MyBox align={123}>111</MyBox>
-        <MyBox aligner="center">111</MyBox>
-        <MyBox
-          hover={{
-            textDecoration: 'underline',
-            color: 'blue',
-          }}
-        >
-          1111
-        </MyBox>
-        <MyBox width={[1, 1 / 2]}>2</MyBox>
-        <MyBox color="gray.0">3</MyBox>
-      </div>
+      <ParallaxProvider>
+        <div>
+          <HeroBanner min={'-30%'} max={'30%'}>
+            <Intro id="intro" ref={node => {this.introNode = node}}>
+              <h1>TITLE</h1>
+              <div>
+                <ButtonIntro>OK</ButtonIntro>
+              </div>
+            </Intro>
+          </HeroBanner>
+        </div>
+      </ParallaxProvider>
     );
   }
 }

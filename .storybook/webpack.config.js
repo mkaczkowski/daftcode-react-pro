@@ -36,6 +36,7 @@ module.exports = {
     modules: ['node_modules'],
     extensions: ['.js', '.json'],
     alias: {
+      '@assets': path.resolve(__dirname, '../src/assets'),
       modernizr$: path.resolve(__dirname, '../.modernizrrc'),
     },
   },

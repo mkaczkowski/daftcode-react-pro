@@ -9,8 +9,6 @@ const gzip = require('gulp-gzip');
 
 const config = require('./config');
 
-console.info('paaath:' + path.join(__dirname, config.root.dist));
-
 gulp.task('gzip', function() {
   gulp
     .src(path.join(__dirname, config.root.dist, '**/*.+(js|html|css)'))
