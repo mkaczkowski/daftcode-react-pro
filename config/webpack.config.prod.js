@@ -26,7 +26,7 @@ module.exports = {
   entry: [require.resolve('./polyfills'), path.resolve('src/index.js')],
   resolve: {
     modules: [path.resolve('src'), path.resolve('node_modules')],
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.json'],
     alias: {
       '@assets': path.resolve('src/assets'),
       modernizr$: path.resolve('.modernizrrc'),
@@ -84,7 +84,7 @@ module.exports = {
         use: ['modernizr-loader', 'json-loader'],
       },
       {
-        exclude: [/\.(js|jsx|mjs|html|json)$/],
+        test: /\.(jpe?g|jpg|gif|png|woff|woff2|eot|ttf|webp)$/,
         loader: require.resolve('file-loader'),
         options: {
           name: '[name].[ext]',
