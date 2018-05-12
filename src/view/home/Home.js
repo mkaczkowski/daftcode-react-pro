@@ -3,9 +3,7 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import { space, width, fontSize, color } from 'styled-system';
 // $FlowIssue
-import { Flex, Box } from 'grid-styled';
 
 type HomeProps = {
   username: string,
@@ -26,12 +24,11 @@ type HomeProps = {
 
 // Add styled-system functions to your component
 
-const WelcomeContainer = styled(Box)`
+const WelcomeContainer = styled.div`
   min-height: 100px;
   color: black;
   font-size: 3rem;
   text-align: center;
-  ${fontSize} ${color};
 `;
 //
 // const welcomeClassName2 = css`
@@ -47,7 +44,7 @@ class Home extends React.Component<HomeProps, any> {
     const { welcomeText } = this.state;
     const { username } = this.props;
     return (
-      <WelcomeContainer fontSize={[2, 3, 4]} m={[1, 2, 3]} p={[1, 2, 3]} color={['text', 'blue', 'gray.0']}>
+      <WelcomeContainer >
         {welcomeText}
         {/*<UsernameLabel>{`: ${username}`}</UsernameLabel>*/}
       </WelcomeContainer>
