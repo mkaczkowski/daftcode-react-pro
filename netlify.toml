@@ -12,3 +12,15 @@
   to = "/storybook/index.html"
   status = 200
   force = true
+
+[[redirects]]
+  from = "/storybook2"
+  to = "/storybook/index.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/static"
+  to = "/storybook/static"
+  status = 200
+  force = true
