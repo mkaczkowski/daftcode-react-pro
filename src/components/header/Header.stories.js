@@ -1,9 +1,8 @@
 //@flow
-
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import Skills from './Skills';
+import Header from './Header';
 
 const props: any = {};
 
-storiesOf('Sections', module).add('skills', () => <Skills {...props} />);
+storiesOf('Components', module).add('header', () => <Header {...props} />);

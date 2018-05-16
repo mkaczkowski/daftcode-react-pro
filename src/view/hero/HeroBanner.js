@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import { Parallax, ParallaxProvider } from 'react-scroll-parallax';
+import { Parallax } from 'react-scroll-parallax';
 import styled from 'styled-components';
 import HeroBackground from '@assets/images/heroBackgroud.jpg';
 import HeroBackgroundWebp from '@assets/images/heroBackgroud.webp';
@@ -8,7 +8,7 @@ import HeroBackgroundWebp from '@assets/images/heroBackgroud.webp';
 const HeroContainer = styled.div`
   position: relative;
   width: 100%;
-  height: 85vh;
+  height: 100vh;
   overflow: hidden;
 `;
 
@@ -34,11 +34,10 @@ const HeroContent = styled.div`
   justify-content: center;
 `;
 
-
 const HeroBanner = ({ image, min, max, children }: any) => (
   <HeroContainer>
     <Parallax offsetYMin={min} offsetYMax={max} slowerScrollRate={true}>
-      <HeroImage/>
+      <HeroImage />
     </Parallax>
     <HeroContent>{children}</HeroContent>
   </HeroContainer>

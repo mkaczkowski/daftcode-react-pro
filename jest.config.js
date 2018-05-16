@@ -11,6 +11,7 @@ module.exports = {
   transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.js$'],
   moduleFileExtensions: ['js', 'json', 'node'],
   moduleNameMapper: {
-    "^@assets(.*)$": "<rootDir>/src/assets"
+    '^@assets(.*)$': '<rootDir>/src/assets',
+    '^@theme(.*)$': '<rootDir>/src/assets',
   },
 };

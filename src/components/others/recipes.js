@@ -1,19 +1,18 @@
 //@flow
 
 //http://www.responsivebreakpoints.com/
-import * as React from "react";
-
+import * as React from 'react';
 
 /**
  * CSS*
  ********
-* @include webp {
-*   background: url("../../../assets/images/logo.png") no-repeat green center;
-* }
-* @include no-webp {
-*   background: no-repeat red center;
-* }
-/**end css*/
+ * @include webp {
+ *   background: url("../../../assets/images/logo.png") no-repeat green center;
+ * }
+ * @include no-webp {
+ *   background: no-repeat red center;
+ * }
+ /**end css*/
 
 class RwdImages extends React.PureComponent {
   render() {
@@ -234,7 +233,6 @@ class RwdImages extends React.PureComponent {
         </picture>
 
         <picture>
-
           {/*WEBP*/}
           <source
             media="(max-width: 767px)"
@@ -275,7 +273,6 @@ class RwdImages extends React.PureComponent {
             src="images/castle_c_scale,w_1525.webp"
             type="image/webp"
           />
-
           /* Portrait Phones */
           <source
             media="(max-width: 767px)"

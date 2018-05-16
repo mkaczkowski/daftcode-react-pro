@@ -5,7 +5,7 @@ const breakpoints = {
   desktop: 1170,
   laptop: 992,
   tablet: 768,
-  phone: 376
+  phone: 376,
 };
 
 const colors = {

@@ -3,14 +3,13 @@ import * as React from 'react';
 import { hot } from 'react-hot-loader';
 import loadableVisibility from 'react-loadable-visibility/loadable-components';
 import I18nProvider from './providers/i18n';
-import { Header } from './components/header';
-import Introduction from './view/introduction/Introduction';
-import Skills from './view/skills/Skills';
-import Clients from './view/clients/Clients';
 import { ThemeProvider } from 'styled-components';
 import theme from './theme';
-import Modernizr from "modernizr";
 import Hero from './view/hero/Hero';
+import Header from './components/header/Header';
+import LANGUAGES from './constants/language';
+
+const languages = [LANGUAGES.EN, LANGUAGES.PL];
 
 const App = () => {
   const Contact = loadableVisibility(() => import('./view/contact/Contact'));
@@ -20,14 +19,10 @@ const App = () => {
         <Header stage={1}>
           <Header.Logo />
           <Header.Menu />
-          <Header.LanguageChooser />
+          <Header.LanguageChooser languages={languages} />
         </Header>
-        {/*<Home username="DaftCoder" />*/}
-        <Hero nextSectionId="introduction" />
-        <Introduction />
-        {/*<Skills />*/}
-        {/*<Clients />*/}
-        {/*<Contact />*/}
+        <Hero />
+        <Contact />
       </I18nProvider>
     </ThemeProvider>
   );

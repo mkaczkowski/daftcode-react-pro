@@ -26,6 +26,9 @@ injectGlobal`
   body {
     background: aquamarine;
     font-family: Ubuntu;
+    margin:0;
+    height:100%;
+    width:100%;
     
     @media (display-mode: standalone) {
       /* All installed PWAs styles media-query*/
