@@ -1,5 +1,5 @@
 [build]
-  Command = "yarn build"
+  Command = "yarn build && yarn storybook:build"
   Publish = "build"
 
 [build.environment]

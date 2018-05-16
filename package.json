@@ -11,7 +11,8 @@
     "postbuild": "react-snap && gulp postbuild",
     "serve": "serve -s build",
     "test": "jest",
-    "storybook": "start-storybook -p 6006"
+    "storybook": "start-storybook -p 6006",
+    "storybook:build": "build-storybook -c .storybook -o build/storybook"
   },
   "dependencies": {
     "formik": "1.0.0-beta.2",
