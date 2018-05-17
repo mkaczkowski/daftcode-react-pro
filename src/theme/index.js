@@ -9,9 +9,15 @@ const breakpoints = {
 };
 
 const colors = {
+  white: '#fff',
   text: '#000',
   blue: '#07c',
   gray: ['#333', '#666', '#999', '#ccc', '#eee', '#f6f6f6'],
+};
+
+const buttons = {
+  neutral: { background: colors.white, text: colors.white },
+  primary: { background: colors.blue, text: colors.white },
 };
 
 const space = [0, 4, 8, 16, 32, 64, 128, 256, 512];
@@ -54,6 +60,7 @@ const theme = {
   breakpoints,
   media,
   colors,
+  buttons,
   space,
   fontSizes,
   lineHeights,

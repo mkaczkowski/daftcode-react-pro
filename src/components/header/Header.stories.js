@@ -5,4 +5,4 @@ import Header from './Header';
 
 const props: any = {};
 
-storiesOf('Components', module).add('header', () => <Header {...props} />);
+storiesOf('Components|Header', module).add('basic', () => <Header {...props} />);

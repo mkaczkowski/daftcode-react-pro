@@ -6,4 +6,4 @@ import Hero from './Hero';
 
 const props: any = {};
 
-storiesOf('Sections', module).add('hero', () => <Hero {...props} />);
+storiesOf('Sections|Hero', module).add('basic', () => <Hero {...props} />);

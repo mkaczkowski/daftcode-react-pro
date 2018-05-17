@@ -11,4 +11,4 @@ const props: LanguageChooserProps = {
   changeLanguage: () => alert('change langauge'),
 };
 
-storiesOf('Components', module).add('languageChooser', () => <LanguageChooser {...props} />);
+storiesOf('Components|Language Chooser', module).add('basic', () => <LanguageChooser {...props} />);

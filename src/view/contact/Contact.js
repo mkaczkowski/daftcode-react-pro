@@ -1,21 +1,55 @@
 // @flow
 import React from 'react';
 import { Formik } from 'formik';
+import Group from '../../components/group';
+import Field from '../../components/field';
+import Input from '../../components/input';
+import Button from '../../components/button';
+import Label from '../../components/label';
+import Heading from '../../components/heading/Heading';
+
+// ASSETS GENERATED VIA CLOUDINARY
+import castle_ar_1_1_c_fill___auto__c_scale_w_200_webp from '@assets/images/castle_ar_1_1.c_fill.g_auto__c_scale.w_200.webp';
+import castle_ar_4_3_c_fill_g_auto__c_scale_w_538_webp from '@assets/images/castle_ar_4_3.c_fill.g_auto__c_scale.w_538.webp';
+import castle_ar_16_9_c_fill_g_auto__c_scale_w_874_webp from '@assets/images/castle_ar_16_9.c_fill.g_auto__c_scale.w_874.webp';
+import castle_ar_1_1_c_fill___auto__c_scale_w_200 from '@assets/images/castle_ar_1_1.c_fill.g_auto__c_scale.w_200.jpg';
+import castle_ar_4_3_c_fill_g_auto__c_scale_w_538 from '@assets/images/castle_ar_4_3.c_fill.g_auto__c_scale.w_538.jpg';
+import castle_ar_16_9_c_fill_g_auto__c_scale_w_874 from '@assets/images/castle_ar_16_9.c_fill.g_auto__c_scale.w_874.jpg';
 
 type ContactProps = {};
 
 class Contact extends React.Component<ContactProps> {
+  renderAvatar = () => {
+    return (
+      <picture>
+        {/* Portrait Phones  - WEBP*/}
+        <source media="(max-width: 767px)" srcSet={castle_ar_1_1_c_fill___auto__c_scale_w_200_webp} type="image/webp" />
+        {/* Tablets  - WEBP*/}
+        <source
+          media="(min-width: 768px) and (max-width: 991px)"
+          srcSet={castle_ar_4_3_c_fill_g_auto__c_scale_w_538_webp}
+          type="image/webp"
+        />
+        {/* Desktops  - WEBP*/}
+        <source
+          media="(min-width: 992px)"
+          srcSet={castle_ar_16_9_c_fill_g_auto__c_scale_w_874_webp}
+          type="image/webp"
+        />
+        {/* Portrait Phones */}
+        <source media="(max-width: 767px)" srcSet={castle_ar_1_1_c_fill___auto__c_scale_w_200} />
+        {/* Tablets */}
+        <source media="(min-width: 768px) and (max-width: 991px)" srcSet={castle_ar_4_3_c_fill_g_auto__c_scale_w_538} />
+        {/* Desktops */}
+        <img media="(min-width: 992px)" srcSet={castle_ar_16_9_c_fill_g_auto__c_scale_w_874} alt="" />
+      </picture>
+    );
+  };
+
   render() {
     return (
       <div>
-        <picture>
-          <source media="(min-width: 1024px)" srcSet="opera-fullshot.webp" type="image/webp" />
-          <source media="(min-width: 1024px)" srcSet="opera-fullshot.jpg" />
-          <source srcSet="opera-closeup.webp" type="image/webp" />
-          <img src="opera-closeup.jpg" alt="The Oslo Opera House" />
-        </picture>
-
-        <h1>Contact Form</h1>
+        <Heading>Contact Form</Heading>
         <Formik
           initialValues={{
             email: '',
@@ -35,19 +69,39 @@ class Contact extends React.Component<ContactProps> {
           }}
           render={({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
             <form onSubmit={handleSubmit}>
-              <input type="email" name="email" onChange={handleChange} onBlur={handleBlur} value={values.email} />
-              {touched.email && errors.email && <div>{errors.email}</div>}
-              <input
-                type="password"
-                name="password"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.password}
-              />
-              {touched.password && errors.password && <div>{errors.password}</div>}
-              <button type="submit" disabled={isSubmitting}>
-                Submit
-              </button>
+              <Field as={Group.Item} padding={8}>
+                <Label htmlFor="photo">Photo</Label>
+                {this.renderAvatar()}
+              </Field>
+              <Field as={Group.Item} padding={8}>
+                <Label htmlFor="email">Email</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  name="email"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.email}
+                />
+                {touched.email && errors.email && <div>{errors.email}</div>}
+              </Field>
+              <Field as={Group.Item} padding={8}>
+                <Label htmlFor="password">Password</Label>
+                <Input
+                  id="password"
+                  type="password"
+                  name="password"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.password}
+                />
+                {touched.password && errors.password && <div>{errors.password}</div>}
+              </Field>
+              <Field as={Group.Item} padding={8}>
+                <Button type="submit" primary disabled={isSubmitting}>
+                  SEND
+                </Button>
+              </Field>
             </form>
           )}
         />

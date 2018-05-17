@@ -1,6 +1,7 @@
 import React from 'react';
-import { configure } from '@storybook/react';
+import { configure, addDecorator } from '@storybook/react';
 import { setOptions } from '@storybook/addon-options';
+import { getTheme } from './decorators/theme';
 
 setOptions({
   name: 'React-Pro',
@@ -10,6 +11,8 @@ setOptions({
   hierarchySeparator: /\//,
   hierarchyRootSeparator: /\|/,
 });
+
+addDecorator(getTheme())
 
 const req = require.context('../src', true, /.stories.js$/);
 // const req = require.context("../src/products/linguotica/landings/ldc/register/sections/msisdn", true, /.stories.js$/);
