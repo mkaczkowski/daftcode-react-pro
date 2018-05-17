@@ -8,6 +8,7 @@ import theme from './theme';
 import Hero from './view/hero/Hero';
 import Header from './components/header/Header';
 import LANGUAGES from './constants/language';
+import Footer from './components/footer/Footer';
 
 const languages = [LANGUAGES.EN, LANGUAGES.PL];
 
@@ -23,6 +24,7 @@ const App = () => {
         </Header>
         <Hero />
         <Contact />
+        <Footer />
       </I18nProvider>
     </ThemeProvider>
   );
