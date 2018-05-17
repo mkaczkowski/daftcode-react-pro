@@ -1,12 +1,25 @@
 # ⚛ daftcode-react-starter
 
-React boilerplate for everyone
+Hyper-performant React boilerplate for everyone
 
-## 🎮 Demp
-![http://mkaczkowski/com](http://mkaczkowski.com)
+## 🎮 Demo
+You can see how it performs live on:
+[https://mkaczkowski.com](https://www.mkaczkowski.com)
 
-![alt text](https://photos-1.dropbox.com/t/2/AACSlrW63wc6nLQoao0vWPWvsWXDw213RTMExmlYRRbBWQ/12/86645544/png/32x32/1/_/1/2/audit.png/EPuetkMYobABIAcoBw/BYeK8dDK9EOWwm7TAtKo_D2JEBfpjipoPB-meB3yoLY?preserve_transparency=1&size=800x600&size_mode=3)
-![alt text](https://www.dropbox.com/s/xe3p8rsoy77oveq/audit.png)
+Demo storybook can be found here:
+[https://wizardly-poitras-931354.netlify.com](https://wizardly-poitras-931354.netlify.com)
+
+## Performance:
+
+Taken: 17 May 2018
+
+#### Google Insight:
+![insight](stats/insight.png)
+
+#### Chrome Audits:
+![audit](stats/audit.png)
+
+ - TODO: [Accessibility] fix background/foreground contrast
 
 ## 🕹 Features
 * [React (v16.3)](https://reactjs.org) - a JavaScript library for building user interfaces
@@ -32,7 +45,7 @@ Tweak React components in real time ⚛️⚡️
 TODO:
 - CSSGrid
 - i18n
-- Email form
+- Email form integration with Netlify
 
 ## 🔧 Installation
 
