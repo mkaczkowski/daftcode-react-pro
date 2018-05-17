@@ -4,6 +4,11 @@ import { injectGlobal } from 'styled-components';
 // import './assets/fonts/Ubuntu.ttf';
 // import './assets/fonts/Ubuntu.woff';
 // import './assets/fonts/Ubuntu.woff2';
+
+//url(Ubuntu.woff2) format("woff2"),
+//rl(Ubuntu.zopfli.woff) format("woff"),
+//rl(Ubuntu.ttf) format("truetype");
+
 import './assets/fonts/Ubuntu.eot';
 import './assets/fonts/Ubuntu-subset.ttf';
 import './assets/fonts/Ubuntu-subset.zopfli.woff';
@@ -17,14 +22,14 @@ injectGlobal`
     url(Ubuntu-subset.woff2) format("woff2"), 
     url(Ubuntu-subset.zopfli.woff) format("woff"), 
     url(Ubuntu-subset.ttf) format("truetype");
-    unicode-range: U+20,U+2E,U+32,U+3A,U+43,U+44,U+48,U+4A,U+53,U+59,U+61-66,U+68,U+69,U+6C,U+6E-70,U+72-76;
+    unicode-range: U+20,U+2E,U+32,U+45,U+47,U+49,U+4A,U+4C,U+53,U+54,U+59,U+61-65,U+68,U+69,U+6B,U+6C,U+6E-70,U+72-76,U+79;
     font-weight: normal;
     font-style: normal;
     font-display:swap;
   }
   
   body {
-    background: aquamarine;
+    background: white;
     font-family: Ubuntu;
     margin:0;
     height:100%;

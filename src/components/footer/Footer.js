@@ -13,6 +13,7 @@ class Footer extends React.Component<{}> {
     return (
       <FooterContainer>
         <Link href="https://wizardly-poitras-931354.netlify.com">Storybook</Link>
+        <Link href="https://github.com/mkaczkowski/daftcode-react-pro">Github</Link>
       </FooterContainer>
     );
   }

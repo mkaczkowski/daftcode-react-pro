@@ -92,7 +92,7 @@ yarn serve
 
 #### Generate subset webfonts
 ```bash
-glyphhanger http://localhost:5000/index.html --family='<YourFamilyName>' --subset=build/*.ttf --css
+glyphhanger http://localhost:5000/index.html --family='Ubuntu' --subset=build/*.ttf --css
 ```
 
 ## 📜 License
