@@ -89,7 +89,6 @@ class HeaderComponent extends React.Component<HeaderProps, HeaderState> {
     if (!this.scrollListener) {
       this.scrollListener = _throttle(this.handleScroll, 50);
       window.addEventListener('scroll', this.scrollListener);
-      console.log(this.rootNode.current);
       const { height } = this.rootNode.current.getBoundingClientRect();
       this.scrollY = window.scrollY;
       this.height = height + 200; //y offset
