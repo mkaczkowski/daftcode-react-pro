@@ -101,9 +101,13 @@ We can limit generate subset of fonts to use only unicode-ranges that are used o
 
 #### Install
 ```bash
-pip install fonttools
-pip install brotli
-pip install zopfli
+brew install python (if not installed already)
+
+pip3 install fonttools
+pip3 install brotli
+pip3 install zopfli
+
+npm install -g glyphhanger
 ```
 #### Run local server
 ```bash
