@@ -15,6 +15,11 @@ const colors = {
   gray: ['#333', '#666', '#999', '#ccc', '#eee', '#f6f6f6'],
 };
 
+const components = {
+  header:{ background: colors.gray[4], scrolledBackground:"rgba(238,238,238,0.41)" },
+  footer:{ background: colors.gray[4] }
+}
+
 const buttons = {
   neutral: { background: colors.white, text: colors.white },
   primary: { background: colors.blue, text: colors.white },
@@ -61,6 +66,7 @@ const theme = {
   media,
   colors,
   buttons,
+  components,
   space,
   fontSizes,
   lineHeights,

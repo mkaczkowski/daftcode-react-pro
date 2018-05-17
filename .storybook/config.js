@@ -2,6 +2,7 @@ import React from 'react';
 import { configure, addDecorator } from '@storybook/react';
 import { setOptions } from '@storybook/addon-options';
 import { getTheme } from './decorators/theme';
+import './../src/injectGlobal';
 
 setOptions({
   name: 'React-Pro',

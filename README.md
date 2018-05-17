@@ -1,6 +1,25 @@
 # ⚛ daftcode-react-starter
 
-React boilerplate for everyone
+Hyper-performant React boilerplate for everyone
+
+## 🎮 Demo
+You can see how it performs live on:
+[https://mkaczkowski.com](https://www.mkaczkowski.com)
+
+Demo storybook can be found here:
+[https://wizardly-poitras-931354.netlify.com](https://wizardly-poitras-931354.netlify.com)
+
+## Performance:
+
+Taken: 17 May 2018
+
+#### Google Insight:
+![insight](stats/insight.png)
+
+#### Chrome Audits:
+![audit](stats/audit.png)
+
+ - TODO: [Accessibility] fix background/foreground contrast
 
 ## 🕹 Features
 * [React (v16.3)](https://reactjs.org) - a JavaScript library for building user interfaces
@@ -15,6 +34,7 @@ React boilerplate for everyone
 * [Storybook](https://github.com/storybooks/storybook) - interactive UI component dev & test
 * [PWA](https://developers.google.com/web/progressive-web-apps/) - progressive Web App ready
 * Assets optimization (png/jpg/svg/webp)
+* Responsive images
 * Critical fonts optimization
 * Async/Defer/Preload scripts
 * Modernizr - feature detection
@@ -26,7 +46,7 @@ Tweak React components in real time ⚛️⚡️
 TODO:
 - CSSGrid
 - i18n
-- Email form
+- Email form integration with Netlify
 
 ## 🔧 Installation
 
@@ -81,9 +101,13 @@ We can limit generate subset of fonts to use only unicode-ranges that are used o
 
 #### Install
 ```bash
-pip install fonttools
-pip install brotli
-pip install zopfli
+brew install python (if not installed already)
+
+pip3 install fonttools
+pip3 install brotli
+pip3 install zopfli
+
+npm install -g glyphhanger
 ```
 #### Run local server
 ```bash
@@ -92,7 +116,7 @@ yarn serve
 
 #### Generate subset webfonts
 ```bash
-glyphhanger http://localhost:5000/index.html --family='<YourFamilyName>' --subset=build/*.ttf --css
+glyphhanger http://localhost:5000/index.html --family='Ubuntu' --subset=build/*.ttf --css
 ```
 
 ## 📜 License
