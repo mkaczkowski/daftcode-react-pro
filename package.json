@@ -12,7 +12,7 @@
     "serve": "serve -s build",
     "test": "jest",
     "storybook": "start-storybook -p 6006",
-    "storybook:build": "build-storybook -c .storybook -o build/storybook"
+    "storybook:build": "build-storybook -c .storybook -o build"
   },
   "dependencies": {
     "formik": "1.0.0-beta.2",
