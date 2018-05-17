@@ -22,7 +22,7 @@ injectGlobal`
     url(Ubuntu-subset.woff2) format("woff2"), 
     url(Ubuntu-subset.zopfli.woff) format("woff"), 
     url(Ubuntu-subset.ttf) format("truetype");
-    unicode-range: U+20,U+2E,U+32,U+45,U+47,U+49,U+4A,U+4C,U+53,U+54,U+59,U+61-65,U+68,U+69,U+6B,U+6C,U+6E-70,U+72-76,U+79;
+      unicode-range: U+20,U+2E,U+32,U+45,U+47,U+49,U+4A,U+4C,U+53,U+54,U+59,U+61-65,U+68,U+69,U+6B,U+6C,U+6E-70,U+72-76,U+79;
     font-weight: normal;
     font-style: normal;
     font-display:swap;
