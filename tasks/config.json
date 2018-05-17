@@ -3,7 +3,7 @@
     "dist": "./../build"
   },
   "img": {
-    "src": "assets/**",
+    "src": "./../src/assets/**",
     "extensions": "*.+(jpg|jpeg|gif|png|svg)"
   },
   "css": {
