@@ -34,6 +34,7 @@ Taken: 17 May 2018
 * [Storybook](https://github.com/storybooks/storybook) - interactive UI component dev & test
 * [PWA](https://developers.google.com/web/progressive-web-apps/) - progressive Web App ready
 * Assets optimization (png/jpg/svg/webp)
+* Responsive images
 * Critical fonts optimization
 * Async/Defer/Preload scripts
 * Modernizr - feature detection
