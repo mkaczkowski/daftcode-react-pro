@@ -11,14 +11,12 @@ const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack');
 const getClientEnvironment = require('./env');
-const getMetaData = require('./metadata');
 
 const publicUrl = '/';
 const env = getClientEnvironment('production', publicUrl);
-const metadata = getMetaData(env.raw);
 
-const shouldUseSourceMap = env.raw.GENERATE_SOURCEMAP !== 'false';
-const shouldBundleAnalyze = env.raw.BUNDLE_ANALYZER !== 'false';
+const shouldUseSourceMap = false;
+const shouldBundleAnalyze = true;
 
 module.exports = {
   mode: 'production',
@@ -30,7 +28,6 @@ module.exports = {
     alias: {
       '@assets': path.resolve('src/assets'),
       '@theme': path.resolve('src/theme'),
-      modernizr$: path.resolve('.modernizrrc'),
     },
   },
   output: {
@@ -77,14 +74,6 @@ module.exports = {
         ],
       },
       {
-        test: /\.modernizrrc.js$/,
-        use: ['modernizr-loader'],
-      },
-      {
-        test: /\.modernizrrc(\.json)?$/,
-        use: ['modernizr-loader', 'json-loader'],
-      },
-      {
         test: /\.(jpe?g|jpg|gif|png|woff|woff2|eot|ttf|webp)$/,
         loader: require.resolve('file-loader'),
         options: {
@@ -109,7 +98,7 @@ module.exports = {
       },
     }),
     new SWPrecacheWebpackPlugin({
-      cacheId: 'react-pro',
+      cacheId: 'cv-card',
       filename: 'service-worker.js',
       dontCacheBustUrlsMatching: /\.\w{8}\./,
       mergeStaticsConfig: true, // if you don't set this to true, you won't see any webpack-emitted assets in your serviceworker config
@@ -121,7 +110,6 @@ module.exports = {
       fileName: 'asset-manifest.json',
     }),
     new WebpackPwaManifest({
-      ...metadata,
       ios: true,
       inject: true,
       icons: [
@@ -134,9 +122,6 @@ module.exports = {
     new webpack.DefinePlugin(env.stringified),
     new HTMLWebpackPlugin({
       template: path.resolve('public/index.html'),
-      title: metadata.name,
-      description: metadata.description,
-      manifest: metadata.filename,
       minify: {
         removeComments: true,
         collapseWhitespace: true,

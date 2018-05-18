@@ -170,7 +170,7 @@ declare module 'eslint-plugin-flowtype/dist/rules/typeImportStyle' {
   declare module.exports: any;
 }
 
-declare module 'eslint-plugin-flowtype/dist/rules/unionIntersectionSpacing' {
+declare module 'eslint-plugin-flowtype/dist/rules/unionInterdatapacing' {
   declare module.exports: any;
 }
 
@@ -338,8 +338,8 @@ declare module 'eslint-plugin-flowtype/dist/rules/typeIdMatch.js' {
 declare module 'eslint-plugin-flowtype/dist/rules/typeImportStyle.js' {
   declare module.exports: $Exports<'eslint-plugin-flowtype/dist/rules/typeImportStyle'>;
 }
-declare module 'eslint-plugin-flowtype/dist/rules/unionIntersectionSpacing.js' {
-  declare module.exports: $Exports<'eslint-plugin-flowtype/dist/rules/unionIntersectionSpacing'>;
+declare module 'eslint-plugin-flowtype/dist/rules/unionInterdatapacing.js' {
+  declare module.exports: $Exports<'eslint-plugin-flowtype/dist/rules/unionInterdatapacing'>;
 }
 declare module 'eslint-plugin-flowtype/dist/rules/useFlowType.js' {
   declare module.exports: $Exports<'eslint-plugin-flowtype/dist/rules/useFlowType'>;

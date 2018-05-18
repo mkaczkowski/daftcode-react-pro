@@ -1,33 +1,75 @@
 // @flow
 import * as React from 'react';
 import { hot } from 'react-hot-loader';
-import loadableVisibility from 'react-loadable-visibility/loadable-components';
-import I18nProvider from './providers/i18n';
 import { ThemeProvider } from 'styled-components';
 import theme from './theme';
-import Hero from './view/hero/Hero';
-import Header from './components/header/Header';
-import LANGUAGES from './constants/language';
-import Footer from './components/footer/Footer';
+import DataProvider from './providers/data';
+import Introduction from './view/introduction/Introduction';
+import Education from './view/education/Education';
+import Experience from './view/_experience/Experience';
+import { DataContext } from './providers/data';
+import type { DataType } from './providers/data';
 
-const languages = [LANGUAGES.EN, LANGUAGES.PL];
-
-const App = () => {
-  const Contact = loadableVisibility(() => import('./view/contact/Contact'));
-  return (
-    <ThemeProvider theme={theme}>
-      <I18nProvider language="en">
-        <Header stage={1}>
-          <Header.Logo />
-          <Header.Menu />
-          <Header.LanguageChooser languages={languages} />
-        </Header>
-        <Hero />
-        <Contact />
-        <Footer />
-      </I18nProvider>
-    </ThemeProvider>
-  );
+export type DATAType = {
+  [string]: {
+    name: string,
+    component: any,
+  },
 };
+
+export const DATA = {
+  INTRODUCTION: 'introduction',
+  EDUCATION: 'education',
+  SKILLS: 'skills',
+  EXPERIENCE: 'experience',
+  CUSTOM: 'custom',
+};
+
+const DATA_CONFIG: DATAType = {
+  [DATA.INTRODUCTION]: { name: 'introduction', component: Introduction },
+  [DATA.EDUCATION]: { name: 'education', component: Education },
+  [DATA.EXPERIENCE]: { name: 'experience', component: Experience },
+};
+
+const DEFAULT_DATA: DataType[] = [
+  // { name: DATA.INTRODUCTION, avatar: 'dasd', description: 'sdas das d' },
+  {
+    name: DATA.EDUCATION,
+    items: [
+      { id: 1, university: '1', year: '11', description: '111' },
+      { id: 2, university: '2', year: '22', description: '222' },
+    ],
+  },
+  // {
+  //   name: DATA.EXPERIENCE,
+  //   items: [{ company: '1', year: '11', description: '111' }, { company: '2', year: '22', description: '222' }],
+  // },
+];
+
+class App extends React.PureComponent<{}, { data?: Object }> {
+  state = {
+    data: undefined,
+  };
+
+  componentDidMount() {
+    const localData = localStorage.getItem('data');
+    const data:any = localData ? JSON.parse(localData) : DEFAULT_DATA;
+    this.setState(() => ({ data }));
+  }
+
+  render() {
+    const {data} = this.state;
+    return data ?
+      <ThemeProvider theme={theme}>
+        <DataProvider data={data}>
+          {data.map(({ name }) => {
+            const Component = DATA_CONFIG[name].component;
+            return <DataContext.Consumer key={name}>{context => <Component {...context} />}</DataContext.Consumer>;
+          })}
+        </DataProvider>
+      </ThemeProvider> :
+      false
+  }
+}
 
 export default hot(module)(App);

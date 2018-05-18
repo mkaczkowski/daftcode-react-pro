@@ -46,7 +46,7 @@ Tweak React components in real time ⚛️⚡️
 
 TODO:
 - CSSGrid
-- i18n
+- data
 - Email form integration with Netlify
 
 ## 🔧 Installation

@@ -2,11 +2,7 @@ const webpack = require('webpack');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
-const publicUrl = '';
-const getClientEnvironment = require('./env', publicUrl);
-
-const env = getClientEnvironment('development');
-const shouldUseSourceMap = env.stringified['process.env'].GENERATE_SOURCEMAP !== 'false';
+const shouldUseSourceMap = true;
 
 module.exports = {
   mode: 'development',
@@ -18,7 +14,6 @@ module.exports = {
     alias: {
       '@assets': path.resolve('src/assets'),
       '@theme': path.resolve('src/theme'),
-      modernizr$: path.resolve('.modernizrrc'),
     },
   },
   output: {
@@ -77,14 +72,6 @@ module.exports = {
             },
           },
         ],
-      },
-      {
-        test: /\.modernizrrc.js$/,
-        use: ['modernizr-loader'],
-      },
-      {
-        test: /\.modernizrrc(\.json)?$/,
-        use: ['modernizr-loader', 'json-loader'],
       },
       {
         test: /\.(jpe?g|jpg|gif|png|woff|woff2|eot|ttf|webp)$/,

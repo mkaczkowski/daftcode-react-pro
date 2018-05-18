@@ -70,4 +70,4 @@ Button.defaultProps = {
   onKeyPress: handleKeyPress,
 };
 
-export default as('div')(Button);
+export default as('button')(Button);

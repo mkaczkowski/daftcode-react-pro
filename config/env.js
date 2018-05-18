@@ -12,24 +12,6 @@ process.env.NODE_PATH = (process.env.NODE_PATH || '')
   .join(path.delimiter);
 
 function getClientEnvironment(env, publicUrl) {
-  //prettier-ignore
-  var dotenvFiles = [
-    path.resolve(`.env.${env}.local`),
-    path.resolve(`.env.${env}`),
-      env !== 'test' && path.resolve(`.env.local`),
-      path.resolve(`.env`)
-    ].filter(Boolean);
-
-  // Load environment variables from .env* files. Suppress warnings using silent
-  dotenvFiles.forEach(dotenvFile => {
-    if (fs.existsSync(dotenvFile)) {
-      require('dotenv-expand')(
-        require('dotenv').config({
-          path: dotenvFile,
-        })
-      );
-    }
-  });
 
   const raw = Object.keys(process.env).reduce(
     (env, key) => {

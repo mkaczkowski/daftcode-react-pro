@@ -4,7 +4,7 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import LANGUAGES from './constants/language';
 import Header from './components/header/Header';
-import Hero from './view/hero/Hero';
+import Hero from './view/_hero/Hero';
 import Contact from './view/contact/Contact';
 import Footer from './components/footer/Footer';
 
