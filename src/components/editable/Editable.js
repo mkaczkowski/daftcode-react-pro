@@ -1,7 +1,6 @@
 // @flow
 import React from 'react';
 import { DataContext } from '../../providers/data';
-import type { DataContextProps } from '../../providers/data';
 
 export type EditableItemProps = {
   children: any,
@@ -13,11 +12,14 @@ export type EditableItemState = {|
 
 class Editable extends React.PureComponent<EditableItemProps, EditableItemState> {
   state = {
-    isEdited: false,
+    isEdited: this.props.id === -1
   };
 
   onEdit = () => this.setState(() => ({ isEdited: true }));
-  onCancel = () => this.setState(() => ({ isEdited: false }));
+
+  onCancel = () => {
+    this.setState(() => ({ isEdited: false }));
+  }
 
   render() {
     const { isEdited } = this.state;
@@ -26,13 +28,16 @@ class Editable extends React.PureComponent<EditableItemProps, EditableItemState>
         {context => {
           const combinedProps = {
             ...this.props,
-            ...context,
-            onAdd: (...params) => context.saveData(...params, this.onCancel ),
-            onSave: (...params) => context.saveData(...params, this.onCancel ),
-            onDelete: (...params) => context.saveData(...params, this.onCancel ),
+            data: context.data,
             isEdited: isEdited,
             onEdit: this.onEdit,
-            onCancel: this.onCancel,
+            //TODO REFACTOR BELOW LINE
+            onCancel: () =>  this.props.id !== -1 ? this.onCancel() : context.deleteItem(this.props.section, this.props.id),
+            onAdd: (...params) => context.addItem(...params, this.onCancel),
+            onUpdate: (...params) => context.updateItem(...params, this.onCancel),
+            onDelete: (...params) => context.deleteItem(...params),
+            onUp: (...params) => context.moveUpItem(...params),
+            onDown: (...params) => context.moveDownItem(...params),
           };
           // return <Component {...combinedProps} />;
           return this.props.children(combinedProps);

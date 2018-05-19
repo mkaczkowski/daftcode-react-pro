@@ -20,7 +20,7 @@ const EducationItemEditable = ({
 }: EducationItemProps & DataContextProps) => (
   <Formik
     initialValues={{ ...{ university, year, description } }}
-    onSubmit={(values) => actionProps.onSave(DATA.EDUCATION, id, values)}
+    onSubmit={(values) => actionProps.onUpdate(DATA.EDUCATION, id, values)}
     validate={values => {
       let errors = {};
       if (!values.university) errors.university = 'Required';

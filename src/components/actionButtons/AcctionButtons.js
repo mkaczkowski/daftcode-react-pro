@@ -7,24 +7,30 @@ import React from 'react';
 
 export type ActionButtonsType = DataContextProps & {
   onEdit: () => void,
-  onDelete: () => void,
   onAdd: () => void,
+  onDelete: () => void,
 };
 
-const onAddButtonHandler = props => {
-  props.onAdd(props.section, -1, { ...props.defaultItem });
-};
+const onAddHandler = props => props.onAdd(props.section, -1, { ...props.defaultItem });
 
-const onDeleteButtonHandler = props => {
-  props.onDelete(props.section, props.id);
-};
+const onDeleteHandler = props => props.onDelete(props.section, props.id);
+
+const onUpHandler = props => props.onUp(props.section, props.id);
+
+const onDownHandler = props => props.onDown(props.section, props.id);
 
 const ActionButtons = (props: ActionButtonsType) => (
   <Group>
-    <Button type="button" primary onClick={() => onAddButtonHandler(props)}>
+    <Button type="button" primary onClick={() => onUpHandler(props)}>
+      UP
+    </Button>
+    <Button type="button" primary onClick={() => onDownHandler(props)}>
+      DOWN
+    </Button>
+    <Button type="button" primary onClick={() => onAddHandler(props)}>
       Add
     </Button>
-    <Button type="button" primary onClick={() => onDeleteButtonHandler(props)}>
+    <Button type="button" primary onClick={() => onDeleteHandler(props)}>
       Delete
     </Button>
     <Button type="button" onClick={props.onEdit}>

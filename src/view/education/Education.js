@@ -32,14 +32,14 @@ const EducationItem = (props: EducationItemProps) => {
   );
 };
 
-const Education = ({ data }: EducationProps) => {
-  const items = _find(data, { name: DATA.EDUCATION }).items;
+const Education = ({ data, section }: EducationProps) => {
+  const items = _find(data, { name: section }).items;
   return (
     <Box>
       <Heading as="h2">Education</Heading>
       {//prettier-ignore
       items.length > 0 ?
-        items.map(item => <EducationItem key={item.id} {...item} />) :
+        items.map(item => <EducationItem key={item.id} section={section} {...item}  />) :
         <div>EMPTY</div>}
     </Box>
   );

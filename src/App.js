@@ -54,6 +54,7 @@ class App extends React.PureComponent<{}, { data?: Object }> {
   componentDidMount() {
     const localData = localStorage.getItem('data');
     const data:any = localData ? JSON.parse(localData) : DEFAULT_DATA;
+    // const data:any = DEFAULT_DATA;
     this.setState(() => ({ data }));
   }
 
@@ -64,7 +65,9 @@ class App extends React.PureComponent<{}, { data?: Object }> {
         <DataProvider data={data}>
           {data.map(({ name }) => {
             const Component = DATA_CONFIG[name].component;
-            return <DataContext.Consumer key={name}>{context => <Component {...context} />}</DataContext.Consumer>;
+            return <DataContext.Consumer key={name}>
+              {context => <Component {...context} section={name} />}
+            </DataContext.Consumer>;
           })}
         </DataProvider>
       </ThemeProvider> :

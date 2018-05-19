@@ -17,7 +17,7 @@ const EducationItemPreview = ({ id, university, year, description, ...actionProp
         {isHovered && <ActionButtons {...actionProps}
                                      id={id}
                                      section={DATA.EDUCATION}
-                                      defaultItem={{description:"1",university:"1",year:"1"}}/>}
+                                      defaultItem={{description:"",university:"",year:""}}/>}
         <Heading as="h2">{university}</Heading>
         <Heading as="h3">{year}</Heading>
         <Heading as="h4">{description}</Heading>
