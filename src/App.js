@@ -10,6 +10,7 @@ import Experience from './view/_experience/Experience';
 import { DataContext } from './providers/data';
 import type { DataType } from './providers/data';
 
+//TODO move to types
 export type DATAType = {
   [string]: {
     name: string,
@@ -17,6 +18,7 @@ export type DATAType = {
   },
 };
 
+//TODO move to constants
 export const DATA = {
   INTRODUCTION: 'introduction',
   EDUCATION: 'education',
@@ -25,12 +27,14 @@ export const DATA = {
   CUSTOM: 'custom',
 };
 
+//TODO move to types
 const DATA_CONFIG: DATAType = {
   [DATA.INTRODUCTION]: { name: 'introduction', component: Introduction },
   [DATA.EDUCATION]: { name: 'education', component: Education },
   [DATA.EXPERIENCE]: { name: 'experience', component: Experience },
 };
 
+//TODO move to types
 const DEFAULT_DATA: DataType[] = [
   // { name: DATA.INTRODUCTION, avatar: 'dasd', description: 'sdas das d' },
   {
@@ -63,10 +67,10 @@ class App extends React.PureComponent<{}, { data?: Object }> {
     return data ?
       <ThemeProvider theme={theme}>
         <DataProvider data={data}>
-          {data.map(({ name }) => {
-            const Component = DATA_CONFIG[name].component;
-            return <DataContext.Consumer key={name}>
-              {context => <Component {...context} section={name} />}
+          {data.map(({ name:sectionName }) => {
+            const Component = DATA_CONFIG[sectionName].component;
+            return <DataContext.Consumer key={sectionName}>
+              {context => <Component {...context} section={sectionName} />}
             </DataContext.Consumer>;
           })}
         </DataProvider>

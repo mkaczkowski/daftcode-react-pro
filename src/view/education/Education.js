@@ -5,7 +5,6 @@ import Box from '../../components/box/Box';
 import EducationItemEditable from './EducationItemEditable';
 import EducationItemPreview from './EducationItemPreview';
 import Editable from '../../components/editable/Editable';
-import { DATA } from '../../App';
 import _find from 'lodash/find';
 
 export type EducationItemProps = {
