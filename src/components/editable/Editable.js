@@ -12,14 +12,23 @@ export type EditableItemState = {|
 
 class Editable extends React.PureComponent<EditableItemProps, EditableItemState> {
   state = {
-    isEdited: this.props.id === -1
+    isEdited: this.props.id === -1,
   };
 
-  onEdit = () => this.setState(() => ({ isEdited: true }));
+  onShowEdit = () => this.setState(() => ({ isEdited: true }));
 
-  onCancel = () => {
+  onHideEdit = () => {
     this.setState(() => ({ isEdited: false }));
-  }
+  };
+
+  onCancel = ({ section, id, context }: any) => {
+    debugger;
+    if (id === -1) {
+      context.delete({ section, id: -1 });
+    } else {
+      this.onHideEdit();
+    }
+  };
 
   render() {
     const { isEdited } = this.state;
@@ -30,14 +39,13 @@ class Editable extends React.PureComponent<EditableItemProps, EditableItemState>
             ...this.props,
             data: context.data,
             isEdited: isEdited,
-            onEdit: this.onEdit,
-            //TODO REFACTOR BELOW LINE
-            onCancel: () =>  this.props.id !== -1 ? this.onCancel() : context.deleteItem(this.props.section, this.props.id),
-            onAdd: (...params) => context.addItem(...params, this.onCancel),
-            onUpdate: (...params) => context.updateItem(...params, this.onCancel),
-            onDelete: (...params) => context.deleteItem(...params),
-            onUp: (...params) => context.moveUpItem(...params),
-            onDown: (...params) => context.moveDownItem(...params),
+            onShowEdit: this.onShowEdit,
+            onCancel: params => this.onCancel({ ...params, context: context }),
+            onAdd: params => context.add({ ...params, callback: this.onHideEdit }),
+            onUpdate: params => context.update({ ...params, callback: this.onHideEdit }),
+            onDelete: context.delete,
+            onUp: context.moveUp,
+            onDown: context.moveDown,
           };
           // return <Component {...combinedProps} />;
           return this.props.children(combinedProps);

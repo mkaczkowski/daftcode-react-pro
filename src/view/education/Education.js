@@ -1,11 +1,12 @@
 // @flow
 import React from 'react';
 import Heading from '../../components/heading/Heading';
-import Box from '../../components/box/Box';
 import EducationItemEditable from './EducationItemEditable';
 import EducationItemPreview from './EducationItemPreview';
 import Editable from '../../components/editable/Editable';
 import _find from 'lodash/find';
+import Empty from '../../components/editable/Empty';
+import EmptyItem from './EmptyItem';
 
 export type EducationItemProps = {
   id: number,
@@ -31,16 +32,19 @@ const EducationItem = (props: EducationItemProps) => {
   );
 };
 
+
 const Education = ({ data, section }: EducationProps) => {
   const items = _find(data, { name: section }).items;
   return (
-    <Box>
-      <Heading as="h2">Education</Heading>
-      {//prettier-ignore
+    <div>
+      <Heading as="h3">Education</Heading>
+      <hr />
+      {
       items.length > 0 ?
         items.map(item => <EducationItem key={item.id} section={section} {...item}  />) :
-        <div>EMPTY</div>}
-    </Box>
+        <EmptyItem section={section} defaultItem={{ description: '', university: '', year: '' }}/>
+      }
+    </div>
   );
 };
 

@@ -1,7 +1,6 @@
 // @flow
 import * as React from 'react';
 import _findIndex from 'lodash/findIndex';
-import _find from 'lodash/find';
 import update from 'immutability-helper';
 
 export type DataType = {
@@ -17,13 +16,20 @@ type DataProviderProps = {
   children: any,
 };
 
+export type ActionType = {
+  section: string,
+  values?: any,
+  id?: number,
+  callback?: any,
+};
+
 export type DataContextProps = {
   +data: DataType[],
-  +addItem: (sectionName: string, id: number, values: any, callback?: any) => void,
-  +updateItem: (sectionName: string, itemId: number, values: any, callback?: any) => void,
-  +deleteItem: (sectionName: string, id: number, callback?: any) => void,
-  +moveUpItem: (sectionName: string, id: number, callback?: any) => void,
-  +moveDownItem: (sectionName: string, id: number, callback?: any) => void,
+  +add: (params: ActionType) => void,
+  +update: (params: ActionType) => void,
+  +delete: (params: ActionType) => void,
+  +moveUp: (params: ActionType) => void,
+  +moveDown: (params: ActionType) => void,
 };
 
 export const DataContext = React.createContext();
@@ -34,62 +40,113 @@ class DataProvider extends React.Component<DataProviderProps, DataProviderState>
     data: this.props.data,
   };
 
-  findSectionIndex = (sectionName: string) => {
-    return _findIndex(this.state.data, { name: sectionName });
-  };
-
-  findItemIndex = (sectionIndex: number, id: number) => {
-    return _findIndex(this.state.data[sectionIndex].items, { id });
-  };
-
-  findItemByIndex = (sectionIndex: number, index: number) => {
-    let result;
-    const items = this.state.data[sectionIndex].items;
-    if(index < items.length && index > -1){
-      result = items[index];
-    }
-    return result;
-  };
-
+  /**
+   * Save data to storage
+   * @param data
+   * @param callback
+   */
   persistData = (data: DataType[], callback?: () => void) => {
     this.setState(() => ({ data }), callback);
     localStorage.setItem('data', JSON.stringify(data));
   };
 
-  //TODO unit test
-  addItem = (sectionName: string, id: number, values: any, callback?: any) => {
-    const sectionIndex = this.findSectionIndex(sectionName);
-    const resultData = update(this.state.data, { [sectionIndex]: { items: { $push: [{ ...values, id: -1 }] } } });
+  /**
+   * Add new entry
+   * @param section
+   * @param id
+   * @param values
+   * @param callback
+   */
+  add = ({ section, id, values, callback }: ActionType) => {
+    const sectionIndex = this.findSectionIndex(section);
+    let resultData;
+    if (id === undefined) {
+      resultData = this.addLastItem({ sectionIndex, values });
+    } else {
+      resultData = this.addNextItem({ sectionIndex, values, id });
+    }
+
     this.persistData(resultData, callback);
   };
 
-  //TODO unit test
-  updateItem = (sectionName: string, itemId: number, values: any, callback?: any) => {
-    const sectionIndex = this.findSectionIndex(sectionName);
+  addLastItem = ({ sectionIndex, values }: Object) => {
+    return update(this.state.data, { [sectionIndex]: { items: { $push: [{ ...values, id: -1 }] } } });
+  };
+
+  addNextItem = ({ sectionIndex, values, id }: Object) => {
+    const itemIndex = this.findItemIndex(sectionIndex, id);
+    const nextIndex = itemIndex + 1;
+    const nextItem = this.findItemByIndex(sectionIndex, nextIndex);
+    if(nextItem){
+      const newItem = { ...values, id: -1 };
+      return update(this.state.data, {
+        [sectionIndex]: { items: { $splice: [[nextIndex, 1, newItem, nextItem]] } },
+      });
+    }else{
+      return this.addLastItem({sectionIndex, values});
+    }
+  };
+
+  /**
+   * Update entry
+   * @param section
+   * @param itemId
+   * @param values
+   * @param callback
+   */
+  update = ({ section, id: itemId, values, callback }: ActionType) => {
+    let resultData;
+    const sectionIndex = this.findSectionIndex(section);
+    if (itemId !== undefined) {
+      resultData = this.updateItem({ sectionIndex, itemId, values });
+    } else {
+      resultData = this.updateSection({ sectionIndex, values });
+    }
+
+    this.persistData(resultData, callback);
+  };
+
+  updateItem = ({ sectionIndex, itemId, values }: Object) => {
     const itemIndex = this.findItemIndex(sectionIndex, itemId);
-    //TODO move generateId function to proper util file and write some unit test
     const id = itemId === -1 ? Math.floor(Math.random() * 100000) : itemId;
-    const resultData = update(this.state.data, {
-      [sectionIndex]: { items: { [itemIndex]: { $set: { ...values, id } } } },
+    const newItem = { ...values, id };
+
+    return update(this.state.data, {
+      [sectionIndex]: { items: { [itemIndex]: { $set: newItem } } },
     });
-    this.persistData(resultData, callback);
   };
 
-  //TODO unit test
-  deleteItem = (sectionName: string, id: number, callback?: any) => {
-    const sectionIndex = this.findSectionIndex(sectionName);
+  updateSection = ({ sectionIndex, values }: Object) => {
+    return update(this.state.data, {
+      [sectionIndex]: { $merge: { ...values } },
+    });
+  };
+
+  /**
+   * Delete entry
+   * @param section
+   * @param id
+   * @param callback
+   */
+  delete = ({ section, id, callback }: ActionType) => {
+    const sectionIndex = this.findSectionIndex(section);
     const itemIndex = this.findItemIndex(sectionIndex, id);
     const resultData = update(this.state.data, { [sectionIndex]: { items: { $splice: [[itemIndex, 1]] } } });
     this.persistData(resultData, callback);
   };
 
-  //TODO unit test
-  moveDownItem = (sectionName: string, id: number, callback?: any) => {
-    const sectionIndex = this.findSectionIndex(sectionName);
+  /**
+   * Move entry one down
+   * @param section
+   * @param id
+   * @param callback
+   */
+  moveDown = ({ section, id, callback }: ActionType) => {
+    const sectionIndex = this.findSectionIndex(section);
     const itemIndex = this.findItemIndex(sectionIndex, id);
 
     const nextItem = this.findItemByIndex(sectionIndex, itemIndex + 1);
-    if(nextItem){
+    if (nextItem) {
       const item = this.findItemByIndex(sectionIndex, itemIndex);
       const resultData = update(this.state.data, {
         [sectionIndex]: { items: { $splice: [[itemIndex, 2, nextItem, item]] } },
@@ -98,14 +155,18 @@ class DataProvider extends React.Component<DataProviderProps, DataProviderState>
     }
   };
 
-  //TODO unit test
-  moveUpItem = (sectionName: string, id: number, callback?: any) => {
-    debugger;
-    const sectionIndex = this.findSectionIndex(sectionName);
+  /**
+   * Move entry one up
+   * @param section
+   * @param id
+   * @param callback
+   */
+  moveUp = ({ section, id, callback }: ActionType) => {
+    const sectionIndex = this.findSectionIndex(section);
     const itemIndex = this.findItemIndex(sectionIndex, id);
 
     const prevItem = this.findItemByIndex(sectionIndex, itemIndex - 1);
-    if(prevItem){
+    if (prevItem) {
       const item = this.findItemByIndex(sectionIndex, itemIndex);
       const resultData = update(this.state.data, {
         [sectionIndex]: { items: { $splice: [[itemIndex - 1, 2, item, prevItem]] } },
@@ -114,14 +175,34 @@ class DataProvider extends React.Component<DataProviderProps, DataProviderState>
     }
   };
 
+  /**
+   * Utils
+   */
+  findSectionIndex = (section: string) => {
+    return _findIndex(this.state.data, { name: section });
+  };
+
+  findItemIndex = (sectionIndex: number, id?: number) => {
+    return _findIndex(this.state.data[sectionIndex].items, { id });
+  };
+
+  findItemByIndex = (sectionIndex: number, index: number) => {
+    let result;
+    const items = this.state.data[sectionIndex].items;
+    if (index < items.length && index > -1) {
+      result = items[index];
+    }
+    return result;
+  };
+
   render() {
     const value: DataContextProps = {
       data: this.state.data,
-      addItem: this.addItem,
-      updateItem: this.updateItem,
-      deleteItem: this.deleteItem,
-      moveUpItem: this.moveUpItem,
-      moveDownItem: this.moveDownItem,
+      add: this.add,
+      update: this.update,
+      delete: this.delete,
+      moveUp: this.moveUp,
+      moveDown: this.moveDown,
     };
     //prettier-ignore
     return (

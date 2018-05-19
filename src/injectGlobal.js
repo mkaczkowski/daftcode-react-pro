@@ -18,22 +18,10 @@ import './assets/fonts/Ubuntu-subset.woff2';
 import './assets/fonts/Ubuntu.eot';
 
 injectGlobal`
-  @font-face {
-    font-family: Ubuntu;
-    src: url('Ubuntu.eot');
-    src: url('Ubuntu.eot?#iefix') format('embedded-opentype'),
-    url(Ubuntu-subset.woff2) format("woff2"),
-     url(Ubuntu-subset.zopfli.woff) format("woff"), 
-     url(Ubuntu-subset.ttf) format("truetype");
-    unicode-range: U+20,U+2E,U+45-47,U+49,U+4A,U+4D,U+4F,U+52-54,U+57,U+59,U+61-65,U+67-69,U+6B-70,U+72-76,U+79;
-    font-weight: normal;
-    font-style: normal;
-    font-display:swap;
-  }
   
   body {
-    background: white;
-    font-family: Ubuntu;
+    background: #f9f9f9;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
     margin:0;
     height:100%;
     width:100%;

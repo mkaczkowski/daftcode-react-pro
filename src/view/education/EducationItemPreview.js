@@ -2,11 +2,11 @@
 import React from 'react';
 import Heading from '../../components/heading/Heading';
 import Hover from '../../components/hover/Hover';
-import ActionButtons from '../../components/actionButtons/AcctionButtons';
+import ActionButtons from '../../components/actionButtons/ItemActionButtons';
 import ItemPreview from '../../components/ItemPreview/ItemPreview';
 import type { EducationItemProps } from './Education';
 import type { DataContextProps } from '../../providers/data';
-import type { ActionButtonsType } from '../../components/actionButtons/AcctionButtons';
+import type { ActionButtonsType } from '../../components/actionButtons/ItemActionButtons';
 import { DATA } from '../../App';
 
 export type EducationItemPreviewProps = EducationItemProps & DataContextProps & ActionButtonsType;

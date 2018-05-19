@@ -19,7 +19,7 @@ import castle_ar_16_9_c_fill_g_auto__c_scale_w_874 from '@assets/images/castle_a
 type ContactProps = {};
 
 class Contact extends React.Component<ContactProps> {
-  renderAvatar = () => {
+  renderPhoto = () => {
     return (
       <picture>
         {/* Portrait Phones  - WEBP*/}
@@ -58,7 +58,7 @@ class Contact extends React.Component<ContactProps> {
           validate={values => {
             let errors = {};
             if (!values.email) {
-              errors.email = 'Required';
+              errors.email = 'Field is required';
             } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
               errors.email = 'Invalid email address';
             }
@@ -71,7 +71,7 @@ class Contact extends React.Component<ContactProps> {
             <form onSubmit={handleSubmit}>
               <Field as={Group.Item} padding={8}>
                 <Label htmlFor="photo">Photo</Label>
-                {this.renderAvatar()}
+                {this.renderPhoto()}
               </Field>
               <Field as={Group.Item} padding={8}>
                 <Label htmlFor="email">Email</Label>
