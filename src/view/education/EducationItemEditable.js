@@ -34,7 +34,6 @@ const EducationItemEditable = (props: EducationItemProps & DataContextProps) => 
                 name="university"
                 placeholder="Your university"
                 onChange={handleChange}
-                onBlur={handleBlur}
                 value={values.university}
                 autoFocus
               />
@@ -49,7 +48,6 @@ const EducationItemEditable = (props: EducationItemProps & DataContextProps) => 
                 name="year"
                 placeholder="Year of graduation"
                 onChange={handleChange}
-                onBlur={handleBlur}
                 value={values.year}
               >
                 <option value="" disabled>
@@ -66,7 +64,6 @@ const EducationItemEditable = (props: EducationItemProps & DataContextProps) => 
                 name="description"
                 placeholder="Study description"
                 onChange={handleChange}
-                onBlur={handleBlur}
                 value={values.description}
               />
               <Error field="description" touched={touched} errors={errors} />

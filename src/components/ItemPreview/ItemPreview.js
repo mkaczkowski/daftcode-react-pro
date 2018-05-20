@@ -8,8 +8,16 @@ const ItemPreview = styled.div`
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
     border-radius: 3px;
     border: #c1c1c1 dashed 1px;
-    background-color: rgba(241,241,241,0.5);
+    background-color: rgba(241, 241, 241, 0.5);
   }
+`;
+
+ItemPreview.Header = styled.h4`
+  margin: 0 0 1rem
+`;
+
+ItemPreview.Content = styled.div`
+
 `;
 
 export default ItemPreview;

@@ -8,22 +8,38 @@ import type { IntroductionProps } from './Introduction';
 import type { DataContextProps } from '../../providers/data';
 import type { ActionButtonsType } from '../../components/actionButtons/ItemActionButtons';
 import styled from 'styled-components';
-
-const IntroductionItemPreview = styled(ItemPreview)`
-  display:flex;
-  align-items: center;
-`;
+import { media } from '@theme';
 
 const Content = styled.div`
-  flex:1;
+  flex: 1;
   padding: 0 1rem;
-  text-align: center;
+  margin-left: 1.5rem;
+  
+  ${media.tablet`
+      text-align: center;
+      margin-top: 1.2rem;
+      margin-left: 0;
+  `};
 `;
 
 const Photo = styled.img`
-  height: 100px;
-  width: 100px;
+  height: 130px;
+  width: 130px;
   border-radius: 50%;
+  display: block;
+  margin: 0 auto;
+  ${media.tablet`
+    height: 100px;
+    width: 100px;
+  `};
+`;
+
+const IntroductionItemPreview = styled(ItemPreview)`
+  display: flex;
+  align-items: center;
+  ${media.tablet`
+    display:block;
+  `};
 `;
 
 export type IntroductionItemPreviewProps = IntroductionProps & DataContextProps & ActionButtonsType;
@@ -31,11 +47,11 @@ const IntroductionPreview = ({ section, photo, owner, description, ...actionProp
   <Hover>
     {isHovered => (
       <IntroductionItemPreview>
-        <Photo src={photo} />
+        <Photo src={photo} alt="my photo" />
         <Content>
           <Heading as="h2">{owner}</Heading>
           <span>{description}</span>
-          </Content>
+        </Content>
         {isHovered && <SectionActionButtons {...actionProps} section={section} />}
       </IntroductionItemPreview>
     )}

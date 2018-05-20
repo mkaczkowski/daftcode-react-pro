@@ -20,7 +20,7 @@ const onAddHandler = ({ section, defaultItem, onAdd }) => onAdd({ section, value
 const EmptyActionButtons = (props: EmptyActionButtonsType) => (
   <EmptyActionsBox>
     <Button type="button" primary onClick={() => onAddHandler(props)}>
-      +
+      <img alt="icon" src={Icon} />Beer
     </Button>
   </EmptyActionsBox>
 );

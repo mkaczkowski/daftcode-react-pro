@@ -10,17 +10,18 @@ import type { ActionButtonsType } from '../../components/actionButtons/ItemActio
 import { DATA } from '../../App';
 
 export type EducationItemPreviewProps = EducationItemProps & DataContextProps & ActionButtonsType;
+
+const DEFAULT_ITEM = { description: '', university: '', year: '' };
+
 const EducationItemPreview = ({ id, university, year, description, ...actionProps }: EducationItemPreviewProps) => (
   <Hover>
     {isHovered => (
       <ItemPreview>
-        {isHovered && <ActionButtons {...actionProps}
-                                     id={id}
-                                     section={DATA.EDUCATION}
-                                      defaultItem={{description:"",university:"",year:""}}/>}
-        <Heading as="h2">{university}</Heading>
-        <Heading as="h3">{year}</Heading>
-        <Heading as="h4">{description}</Heading>
+        {isHovered && <ActionButtons {...actionProps} id={id} section={DATA.EDUCATION} defaultItem={DEFAULT_ITEM} />}
+        <ItemPreview.Header>
+          {year} : {university}
+        </ItemPreview.Header>
+        <ItemPreview.Content>{description}</ItemPreview.Content>
       </ItemPreview>
     )}
   </Hover>
