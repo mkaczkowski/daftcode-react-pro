@@ -3,6 +3,9 @@ import { injectGlobal } from 'styled-components';
 
 injectGlobal`
 
+  * {
+    box-sizing: border-box;
+  }
   
   body {
     background: #f9f9f9;

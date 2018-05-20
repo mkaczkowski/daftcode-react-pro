@@ -1,9 +1,13 @@
 // @flow
+/**
+ * Section wrapper for switching between preview and editable form using data context
+ */
 import React from 'react';
 import { DataContext } from '../../providers/data';
 
 export type EditableItemProps = {
   children: any,
+  id?: number,
 };
 
 export type EditableItemState = {|
@@ -17,13 +21,11 @@ class Editable extends React.PureComponent<EditableItemProps, EditableItemState>
 
   onShowEdit = () => this.setState(() => ({ isEdited: true }));
 
-  onHideEdit = () => {
-    this.setState(() => ({ isEdited: false }));
-  };
+  onHideEdit = () => this.setState(() => ({ isEdited: false }));
 
   onCancel = ({ section, id, context }: any) => {
     if (id === -1) {
-      context.delete({ section, id: -1 });
+      context.remove({ section, id: -1 });
     } else {
       this.onHideEdit();
     }
@@ -34,7 +36,7 @@ class Editable extends React.PureComponent<EditableItemProps, EditableItemState>
     return (
       <DataContext.Consumer>
         {context => {
-          const combinedProps = {
+          const combinedProps = context && {
             ...this.props,
             data: context.data,
             isEdited: isEdited,
@@ -42,11 +44,10 @@ class Editable extends React.PureComponent<EditableItemProps, EditableItemState>
             onCancel: params => this.onCancel({ ...params, context: context }),
             onAdd: params => context.add({ ...params, callback: this.onHideEdit }),
             onUpdate: params => context.update({ ...params, callback: this.onHideEdit }),
-            onDelete: context.delete,
+            onRemove: context.remove,
             onUp: context.moveUp,
             onDown: context.moveDown,
           };
-          // return <Component {...combinedProps} />;
           return this.props.children(combinedProps);
         }}
       </DataContext.Consumer>

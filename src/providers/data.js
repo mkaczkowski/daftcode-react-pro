@@ -1,10 +1,14 @@
 // @flow
+/**
+ * Data Context responsible for storing and passing data together with public methods to manage it
+ */
 import * as React from 'react';
 import _findIndex from 'lodash/findIndex';
 import update from 'immutability-helper';
 
 export type DataType = {
   name: string,
+  items?: Array<Object>,
 };
 
 export type DataProviderState = {
@@ -27,14 +31,13 @@ export type DataContextProps = {
   +data: DataType[],
   +add: (params: ActionType) => void,
   +update: (params: ActionType) => void,
-  +delete: (params: ActionType) => void,
+  +remove: (params: ActionType) => void,
   +moveUp: (params: ActionType) => void,
   +moveDown: (params: ActionType) => void,
 };
 
 export const DataContext = React.createContext();
 
-//TODO fix console warnings
 class DataProvider extends React.Component<DataProviderProps, DataProviderState> {
   state = {
     data: this.props.data,
@@ -51,7 +54,7 @@ class DataProvider extends React.Component<DataProviderProps, DataProviderState>
   };
 
   /**
-   * Add new entry
+   * Add new data entry
    * @param section
    * @param id
    * @param values
@@ -77,18 +80,18 @@ class DataProvider extends React.Component<DataProviderProps, DataProviderState>
     const itemIndex = this.findItemIndex(sectionIndex, id);
     const nextIndex = itemIndex + 1;
     const nextItem = this.findItemByIndex(sectionIndex, nextIndex);
-    if(nextItem){
+    if (nextItem) {
       const newItem = { ...values, id: -1 };
       return update(this.state.data, {
         [sectionIndex]: { items: { $splice: [[nextIndex, 1, newItem, nextItem]] } },
       });
-    }else{
-      return this.addLastItem({sectionIndex, values});
+    } else {
+      return this.addLastItem({ sectionIndex, values });
     }
   };
 
   /**
-   * Update entry
+   * Update data entry
    * @param section
    * @param itemId
    * @param values
@@ -123,12 +126,12 @@ class DataProvider extends React.Component<DataProviderProps, DataProviderState>
   };
 
   /**
-   * Delete entry
+   * Remove data entry
    * @param section
    * @param id
    * @param callback
    */
-  delete = ({ section, id, callback }: ActionType) => {
+  remove = ({ section, id, callback }: ActionType) => {
     const sectionIndex = this.findSectionIndex(section);
     const itemIndex = this.findItemIndex(sectionIndex, id);
     const resultData = update(this.state.data, { [sectionIndex]: { items: { $splice: [[itemIndex, 1]] } } });
@@ -136,7 +139,7 @@ class DataProvider extends React.Component<DataProviderProps, DataProviderState>
   };
 
   /**
-   * Move entry one down
+   * Move data entry one down
    * @param section
    * @param id
    * @param callback
@@ -156,7 +159,7 @@ class DataProvider extends React.Component<DataProviderProps, DataProviderState>
   };
 
   /**
-   * Move entry one up
+   * Move data entry one up
    * @param section
    * @param id
    * @param callback
@@ -189,18 +192,19 @@ class DataProvider extends React.Component<DataProviderProps, DataProviderState>
   findItemByIndex = (sectionIndex: number, index: number) => {
     let result;
     const items = this.state.data[sectionIndex].items;
-    if (index < items.length && index > -1) {
+    if (index > -1 && items && index < items.length) {
       result = items[index];
     }
     return result;
   };
 
   render() {
+    //context data available from all subscribed consumers
     const value: DataContextProps = {
       data: this.state.data,
       add: this.add,
       update: this.update,
-      delete: this.delete,
+      remove: this.remove,
       moveUp: this.moveUp,
       moveDown: this.moveDown,
     };

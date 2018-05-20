@@ -3,28 +3,28 @@ import React from 'react';
 import Button from '../button/Button';
 import Group from '../group/Group';
 import styled from 'styled-components';
-import type { ActionButtonsType } from './ItemActionButtons';
+import type { ActionButtonsType } from './ActionButtons';
 
-export const FormButtons = styled.div`
+export const StyledButtons = styled.div`
   display: flex;
   justify-content: flex-end;
 `;
 
-export type EditableActionButtonsType = ActionButtonsType & {
+export type FormButtonsType = ActionButtonsType & {
   isSubmitting: boolean,
 };
 
-const EditableActionButtons = ({ section, id, isSubmitting, onCancel }: EditableActionButtonsType) => (
-  <FormButtons>
-    <Group>
+const FormButtons = ({ section, id, isSubmitting, onCancel }: FormButtonsType) => (
+  <StyledButtons>
+    <Group gap>
       <Button type="button" disabled={isSubmitting} onClick={() => onCancel({ section, id })}>
-        Back
+        Cancel
       </Button>
       <Button type="submit" primary disabled={isSubmitting}>
         Save
       </Button>
     </Group>
-  </FormButtons>
+  </StyledButtons>
 );
 
-export default EditableActionButtons;
+export default FormButtons;

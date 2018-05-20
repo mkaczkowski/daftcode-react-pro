@@ -7,7 +7,7 @@ import Input from '../../components/input';
 import Label from '../../components/label';
 import type { EducationItemProps } from './Education';
 import type { DataContextProps } from '../../providers/data';
-import EditableActionButtons from '../../components/actionButtons/EditableAcctionButtons';
+import EditableActionButtons from '../../components/actionButtons/FormButtons';
 import Error from '../../components/error/Error';
 import Box from '../../components/box/Box';
 

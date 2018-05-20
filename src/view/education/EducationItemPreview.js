@@ -1,27 +1,39 @@
 // @flow
 import React from 'react';
-import Heading from '../../components/heading/Heading';
 import Hover from '../../components/hover/Hover';
-import ActionButtons from '../../components/actionButtons/ItemActionButtons';
+import ActionButtons from '../../components/actionButtons/ActionButtons';
 import ItemPreview from '../../components/ItemPreview/ItemPreview';
 import type { EducationItemProps } from './Education';
 import type { DataContextProps } from '../../providers/data';
-import type { ActionButtonsType } from '../../components/actionButtons/ItemActionButtons';
-import { DATA } from '../../App';
+import type { ActionButtonsType } from '../../components/actionButtons/ActionButtons';
 
 export type EducationItemPreviewProps = EducationItemProps & DataContextProps & ActionButtonsType;
 
-const DEFAULT_ITEM = { description: '', university: '', year: '' };
-
-const EducationItemPreview = ({ id, university, year, description, ...actionProps }: EducationItemPreviewProps) => (
+const EducationItemPreview = ({
+  id,
+  university,
+  year,
+  description,
+  defaultItem,
+  ...actionProps
+}: EducationItemPreviewProps) => (
   <Hover>
     {isHovered => (
-      <ItemPreview>
-        {isHovered && <ActionButtons {...actionProps} id={id} section={DATA.EDUCATION} defaultItem={DEFAULT_ITEM} />}
-        <ItemPreview.Header>
-          {year} : {university}
-        </ItemPreview.Header>
+      <ItemPreview timeline>
+        <ItemPreview.Header>{year} : {university}</ItemPreview.Header>
         <ItemPreview.Content>{description}</ItemPreview.Content>
+        {isHovered && (
+          <ActionButtons
+            up={true}
+            down={true}
+            edit={true}
+            new={true}
+            trash={true}
+            id={id}
+            defaultItem={defaultItem}
+            {...actionProps}
+          />
+        )}
       </ItemPreview>
     )}
   </Hover>

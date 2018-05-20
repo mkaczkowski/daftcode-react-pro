@@ -2,16 +2,16 @@
 import * as React from 'react';
 import { hot } from 'react-hot-loader';
 import { ThemeProvider } from 'styled-components';
-import theme from './theme';
 import DataProvider from './providers/data';
 import Introduction from './view/introduction/Introduction';
 import Education from './view/education/Education';
 import Experience from './view/_experience/Experience';
 import { DataContext } from './providers/data';
 import styled from 'styled-components';
+import DATA from './constants/data';
+
 import type { DataType } from './providers/data';
 
-//TODO move to types
 export type DATAType = {
   [string]: {
     name: string,
@@ -19,28 +19,21 @@ export type DATAType = {
   },
 };
 
-//TODO move to constants
-export const DATA = {
-  INTRODUCTION: 'introduction',
-  EDUCATION: 'education',
-  SKILLS: 'skills',
-  EXPERIENCE: 'experience',
-  CUSTOM: 'custom',
-};
-
-//TODO move to types
 export const DATA_CONFIG: DATAType = {
   [DATA.INTRODUCTION]: { name: 'introduction', component: Introduction },
   [DATA.EDUCATION]: { name: 'education', component: Education },
   [DATA.EXPERIENCE]: { name: 'experience', component: Experience },
 };
 
-//TODO move to types
 const DEFAULT_DATA: DataType[] = [
-  { name: DATA.INTRODUCTION,
+  {
+    name: DATA.INTRODUCTION,
     owner: "Mariusz Kaczkowski",
     photo: 'https://media.licdn.com/dms/image/C5603AQFxYrLjUhGyaw/profile-displayphoto-shrink_100_100/0?e=1531958400&v=beta&t=KrZRHisTKJHiqcqfA5Fc2FGoYTa59PrkhkHkuhR4rzw',
-    description: 'sdas dasd asdasdasdas dasdasd asdasdas dasdsadsad  ads asd as da dasdas asd asdas d' },
+    description: 'I am experienced front-end developer specialized with Javascript and React. I am looking forward to taking on new challenges.',
+    linkedin: "https://www.linkedin.com/in/mariusz-kaczkowski-91983860/",
+    email: "mkaczkowski@icloud.com"
+  },
   {
     name: DATA.EDUCATION,
     items: [
@@ -63,7 +56,7 @@ const Main = styled.div`
   box-shadow: 0 1px 4px rgba(0,0,0,0.18), 0 1px 4px rgba(0,0,0,0.30);
 `;
 
-class App extends React.PureComponent<{}, { data?: Object }> {
+class App extends React.PureComponent<{}, { data?: DataType[] }> {
   state = {
     data: undefined,
   };
@@ -71,17 +64,17 @@ class App extends React.PureComponent<{}, { data?: Object }> {
   componentDidMount() {
     const localData = localStorage.getItem('data');
     // const data:any = localData ? JSON.parse(localData) : DEFAULT_DATA;
-    const data: any = DEFAULT_DATA;
+    const data: any = DEFAULT_DATA; //test only
     this.setState(() => ({ data }));
   }
 
   render() {
     const { data } = this.state;
     return data ? (
-      <ThemeProvider theme={theme}>
         <DataProvider data={data}>
           <Main>
-            {data.map(({ name: section }) => {
+            {//insert section components based on the order within data + wrapped with global data context
+              data.map(({ name: section }) => {
               const { component: Component } = DATA_CONFIG[section];
               return (
                 <DataContext.Consumer key={section}>
@@ -91,10 +84,7 @@ class App extends React.PureComponent<{}, { data?: Object }> {
             })}
           </Main>
         </DataProvider>
-      </ThemeProvider>
-    ) : (
-      false
-    );
+    ) : false;
   }
 }
 

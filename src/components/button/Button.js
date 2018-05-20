@@ -22,12 +22,8 @@ const Button = styled(Box)`
   justify-content: center;
   text-decoration: none;
   cursor: pointer;
-  background-color: ${ifProp(
-    'primary',
-    prop('theme.buttons.primary.background'),
-    prop('theme.buttons.nautral.background')
-  )};
-  color: ${ifProp('primary', prop('theme.buttons.primary.text'), prop('theme.buttons.nautral.text'))};
+  background-color: ${ifProp('primary', '#07c', ifProp('danger', 'red', 'white'))};
+  color: ${ifProp('primary', 'white', ifProp('danger', 'white', 'black'))};
   height: 2.5em;
   min-width: 2.5em;
   padding: 0 0.68em;
