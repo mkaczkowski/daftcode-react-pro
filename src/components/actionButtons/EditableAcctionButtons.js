@@ -18,7 +18,7 @@ const EditableActionButtons = ({ section, id, isSubmitting, onCancel }: Editable
   <FormButtons>
     <Group>
       <Button type="button" disabled={isSubmitting} onClick={() => onCancel({ section, id })}>
-        Cancel
+        Back
       </Button>
       <Button type="submit" primary disabled={isSubmitting}>
         Save

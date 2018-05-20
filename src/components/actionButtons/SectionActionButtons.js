@@ -1,9 +1,10 @@
 // @flow
 import Button from '../button/Button';
-import Group from '../group/Group';
 import React from 'react';
 import type { DataContextProps } from '../../providers/data';
 import styled from 'styled-components';
+import { edit } from 'react-icons-kit/feather/edit';
+import { Icon } from 'react-icons-kit'
 
 export type SectionActionButtonsType = DataContextProps & {
   onShowEdit: () => void,
@@ -25,7 +26,7 @@ export const ActionsBox = styled.div`
 const SectionActionButtons = (props: SectionActionButtonsType) => (
   <ActionsBox>
     <Button type="button" onClick={props.onShowEdit}>
-      Edit
+      <Icon icon={edit} />
     </Button>
   </ActionsBox>
 );

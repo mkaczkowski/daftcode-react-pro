@@ -5,6 +5,12 @@ import Button from '../button/Button';
 import Group from '../group/Group';
 import React from 'react';
 import { ActionsBox } from './SectionActionButtons';
+import { Icon } from 'react-icons-kit'
+import {chevronDown} from 'react-icons-kit/feather/chevronDown'
+import {plus} from 'react-icons-kit/feather/plus'
+import {trash2} from 'react-icons-kit/feather/trash2'
+import {edit} from 'react-icons-kit/feather/edit'
+import {chevronUp} from 'react-icons-kit/feather/chevronUp'
 
 export type ActionButtonsType = DataContextProps & {
   onShowEdit: () => void,
@@ -26,19 +32,20 @@ const ActionButtons = (props: ActionButtonsType) => (
   <ActionsBox>
     <Group>
       <Button type="button" primary onClick={() => onUpHandler(props)}>
-        UP
+        <Icon icon={chevronDown} />
       </Button>
       <Button type="button" primary onClick={() => onDownHandler(props)}>
-        DOWN
+        <Icon icon={chevronUp} />
       </Button>
       <Button type="button" primary onClick={() => onAddHandler(props)}>
-        Add
+        <Icon icon={plus} />
+
       </Button>
       <Button type="button" primary onClick={() => onDeleteHandler(props)}>
-        Delete
+        <Icon icon={trash2} />
       </Button>
       <Button type="button" onClick={props.onShowEdit}>
-        Edit
+        <Icon icon={edit} />
       </Button>
     </Group>
   </ActionsBox>
