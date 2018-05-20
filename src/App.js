@@ -9,6 +9,7 @@ import Experience from './view/experience/Experience';
 import { DataContext } from './providers/data';
 import styled from 'styled-components';
 import DATA from './constants/data';
+import * as Storage from "./utils/storage"
 
 import type { DataType } from './providers/data';
 
@@ -70,10 +71,6 @@ const DEFAULT_DATA: DataType[] = [
       },
     ],
   },
-  // {
-  //   name: DATA.EXPERIENCE,
-  //   items: [{ company: '1', year: '11', description: '111' }, { company: '2', year: '22', description: '222' }],
-  // },
 ];
 
 const Main = styled.div`
@@ -91,9 +88,9 @@ class App extends React.PureComponent<{}, { data?: DataType[] }> {
   };
 
   componentDidMount() {
-    const localData = localStorage.getItem('data');
-    // const data:any = localData ? JSON.parse(localData) : DEFAULT_DATA;
-    const data: any = DEFAULT_DATA; //test only
+    const localData = Storage.load();
+    const data:any = localData ? JSON.parse(localData) : DEFAULT_DATA;
+    // const data: any = DEFAULT_DATA; //test only
     this.setState(() => ({ data }));
   }
 

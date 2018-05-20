@@ -5,6 +5,7 @@
 import * as React from 'react';
 import _findIndex from 'lodash/findIndex';
 import update from 'immutability-helper';
+import * as Storage from "./../utils/storage"
 
 export type DataType = {
   name: string,
@@ -50,7 +51,7 @@ class DataProvider extends React.Component<DataProviderProps, DataProviderState>
    */
   persistData = (data: DataType[], callback?: () => void) => {
     this.setState(() => ({ data }), callback);
-    localStorage.setItem('data', JSON.stringify(data));
+    Storage.save(data);
   };
 
   /**
