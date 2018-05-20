@@ -9,6 +9,7 @@ const ManifestPlugin = require('webpack-manifest-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 const webpack = require('webpack');
 const getClientEnvironment = require('./env');
 
@@ -86,7 +87,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin([path.resolve('build')], { root: path.resolve('.') }),
     new CopyWebpackPlugin([path.resolve('public')]),
-    new LodashModuleReplacementPlugin({ paths: true }),
+    new LodashModuleReplacementPlugin({ paths: true, shorthands:true }),
     new FaviconsWebpackPlugin({
       logo: './src/assets/icon.png',
       prefix: '',
@@ -157,5 +158,5 @@ module.exports = {
   },
   performance: {
     hints: 'warning',
-  },
+  }
 };
