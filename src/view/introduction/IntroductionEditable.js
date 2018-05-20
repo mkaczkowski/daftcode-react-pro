@@ -12,6 +12,7 @@ import Error from '../../components/error/Error';
 import Heading from '../../components/heading/Heading';
 
 const IntroductionEditable = ({
+  owner,
   photo,
   description,
   section,
@@ -19,10 +20,11 @@ const IntroductionEditable = ({
   ...actionProps
 }: IntroductionProps & DataContextProps) => (
   <Formik
-    initialValues={{ ...{ photo, description } }}
-    onSubmit={values => actionProps.onUpdate({section, values})}
+    initialValues={{ ...{ owner, photo, description } }}
+    onSubmit={values => actionProps.onUpdate({ section, values })}
     validate={values => {
       let errors = {};
+      if (!values.owner) errors.owner = 'Field is required';
       if (!values.photo) errors.photo = 'Field is required';
       if (!values.description) errors.description = 'Field is required';
       return errors;
@@ -30,15 +32,36 @@ const IntroductionEditable = ({
     render={({ values, errors, touched, handleChange, handleBlur, handleSubmit }) => (
       <form onSubmit={handleSubmit}>
         <Heading as="h4">Introduction</Heading>
-        <hr/>
+        <hr />
+        <Field as={Group.Item} padding={8}>
+          <Label htmlFor="owner">Name:</Label>
+          <Input
+            id="owner"
+            name="owner"
+            placeholder="Your full name"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.owner}
+            autoFocus
+          />
+          <Error field="description" touched={touched} errors={errors} />
+        </Field>
         <Field as={Group.Item} padding={8}>
           <Label htmlFor="photo">Photo:</Label>
-          <Input id="photo" name="photo" placeholder="Your photo url" onChange={handleChange} onBlur={handleBlur} value={values.photo} />
+          <Input
+            id="photo"
+            name="photo"
+            placeholder="Your photo url"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.photo}
+          />
           <Error field="photo" touched={touched} errors={errors} />
         </Field>
         <Field as={Group.Item} padding={8}>
           <Label htmlFor="description">Description</Label>
-          <Input  as="textarea"
+          <Input
+            as="textarea"
             id="description"
             name="description"
             placeholder="Your short description"
@@ -49,7 +72,7 @@ const IntroductionEditable = ({
           <Error field="description" touched={touched} errors={errors} />
         </Field>
         <Field as={Group.Item} padding={8}>
-          <EditableActionButtons {...actionProps} section={section}/>
+          <EditableActionButtons {...actionProps} section={section} />
         </Field>
       </form>
     )}

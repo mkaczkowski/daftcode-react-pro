@@ -36,6 +36,7 @@ const EducationItemEditable = (props: EducationItemProps & DataContextProps) => 
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.university}
+                autoFocus
               />
               <Error field="university" touched={touched} errors={errors} />
             </Field>

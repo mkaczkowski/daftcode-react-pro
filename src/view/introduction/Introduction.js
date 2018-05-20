@@ -4,18 +4,12 @@ import Editable from '../../components/editable/Editable';
 import _find from 'lodash/find';
 import IntroductionEditable from './IntroductionEditable';
 import IntroductionPreview from './IntroductionPreview';
-import styled from 'styled-components';
-
-export const Section = styled.div`
-  position: relative;
-  padding: 2rem 3rem;
-`;
-
 
 export type IntroductionProps = {
-  data: any,
+  data: Object,
   section: string,
-  photo: any,
+  photo: string,
+  owner: string,
   description: string,
 };
 
@@ -23,7 +17,6 @@ const IntroductionItem = (props: IntroductionProps) => {
   return (
     <Editable {...props}>
       {({ isEdited, ...restProps }) =>
-        //prettier-ignore
         isEdited ?
           <IntroductionEditable {...restProps} /> :
           <IntroductionPreview {...restProps} />

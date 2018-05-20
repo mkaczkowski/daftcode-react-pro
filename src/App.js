@@ -37,12 +37,15 @@ export const DATA_CONFIG: DATAType = {
 
 //TODO move to types
 const DEFAULT_DATA: DataType[] = [
-  { name: DATA.INTRODUCTION, photo: 'https://media.licdn.com/dms/image/C5603AQFxYrLjUhGyaw/profile-displayphoto-shrink_100_100/0?e=1531958400&v=beta&t=KrZRHisTKJHiqcqfA5Fc2FGoYTa59PrkhkHkuhR4rzw', description: 'sdas das d' },
+  { name: DATA.INTRODUCTION,
+    owner: "Mariusz Kaczkowski",
+    photo: 'https://media.licdn.com/dms/image/C5603AQFxYrLjUhGyaw/profile-displayphoto-shrink_100_100/0?e=1531958400&v=beta&t=KrZRHisTKJHiqcqfA5Fc2FGoYTa59PrkhkHkuhR4rzw',
+    description: 'sdas dasd asdasdasdas dasdasd asdasdas dasdsadsad  ads asd as da dasdas asd asdas d' },
   {
     name: DATA.EDUCATION,
     items: [
-      { id: 1, university: '1', year: '11', description: '111' },
-      { id: 2, university: '2', year: '22', description: '222' },
+      { id: 1, university: 'Warsaw University of Technology', year: '2005-2010', description: 'M. Sc., Eng. degree in Computer Science' },
+      { id: 2, university: 'Technical University of Lisbon', year: '02 – 07.2010', description: 'Information Systems and Computer Engineering ' },
     ],
   }
   // {

@@ -22,7 +22,6 @@ class Editable extends React.PureComponent<EditableItemProps, EditableItemState>
   };
 
   onCancel = ({ section, id, context }: any) => {
-    debugger;
     if (id === -1) {
       context.delete({ section, id: -1 });
     } else {

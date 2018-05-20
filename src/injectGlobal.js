@@ -1,22 +1,6 @@
 /* eslint-disable no-unused-expressions */
 import { injectGlobal } from 'styled-components';
 
-// url(Ubuntu-subset.woff2) format("woff2"),
-//   url(Ubuntu-subset.zopfli.woff) format("woff"),
-//   url(Ubuntu-subset.ttf) format("truetype");
-
-//url(Ubuntu.woff2) format("woff2"),
-//url(Ubuntu.zopfli.woff) format("woff"),
-//url(Ubuntu.ttf) format("truetype");
-
-// import './assets/fonts/Ubuntu.ttf';
-// import './assets/fonts/Ubuntu.woff';
-// import './assets/fonts/Ubuntu.woff2';
-import './assets/fonts/Ubuntu-subset.ttf';
-import './assets/fonts/Ubuntu-subset.zopfli.woff';
-import './assets/fonts/Ubuntu-subset.woff2';
-import './assets/fonts/Ubuntu.eot';
-
 injectGlobal`
   
   body {
@@ -29,5 +13,24 @@ injectGlobal`
     @media (display-mode: standalone) {
       /* All installed PWAs styles media-query*/
     }
+  }
+  
+  /*ANIMATION*/
+  .fade-enter {
+    opacity: 0.01;
+  }
+  
+  .fade-enter.fade-enter-active {
+    opacity: 1;
+    transition: opacity 500ms ease-in;
+  }
+  
+  .fade-leave {
+    opacity: 1;
+  }
+  
+  .fade-leave.fade-leave-active {
+    opacity: 0.01;
+    transition: opacity 300ms ease-in;
   }
 `;

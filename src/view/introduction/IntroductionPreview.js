@@ -10,23 +10,33 @@ import type { ActionButtonsType } from '../../components/actionButtons/ItemActio
 import styled from 'styled-components';
 
 const IntroductionItemPreview = styled(ItemPreview)`
-text-align: center;
+  display:flex;
+  align-items: center;
+`;
+
+const Content = styled.div`
+  flex:1;
+  padding: 0 1rem;
+  text-align: center;
 `;
 
 const Photo = styled.img`
   height: 100px;
   width: 100px;
-  border-radius: 50px;
+  border-radius: 50%;
 `;
 
 export type IntroductionItemPreviewProps = IntroductionProps & DataContextProps & ActionButtonsType;
-const IntroductionPreview = ({ section, photo, description, ...actionProps }: IntroductionItemPreviewProps) => (
+const IntroductionPreview = ({ section, photo, owner, description, ...actionProps }: IntroductionItemPreviewProps) => (
   <Hover>
     {isHovered => (
       <IntroductionItemPreview>
+        <Photo src={photo} />
+        <Content>
+          <Heading as="h2">{owner}</Heading>
+          <span>{description}</span>
+          </Content>
         {isHovered && <SectionActionButtons {...actionProps} section={section} />}
-        <Photo src={photo}/>
-        <Heading as="h4">{description}</Heading>
       </IntroductionItemPreview>
     )}
   </Hover>
