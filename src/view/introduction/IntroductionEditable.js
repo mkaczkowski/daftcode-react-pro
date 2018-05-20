@@ -47,7 +47,7 @@ const IntroductionEditable = ({
           <Heading as="h4">Introduction</Heading>
           <hr />
           <Field as={Group.Item} padding={8}>
-            <Label htmlFor="owner">Name:</Label>
+            <Label htmlFor="owner">Name *</Label>
             <Input
               id="owner"
               name="owner"
@@ -60,7 +60,7 @@ const IntroductionEditable = ({
             <Error field="description" touched={touched} errors={errors} />
           </Field>
           <Field as={Group.Item} padding={8}>
-            <Label htmlFor="photo">Photo:</Label>
+            <Label htmlFor="photo">Photo *</Label>
             <Input
               id="photo"
               name="photo"
@@ -72,7 +72,7 @@ const IntroductionEditable = ({
             <Error field="photo" touched={touched} errors={errors} />
           </Field>
           <Field as={Group.Item} padding={8}>
-            <Label htmlFor="description">Description:</Label>
+            <Label htmlFor="description">Description *</Label>
             <Input
               as="textarea"
               id="description"
@@ -86,7 +86,7 @@ const IntroductionEditable = ({
             <Error field="description" touched={touched} errors={errors} />
           </Field>
           <Field padding={8}>
-            <Label>Social:</Label>
+            <Label>Social</Label>
             <Field as={Group.Item}>
               <Group>
                 <Button disabled>

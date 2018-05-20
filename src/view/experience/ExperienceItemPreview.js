@@ -3,25 +3,30 @@ import React from 'react';
 import Hover from '../../components/hover/Hover';
 import ActionButtons from '../../components/actionButtons/ActionButtons';
 import ItemPreview from '../../components/ItemPreview/ItemPreview';
-import type { EducationItemProps } from './Education';
+import type { ExperienceItemProps } from './Experience';
 import type { DataContextProps } from '../../providers/data';
 import type { ActionButtonsType } from '../../components/actionButtons/ActionButtons';
+import Flex from '../../components/flex/Flex';
 
-export type EducationItemPreviewProps = EducationItemProps & DataContextProps & ActionButtonsType;
+export type ExperienceItemPreviewProps = ExperienceItemProps & DataContextProps & ActionButtonsType;
 
-const EducationItemPreview = ({
+const ExperienceItemPreview = ({
   id,
-  university,
-  year,
+  company,
+  logo,
+  period,
   description,
   defaultItem,
   ...actionProps
-}: EducationItemPreviewProps) => (
+}: ExperienceItemPreviewProps) => (
   <Hover>
     {isHovered => (
-      <ItemPreview>
-        <ItemPreview.Header>{university} : <i>{year}</i></ItemPreview.Header>
-        <ItemPreview.Content>{description}</ItemPreview.Content>
+      <ItemPreview timeline>
+          <ItemPreview.Logo src={logo} alt={company} />
+        <ItemPreview.Header>{company} : <i>{period}</i></ItemPreview.Header>
+        <ItemPreview.Content>
+          {description}
+          </ItemPreview.Content>
         {isHovered && (
           <ActionButtons
             up={true}
@@ -39,4 +44,4 @@ const EducationItemPreview = ({
   </Hover>
 );
 
-export default EducationItemPreview;
+export default ExperienceItemPreview;

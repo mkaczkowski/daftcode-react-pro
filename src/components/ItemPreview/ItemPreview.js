@@ -56,6 +56,12 @@ ItemPreview.Avatar = styled.img`
   `};
 `;
 
+ItemPreview.Logo = styled.img`
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+`;
+
 ItemPreview.Header = styled.h4`
   margin: 0 0 1rem;
 `;
@@ -64,6 +70,7 @@ ItemPreview.Description = styled.div`
   flex: 1;
   padding: 0 1rem;
   margin-left: 1.5rem;
+  line-height:1.4em;
   
   ${media.tablet`
       text-align: center;

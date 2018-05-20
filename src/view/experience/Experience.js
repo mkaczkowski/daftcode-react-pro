@@ -1,56 +1,56 @@
 // @flow
 import React from 'react';
 import Heading from '../../components/heading/Heading';
-import EducationItemEditable from './EducationItemEditable';
-import EducationItemPreview from './EducationItemPreview';
+import ExperienceItemEditable from './ExperienceItemEditable';
+import ExperienceItemPreview from './ExperienceItemPreview';
 import Editable from '../../components/editable/Editable';
 import _find from 'lodash/find';
-import EmptyItem from '../../components/empty/EmptyItem';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import type { DataContextProps } from '../../providers/data';
+import EmptyItem from '../../components/empty/EmptyItem';
 
-export type EducationItemProps = {
+export type ExperienceItemProps = {
   section: string,
   id: number,
-  university?: string,
-  year?: string,
+  company?: string,
+  logo?: string,
+  period?: string,
   description?: string,
 };
 
-export type EducationProps = DataContextProps & {
+export type ExperienceProps = DataContextProps & {
   section: string,
-  items: EducationItemProps[],
+  items: ExperienceItemProps[],
 };
 
-const EducationItem = (props: EducationItemProps) => {
+const ExperienceItem = (props: ExperienceItemProps) => {
   return (
     <Editable {...props}>
       {({ isEdited, ...restProps }) =>
         isEdited ?
-          <EducationItemEditable {...restProps} /> :
-          <EducationItemPreview {...restProps} />
+          <ExperienceItemEditable {...restProps} /> :
+          <ExperienceItemPreview {...restProps} />
       }
     </Editable>
   );
 };
 
-const DEFAULT_DATA = { description: '', university: '', year: '' };
+const DEFAULT_DATA = { logo: '', company: '', description: '',  period: '' };
 
-const Education = ({ data, section }: EducationProps) => {
+const Experience = ({ data, section }: ExperienceProps) => {
   const foundSection = _find(data, { name: section });
   const items = foundSection && foundSection.items;
-
   return (
     <div>
-      <Heading as="h4">Education</Heading>
+      <Heading as="h4">Experience</Heading>
       <hr />
       {items && items.length > 0 ? (
         <ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={300} transitionLeaveTimeout={300}>
           {items.map(item => (
-            <EducationItem key={item.id}
-                           section={section}
-                           defaultItem={DEFAULT_DATA}
-                           {...item} />
+            <ExperienceItem key={item.id}
+                            section={section}
+                            defaultItem={DEFAULT_DATA}
+                            {...item} />
           ))}
         </ReactCSSTransitionGroup>
       ) : (
@@ -61,4 +61,4 @@ const Education = ({ data, section }: EducationProps) => {
   );
 };
 
-export default Education;
+export default Experience;

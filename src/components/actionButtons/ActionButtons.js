@@ -13,6 +13,7 @@ import { trash2 } from 'react-icons-kit/feather/trash2';
 import { edit } from 'react-icons-kit/feather/edit';
 import { chevronUp } from 'react-icons-kit/feather/chevronUp';
 import styled from 'styled-components';
+import ReactTooltip from 'react-tooltip'
 
 export const ActionsBox = styled.div`
   position: absolute;
@@ -69,31 +70,32 @@ const ActionButtons = (props: ActionButtonsType) => {
     <ActionsBox>
       <Group gap>
         {props.edit && (
-          <Button type="button" onClick={props.onShowEdit}>
-            <Icon icon={edit} />
+          <Button type="button" data-tip="Edit" onClick={props.onShowEdit}>
+            <Icon  icon={edit} />
           </Button>
         )}
         {props.down && (
-          <Button type="button" onClick={onMoveDownHandler}>
+          <Button type="button" data-tip="Move down" onClick={onMoveDownHandler}>
             <Icon icon={chevronDown} />
           </Button>
         )}
         {props.up && (
-          <Button type="button" onClick={onMoveUpHandler}>
+          <Button type="button" data-tip="Move up" onClick={onMoveUpHandler}>
             <Icon icon={chevronUp} />
           </Button>
         )}
         {props.trash && (
-          <Button type="button" danger onClick={onRemoveHandler}>
+          <Button type="button" data-tip="Delete" danger onClick={onRemoveHandler}>
             <Icon icon={trash2} />
           </Button>
         )}
         {props.new && (
-          <Button type="button" primary onClick={onAddHandler}>
+          <Button type="button" data-tip="Add new" primary onClick={onAddHandler}>
             <Icon icon={plus} />
           </Button>
         )}
       </Group>
+      <ReactTooltip effect="solid" delayShow={300}/>
     </ActionsBox>
   );
 };
