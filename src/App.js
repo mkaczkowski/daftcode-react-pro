@@ -55,12 +55,12 @@ const DEFAULT_DATA: DataType[] = [
 ];
 
 const Main = styled.div`
-  width:90%;
+  width:84%;
   max-width: 800px;
-  margin:1rem auto;
+  margin:1.2rem auto;
   background-color: #fafafa;
   padding: 1rem;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.18), 0 1px 4px rgba(0,0,0,0.30);
 `;
 
 class App extends React.PureComponent<{}, { data?: Object }> {

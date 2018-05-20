@@ -2,17 +2,16 @@
 import { injectGlobal } from 'styled-components';
 
 injectGlobal`
+
   
   body {
     background: #f9f9f9;
+    background: linear-gradient(45deg, #ebf0ff, #fafafa);
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
     margin:0;
     height:100%;
+    min-height: 100vh;
     width:100%;
-    
-    @media (display-mode: standalone) {
-      /* All installed PWAs styles media-query*/
-    }
   }
   
   /*ANIMATION*/
