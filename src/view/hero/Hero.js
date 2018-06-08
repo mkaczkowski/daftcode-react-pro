@@ -11,7 +11,7 @@ const Intro = styled.div`
   margin: auto 0;
   cursor: pointer;
   text-align: center;
-  
+
   & > h1 {
     position: relative;
     font-size: 4.2rem;
@@ -31,6 +31,7 @@ const ButtonIntro = styled(Button)`
   font-weight: 500;
 `;
 
+/*
 const ScrollDown = styled.div`
   width: 3.8rem;
   text-align: center;
@@ -42,6 +43,7 @@ const ScrollDown = styled.div`
     box-shadow: 0 0 4px 0 white;
   }
 `;
+*/
 
 class Hero extends React.PureComponent<{}> {
   render() {
