@@ -3,7 +3,7 @@ import * as React from 'react';
 import { ParallaxProvider } from 'react-scroll-parallax';
 import styled from 'styled-components';
 import HeroBanner from './HeroBanner';
-import { media } from '@theme/index';
+import { media } from '@theme'
 import Button from '../../components/button/Button';
 import Heading from '../../components/heading/Heading';
 

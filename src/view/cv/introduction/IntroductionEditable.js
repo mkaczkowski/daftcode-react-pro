@@ -1,10 +1,10 @@
 // @flow
 import React from 'react';
 import { Formik } from 'formik';
-import Group from '@components/group/index';
-import Field from '@components/field/index';
-import Input from '@components/input/index';
-import Label from '@components/label/index';
+import Group from '@components/group'
+import Field from '@components/field'
+import Input from '@components/input'
+import Label from '@components/label'
 import EditableActionButtons from '@components/actionButtons/FormButtons';
 import Error from '@components/error/Error';
 import Heading from '@components/heading/Heading';
