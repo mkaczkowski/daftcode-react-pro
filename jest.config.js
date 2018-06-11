@@ -8,7 +8,7 @@ module.exports = {
     '^.+\\.js$': '<rootDir>/node_modules/babel-jest',
     '^(?!.*\\.(js|json)$)': '<rootDir>/config/jest/fileTransform.js',
   },
-  transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.js$'],
+  transformIgnorePatterns: ['/node_modules/.+\\.js$'],
   moduleFileExtensions: ['js', 'json', 'node'],
   moduleNameMapper: {
     '^@assets(.*)$': '<rootDir>/src/assets',
