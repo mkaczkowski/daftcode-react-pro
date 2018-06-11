@@ -38,6 +38,9 @@ module.exports = {
     alias: {
       '@assets': path.resolve(__dirname, '../src/assets'),
       '@theme': path.resolve(__dirname, '../src/theme'),
+      '@components': path.resolve(__dirname, '../src/components'),
+      '@constants': path.resolve(__dirname, '../src/constants'),
+      '@utils': path.resolve(__dirname, '../src/utils'),
       modernizr$: path.resolve(__dirname, '../.modernizrrc'),
     },
   },

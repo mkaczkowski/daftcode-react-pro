@@ -29,6 +29,9 @@ module.exports = {
     extensions: ['.js', '.json'],
     alias: {
       '@assets': path.resolve('src/assets'),
+      '@components': path.resolve('src/components'),
+      '@constants': path.resolve('src/constants'),
+      '@utils': path.resolve('src/utils'),
       '@theme': path.resolve('src/theme'),
       modernizr$: path.resolve('.modernizrrc'),
     },

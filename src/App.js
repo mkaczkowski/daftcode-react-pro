@@ -9,11 +9,12 @@ import Hero from './view/hero/Hero';
 import Header from './components/header/Header';
 import LANGUAGES from './constants/language';
 import Footer from './components/footer/Footer';
+import Contact from './view/contact/Contact';
 
 const languages = [LANGUAGES.EN, LANGUAGES.PL];
 
 const App = () => {
-  const Contact = loadableVisibility(() => import('./view/contact/Contact'));
+  const CV = loadableVisibility(() => import('./view/cv/index'));
   return (
     <ThemeProvider theme={theme}>
       <I18nProvider language="en">
@@ -23,6 +24,7 @@ const App = () => {
           <Header.LanguageChooser languages={languages} />
         </Header>
         <Hero />
+        <CV/>
         <Contact />
         <Footer />
       </I18nProvider>
