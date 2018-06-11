@@ -22,7 +22,7 @@ const ExperienceItemPreview = ({
   <Hover>
     {isHovered => (
       <ItemPreview timeline>
-          <ItemPreview.Logo src={logo} alt={company} />
+        {logo && <ItemPreview.Logo src={logo} alt={company} />}
         <ItemPreview.Header>{company} : <i>{period}</i></ItemPreview.Header>
         <ItemPreview.Content>
           {description}

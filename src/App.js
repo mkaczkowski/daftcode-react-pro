@@ -33,7 +33,7 @@ const DEFAULT_DATA: DataType[] = [
     photo: 'https://media.licdn.com/dms/image/C5603AQFxYrLjUhGyaw/profile-displayphoto-shrink_100_100/0?e=1531958400&v=beta&t=KrZRHisTKJHiqcqfA5Fc2FGoYTa59PrkhkHkuhR4rzw',
     description: 'I am experienced front-end developer specialized with Javascript and React. I am looking forward to taking on new challenges.',
     linkedin: 'https://www.linkedin.com/in/mariusz-kaczkowski-91983860/',
-    email: 'mkaczkowski@icloud.com',
+    email: 'testemail@icloud.com',
   },
   {
     name: DATA.EDUCATION,

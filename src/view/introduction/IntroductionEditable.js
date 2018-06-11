@@ -35,9 +35,7 @@ const IntroductionEditable = ({
         if (!values.owner) errors.owner = 'Field is required';
         if (!values.photo) errors.photo = 'Field is required';
         if (!values.description) errors.description = 'Field is required';
-        if (!values.email) {
-          errors.email = 'Required';
-        } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+        if (values.email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
           errors.email = 'Invalid email address';
         }
         return errors;
@@ -57,7 +55,7 @@ const IntroductionEditable = ({
               value={values.owner}
               autoFocus
             />
-            <Error field="description" touched={touched} errors={errors} />
+            <Error field="owner" touched={touched} errors={errors} />
           </Field>
           <Field as={Group.Item} padding={8}>
             <Label htmlFor="photo">Photo *</Label>

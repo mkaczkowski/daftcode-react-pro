@@ -45,7 +45,7 @@ const IntroductionPreview = ({
         <ItemPreview.Badge>
           <Group gap>
             {email && (
-              <Button as="a" href={email} target="_blank">
+              <Button as="a" href={`mailto:${email}?Subject=Hello`} >
                 <Icon icon={mail} />
               </Button>
             )}
