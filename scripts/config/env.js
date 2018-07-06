@@ -2,11 +2,15 @@
 
 const fs = require('fs');
 const path = require('path');
+const paths = require('./paths');
 
-const productName = 'sample';
-const productPath = path.resolve('../products', productName);
+const packageJson = require(paths.appRoot + '/package.json');
 
-// We support resolving modules according to `NODE_PATH`.
+const APP_ENV = process.env.APP_ENV;
+if (!APP_ENV) throw new Error('APP_ENV is not defined');
+
+delete require.cache[require.resolve('./paths')];
+
 const appDirectory = fs.realpathSync(process.cwd());
 process.env.NODE_PATH = (process.env.NODE_PATH || '')
   .split(path.delimiter)
@@ -15,15 +19,13 @@ process.env.NODE_PATH = (process.env.NODE_PATH || '')
   .join(path.delimiter);
 
 function getClientEnvironment(env, publicUrl) {
-  //prettier-ignore
   var dotenvFiles = [
-    path.resolve(`.env.${env}.local`),
-    path.resolve(`${productPath}/.env.${env}`),
-      env !== 'test' && path.resolve(`.env.local`),
-      path.resolve(`${productPath}/.env`)
-    ].filter(Boolean);
+    path.resolve(`.env.${APP_ENV}.local`),
+    path.resolve(`${paths.appRoot}/.env.${APP_ENV}`),
+    APP_ENV !== 'test' && path.resolve(paths.root, `.env.local`),
+    path.resolve(`${paths.appRoot}/.env`),
+  ].filter(Boolean);
 
-  // Load environment variables from .env* files. Suppress warnings using silent
   dotenvFiles.forEach(dotenvFile => {
     if (fs.existsSync(dotenvFile)) {
       require('dotenv-expand')(
@@ -41,14 +43,13 @@ function getClientEnvironment(env, publicUrl) {
     },
     {
       ...{
-        // Useful for determining whether we’re running in production mode.
-        // Most importantly, it switches React into the correct mode.
-        NODE_ENV: env,
+        NODE_ENV: env || 'development',
+        APP_ENV: process.env.APP_ENV || 'development',
         PUBLIC_URL: publicUrl,
+        PRODUCT_VERSION: packageJson.version,
       },
     }
   );
-  // Stringify all values so we can feed into Webpack DefinePlugin
   const stringified = {
     'process.env': Object.keys(raw).reduce((env, key) => {
       env[key] = JSON.stringify(raw[key]);

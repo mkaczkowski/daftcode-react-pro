@@ -21,8 +21,8 @@ const unCssIgnore = [
 
 gulp.task('uncss', function() {
   return gulp
-    .src(path.join(__dirname, config.root.dist, '/static/css/*.css'), { base: './' })
-    .pipe(gulpCopy(path.join(__dirname, config.root.dist, 'static/css/backup'), { prefix: 5 }))
+    .src(path.join(__dirname, config.root.dist, '*.css'), { base: './' })
+    .pipe(gulpCopy(path.join(__dirname, config.root.dist, 'backup'), { prefix: 5 }))
     .pipe(bytediff.start())
     .pipe(
       uncss({

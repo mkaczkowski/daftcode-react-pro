@@ -1,22 +1,17 @@
 const path = require('path');
+const paths = require('./paths');
 const autoprefixer = require('autoprefixer');
 const webpack = require('webpack');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const errorOverlayMiddleware = require('react-dev-utils/errorOverlayMiddleware');
 const noopServiceWorkerMiddleware = require('react-dev-utils/noopServiceWorkerMiddleware');
-const ignoredFiles = require('react-dev-utils/ignoredFiles');
 const publicUrl = '';
+
 const getClientEnvironment = require('./env', publicUrl);
 const env = getClientEnvironment('development');
 
 const shouldUseSourceMap = env.raw.GENERATE_SOURCEMAP !== 'false';
-
-//TODO use env
-const productName = 'sample';
-const productPath = path.resolve('../products', productName);
-
-const sources = [path.resolve(`${productPath}/src`), path.resolve(`../core/src`), path.resolve(`../components/src`)];
 
 const getStyleLoaders = (cssOptions, preProcessor) => {
   const loaders = [
@@ -53,11 +48,7 @@ const getStyleLoaders = (cssOptions, preProcessor) => {
 module.exports = {
   mode: 'development',
   devtool: 'cheap-module-source-map',
-  entry: [
-    path.resolve('config/polyfills'),
-    'react-dev-utils/webpackHotDevClient',
-    path.resolve(`${productPath}/src/index.js`),
-  ],
+  entry: [path.resolve('config/polyfills'), 'react-dev-utils/webpackHotDevClient', paths.appIndexJs],
   output: {
     path: path.resolve('.tmp'),
     filename: '[name].js',
@@ -73,15 +64,16 @@ module.exports = {
     runtimeChunk: true,
   },
   resolve: {
-    modules: ['node_modules', './../node_modules'].concat(process.env.NODE_PATH.split(path.delimiter).filter(Boolean)),
+    modules: ['node_modules', path.resolve(paths.root, 'node_modules')].concat(
+      process.env.NODE_PATH.split(path.delimiter).filter(Boolean)
+    ),
     extensions: ['.js', '.json'],
     alias: {
-      //TODO clear paths
-      '@assets': path.resolve(`../products/${productName}/src/assets`),
-      '@components': path.resolve('../components/src'),
-      '@core': path.resolve('../core/src'),
-      '@story': path.resolve('../components/.storybook'),
-      modernizr$: path.resolve('../.modernizrrc'),
+      '@core': paths.coreSrc,
+      '@components': paths.componentsSrc,
+      '@assets': paths.appAssets,
+      '@story': paths.storybook,
+      modernizr$: path.resolve(paths.root, '.modernizrrc'),
     },
   },
   module: {
@@ -96,7 +88,7 @@ module.exports = {
           emitWarning: true,
           emitError: false,
         },
-        include: sources,
+        include: [paths.appSrc, paths.coreSrc, paths.componentsSrc],
         exclude: [/[/\\\\]node_modules[/\\\\]/],
       },
       {
@@ -119,7 +111,7 @@ module.exports = {
           },
           {
             test: /\.js$/,
-            include: sources,
+            include: [paths.appSrc, paths.coreSrc, paths.componentsSrc],
             exclude: [/[/\\\\]node_modules[/\\\\]/],
             use: [
               {
@@ -133,9 +125,9 @@ module.exports = {
                       'module-resolver',
                       {
                         alias: {
-                          '@core': path.resolve('../core/src/'),
-                          '@components': path.resolve('../components/src/'),
-                          '@story': path.resolve('../components/.storybook/'),
+                          '@core': paths.coreSrc,
+                          '@components': paths.componentsSrc,
+                          '@story': paths.storybook,
                         },
                       },
                     ],
@@ -188,9 +180,9 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin(env.stringified),
     new webpack.HotModuleReplacementPlugin(),
-    new CopyWebpackPlugin([path.resolve('public')], {}),
+    new CopyWebpackPlugin([paths.appPublic], {}),
     new HTMLWebpackPlugin({
-      template: path.resolve('public/index.html'),
+      template: paths.indexHtml,
     }),
   ],
   devServer: {

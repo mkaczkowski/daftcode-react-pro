@@ -13,8 +13,8 @@
   "scripts": {
     "clean": "lerna clean && rm -rf node_modules",
     "bootstrap": "lerna bootstrap --use-workspaces",
-    "start": "scripts start",
-    "build": "scripts build",
+    "start": "cross-env PRODUCT_NAME=sample scripts start:dev",
+    "build": "cross-env PRODUCT_NAME=sample scripts build:production",
     "test": "scripts test",
     "serve": "serve -s -p 5000 build",
     "storybook": "start-storybook -c components/.storybook -p 6006",

@@ -1,4 +1,5 @@
 const path = require('path');
+const paths = require('./paths');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
@@ -23,11 +24,6 @@ const metadata = getMetaData(env.raw);
 
 const shouldUseSourceMap = env.raw.GENERATE_SOURCEMAP !== 'false';
 const shouldBundleAnalyze = env.raw.BUNDLE_ANALYZER !== 'false';
-
-//TODO use env
-const productName = 'sample';
-const productPath = path.resolve('../products', productName);
-const sources = [path.resolve(`${productPath}/src`), path.resolve(`../core/src`), path.resolve(`../components/src`)];
 
 const getStyleLoaders = (cssOptions, preProcessor) => {
   const loaders = [
@@ -65,7 +61,7 @@ module.exports = {
   mode: 'production',
   bail: true,
   devtool: shouldUseSourceMap ? 'source-map' : false,
-  entry: [path.resolve('config/polyfills'), path.resolve(`${productPath}/src/index.js`)],
+  entry: [path.resolve('config/polyfills'), paths.appIndexJs],
   output: {
     path: path.resolve('../build'),
     filename: '[name].[hash].js',
@@ -108,15 +104,16 @@ module.exports = {
     runtimeChunk: true,
   },
   resolve: {
-    modules: ['node_modules', './../node_modules'].concat(process.env.NODE_PATH.split(path.delimiter).filter(Boolean)),
-    extensions: ['.js'],
+    modules: ['node_modules', path.resolve(paths.root, 'node_modules')].concat(
+      process.env.NODE_PATH.split(path.delimiter).filter(Boolean)
+    ),
+    extensions: ['.js', '.json'],
     alias: {
-      //TODO clear paths
-      '@assets': path.resolve(`../products/${productName}/src/assets`),
-      '@components': path.resolve('../components/src'),
-      '@core': path.resolve('../core/src'),
-      '@story': path.resolve('../components/.storybook'),
-      modernizr$: path.resolve('../.modernizrrc'),
+      '@core': paths.coreSrc,
+      '@components': paths.componentsSrc,
+      '@assets': paths.appAssets,
+      '@story': paths.storybook,
+      modernizr$: path.resolve(paths.root, '.modernizrrc'),
     },
   },
   module: {
@@ -132,7 +129,7 @@ module.exports = {
           emitError: false,
           failOnError: false,
         },
-        include: sources,
+        include: [paths.appSrc, paths.coreSrc, paths.componentsSrc],
         exclude: [/[/\\\\]node_modules[/\\\\]/],
       },
       {
@@ -155,7 +152,7 @@ module.exports = {
           },
           {
             test: /\.js$/,
-            include: sources,
+            include: [paths.appSrc, paths.coreSrc, paths.componentsSrc],
             exclude: [/[/\\\\]node_modules[/\\\\]/],
             use: [
               {
@@ -168,9 +165,9 @@ module.exports = {
                       'module-resolver',
                       {
                         alias: {
-                          '@core': path.resolve('../core/src/'),
-                          '@components': path.resolve('../components/src/'),
-                          '@story': path.resolve('../components/.storybook/'),
+                          '@core': paths.coreSrc,
+                          '@components': paths.componentsSrc,
+                          '@story': paths.storybook,
                         },
                       },
                     ],
@@ -262,11 +259,11 @@ module.exports = {
   },
   plugins: [
     //TODO run it only if not CI
-    new CleanWebpackPlugin([path.resolve('./../build')], { root: path.resolve('./../') }),
-    new CopyWebpackPlugin([path.resolve('public')]),
+    new CleanWebpackPlugin([paths.appBuild], { root: paths.root }),
+    new CopyWebpackPlugin([paths.appPublic]),
     new LodashModuleReplacementPlugin({ paths: true }),
     new FaviconsWebpackPlugin({
-      logo: path.resolve(productPath, 'src/assets/icon.png'),
+      logo: paths.appAssets + '/icon.png',
       prefix: '',
       background: '#ffffff',
       emitStats: false,
@@ -281,7 +278,7 @@ module.exports = {
       dontCacheBustUrlsMatching: /\.\w{8}\./,
       mergeStaticsConfig: true, // if you don't set this to true, you won't see any webpack-emitted assets in your serviceworker config
       minify: true,
-      navigateFallback: publicUrl + 'index.html',
+      navigateFallback: paths.indexHtml,
       staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
       logger(message) {
         if (message.indexOf('Total precache size is') === 0) {
@@ -302,14 +299,14 @@ module.exports = {
       inject: true,
       icons: [
         {
-          src: path.resolve(productPath, 'src/assets/icon.png'),
+          src: paths.appAssets + '/icon.png',
           sizes: [96, 128, 192, 256, 384, 512], // multiple sizes
         },
       ],
     }),
     new webpack.DefinePlugin(env.stringified),
     new HTMLWebpackPlugin({
-      template: path.resolve('public/index.html'),
+      template: paths.indexHtml,
       title: metadata.name,
       description: metadata.description,
       manifest: metadata.filename,
