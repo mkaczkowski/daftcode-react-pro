@@ -1,0 +1,13 @@
+/*https://transfonter.org*/
+
+//noinspection ALL
+@font-face {
+  font-family: 'Ubuntu';
+  src: url('landing-assets/fonts/Ubuntu.eot');  /* IE9+ Compat Modes */
+  src: url('landing-assets/fonts/Ubuntu.eot?#iefix') format('embedded-opentype'),
+  url('landing-assets/fonts/Ubuntu.woff2') format('woff2'), /*!* Super modern browsers *!*/
+  url('landing-assets/fonts/Ubuntu.woff') format('woff'), /*!* Modern browsers *!*/
+  url('landing-assets/fonts/Ubuntu.ttf') format('truetype');/*!* Safari, Android, iOS *!*!*/
+  font-weight: normal;
+  font-style: normal;
+}

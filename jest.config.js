@@ -18,6 +18,5 @@ module.exports = {
     '^@components(.*)$': '<rootDir>src/components',
     '^@constants(.*)$': '<rootDir>src/constants',
     '^@utils(.*)$': '<rootDir>src/utils',
-    '^@theme(.*)$': '<rootDir>/src/assets',
   },
 };

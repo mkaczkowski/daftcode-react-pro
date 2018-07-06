@@ -1,0 +1,13 @@
+@import "../../../src/theme/colors";
+
+$color-primary: #78C74A;
+$color-primary-dark: darken(#78C74A,20%);
+$color-primary-contrast: $color-dark-contrast;
+
+$color-secondary: #353332;
+$color-secondary-dark: darken(#353332,0.2);
+$color-secondary-contrast: $color-dark-contrast;
+
+$color-info: #008AEB;
+$color-info-dark: darken(#008AEB,0.2);
+$color-info-contrast: $color-dark-contrast;

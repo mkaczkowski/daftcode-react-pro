@@ -1,0 +1,15 @@
+{
+  "name": "daftcode-react-app-app",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "daftcode-react-app-components": "^0.0.4",
+    "daftcode-react-app-core": "^0.0.4",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1"
+  },
+  "devDependencies": {
+    "daftcode-react-app-scripts": "^0.0.4",
+    "flow-bin": "^0.75.0"
+  }
+}

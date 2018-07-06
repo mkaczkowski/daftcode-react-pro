@@ -1,0 +1,22 @@
+{
+  "name": "daftcode-react-app-core",
+  "version": "0.0.4",
+  "private": true,
+  "dependencies": {
+    "fetch-mock": "^6.4.4",
+    "js-logger": "^1.4.1",
+    "loadable-components": "^2.2.2",
+    "lodash": "^4.17.10",
+    "modernizr": "^3.6.0",
+    "p-min-delay": "^2.0.0",
+    "qs": "^6.5.2",
+    "react": "^16.4.1",
+    "react-adopt": "^0.6.0",
+    "react-dom": "^16.4.1",
+    "why-did-you-update": "https://github.com/maicki/why-did-you-update.git"
+  },
+  "devDependencies": {
+    "flow-bin": "^0.75.0",
+    "react-hot-loader": "^4.1.2"
+  }
+}
