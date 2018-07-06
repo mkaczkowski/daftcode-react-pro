@@ -261,6 +261,7 @@ module.exports = {
     ],
   },
   plugins: [
+    //TODO run it only if not CI
     new CleanWebpackPlugin([path.resolve('./../build')], { root: path.resolve('./../') }),
     new CopyWebpackPlugin([path.resolve('public')]),
     new LodashModuleReplacementPlugin({ paths: true }),
