@@ -23,7 +23,6 @@ declare module 'gulp-webp' {
  * needed.
  */
 
-
 // Filename aliases
 declare module 'gulp-webp/index' {
   declare module.exports: $Exports<'gulp-webp'>;

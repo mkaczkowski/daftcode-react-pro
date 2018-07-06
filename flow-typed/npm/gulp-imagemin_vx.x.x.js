@@ -23,7 +23,6 @@ declare module 'gulp-imagemin' {
  * needed.
  */
 
-
 // Filename aliases
 declare module 'gulp-imagemin/index' {
   declare module.exports: $Exports<'gulp-imagemin'>;

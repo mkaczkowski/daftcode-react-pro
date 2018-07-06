@@ -23,7 +23,6 @@ declare module 'run-sequence' {
  * needed.
  */
 
-
 // Filename aliases
 declare module 'run-sequence/index' {
   declare module.exports: $Exports<'run-sequence'>;

@@ -23,7 +23,6 @@ declare module 'clean-webpack-plugin' {
  * needed.
  */
 
-
 // Filename aliases
 declare module 'clean-webpack-plugin/index' {
   declare module.exports: $Exports<'clean-webpack-plugin'>;

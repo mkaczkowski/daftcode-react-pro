@@ -5,7 +5,7 @@
 import * as React from 'react';
 import _findIndex from 'lodash/findIndex';
 import update from 'immutability-helper';
-import * as Storage from "./../utils/storage"
+import * as Storage from './../utils/storage';
 
 export type DataType = {
   name: string,

@@ -23,7 +23,6 @@ declare module 'gulp-sizereport' {
  * needed.
  */
 
-
 // Filename aliases
 declare module 'gulp-sizereport/index' {
   declare module.exports: $Exports<'gulp-sizereport'>;

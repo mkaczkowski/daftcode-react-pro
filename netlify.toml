@@ -1,8 +1,0 @@
-[build]
-  Command = "yarn build"
-  Publish = "build"
-
-[build.environment]
-  CI = "true"
-  YARN_VERSION = "1.6.0"
-  NPM_CONFIG_PRODUCTION = "false"

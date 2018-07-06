@@ -23,7 +23,6 @@ declare module 'gulp-plumber' {
  * needed.
  */
 
-
 // Filename aliases
 declare module 'gulp-plumber/index' {
   declare module.exports: $Exports<'gulp-plumber'>;

@@ -5,10 +5,7 @@ declare module '@storybook/addon-links' {
   declare type LinkToFunction = (...args: Array<any>) => string;
 
   declare module.exports: {
-    linkTo<T>(
-      book: string | LinkToFunction,
-      kind?: string | LinkToFunction
-    ): SyntheticMouseEvent<T>,
+    linkTo<T>(book: string | LinkToFunction, kind?: string | LinkToFunction): SyntheticMouseEvent<T>,
     hrefTo(kind: string, story: string): Promise<string>,
   };
 }

@@ -8,8 +8,13 @@ const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const webpack = require('webpack');
+const autoprefixer = require('autoprefixer');
 const getClientEnvironment = require('./env');
 const getMetaData = require('./metadata');
 
@@ -20,13 +25,87 @@ const metadata = getMetaData(env.raw);
 const shouldUseSourceMap = env.raw.GENERATE_SOURCEMAP !== 'false';
 const shouldBundleAnalyze = env.raw.BUNDLE_ANALYZER !== 'false';
 
+const getStyleLoaders = (cssOptions, preProcessor) => {
+  const loaders = [
+    MiniCssExtractPlugin.loader,
+    {
+      loader: 'css-loader',
+      options: cssOptions,
+    },
+    {
+      loader: 'postcss-loader',
+      options: {
+        ident: 'postcss',
+        plugins: () => [
+          require('postcss-flexbugs-fixes'),
+          autoprefixer({
+            flexbox: 'no-2009',
+          }),
+        ],
+        sourceMap: shouldUseSourceMap,
+      },
+    },
+  ];
+  if (preProcessor) {
+    loaders.push({
+      loader: preProcessor,
+      options: {
+        sourceMap: shouldUseSourceMap,
+      },
+    });
+  }
+  return loaders;
+};
+
 module.exports = {
   mode: 'production',
-  devtool: shouldUseSourceMap ? 'source-map' : undefined,
-  entry: [require.resolve('./polyfills'), path.resolve('src/index.js')],
+  bail: true,
+  devtool: shouldUseSourceMap ? 'source-map' : false,
+  entry: [path.resolve('config/polyfills'), path.resolve('src/index.js')],
+  output: {
+    path: path.resolve('build'),
+    filename: '[name].[hash].js',
+    chunkFilename: '[name].[chunkhash:8].chunk.js',
+    publicPath: publicUrl,
+    devtoolModuleFilenameTemplate: info =>
+      path.relative(path.resolve('src'), info.absoluteResourcePath).replace(/\\/g, '/'),
+  },
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        uglifyOptions: {
+          parse: {
+            ecma: 8,
+          },
+          compress: {
+            ecma: 5,
+            warnings: false,
+            comparisons: false,
+          },
+          mangle: {
+            safari10: true,
+          },
+          output: {
+            ecma: 5,
+            comments: false,
+            ascii_only: true,
+          },
+        },
+        parallel: true,
+        cache: true,
+        sourceMap: shouldUseSourceMap,
+      }),
+      new OptimizeCSSAssetsPlugin(),
+    ],
+    splitChunks: {
+      chunks: 'all',
+      name: 'vendors',
+    },
+    runtimeChunk: true,
+  },
   resolve: {
     modules: [path.resolve('src'), path.resolve('node_modules')],
-    extensions: ['.js', '.json'],
+    extensions: ['.js'],
     alias: {
       '@assets': path.resolve('src/assets'),
       '@components': path.resolve('src/components'),
@@ -36,23 +115,115 @@ module.exports = {
       modernizr$: path.resolve('.modernizrrc'),
     },
   },
-  output: {
-    path: path.resolve('build'),
-    filename: '[name].[hash].js',
-    publicPath: publicUrl,
-  },
   module: {
+    strictExportPresence: true,
     rules: [
+      { parser: { requireEnsure: false } },
       {
         enforce: 'pre',
         test: /\.js$/,
-        exclude: /node_modules/,
         loader: 'eslint-loader',
         options: {
           emitWarning: true,
           emitError: false,
           failOnError: false,
         },
+        include: path.resolve('src'),
+        exclude: [/[/\\\\]node_modules[/\\\\]/],
+      },
+
+      {
+        oneOf: [
+          {
+            test: /\.(jpe?g|jpg|gif|png|webp)$/,
+            loader: 'url-loader',
+            options: {
+              limit: 10000,
+              name: '[name].[hash:8].[ext]',
+            },
+          },
+          {
+            test: /\.modernizrrc.js$/,
+            use: ['modernizr-loader'],
+          },
+          {
+            test: /\.modernizrrc(\.json)?$/,
+            use: ['modernizr-loader', 'json-loader'],
+          },
+          {
+            test: /\.js$/,
+            include: path.resolve('src'),
+            exclude: [/[/\\\\]node_modules[/\\\\]/],
+            use: [
+              {
+                loader: 'babel-loader',
+                options: {
+                  compact: true,
+                  highlightCode: true,
+                },
+              },
+            ],
+          },
+
+          {
+            test: /\.css$/,
+            exclude: /\.module\.css$/,
+            use: getStyleLoaders({
+              importLoaders: 1,
+              sourceMap: shouldUseSourceMap,
+            }),
+          },
+          {
+            test: /\.module\.css$/,
+            use: getStyleLoaders({
+              importLoaders: 1,
+              sourceMap: shouldUseSourceMap,
+              modules: true,
+              getLocalIdent: getCSSModuleLocalIdent,
+            }),
+          },
+          {
+            test: /\.(scss|sass)$/,
+            exclude: /\.module\.(scss|sass)$/,
+            use: getStyleLoaders({ importLoaders: 2, sourceMap: shouldUseSourceMap }, 'sass-loader'),
+          },
+          {
+            test: /\.module\.(scss|sass)$/,
+            use: getStyleLoaders(
+              {
+                importLoaders: 2,
+                sourceMap: shouldUseSourceMap,
+                modules: true,
+                getLocalIdent: getCSSModuleLocalIdent,
+              },
+              'sass-loader'
+            ),
+          },
+
+          {
+            test: /\.svg$/,
+            use: [
+              'babel-loader',
+              {
+                loader: 'react-svg-loader',
+                options: {
+                  jsx: true, // true outputs JSX tags,
+                  svgo: {
+                    floatPrecision: 3,
+                  },
+                },
+              },
+            ],
+          },
+
+          {
+            exclude: [/\.js$/, /\.html$/, /\.json$/],
+            loader: 'file-loader',
+            options: {
+              name: '[name].[hash:8].[ext]',
+            },
+          },
+        ],
       },
       {
         test: /\.js$/,
@@ -119,6 +290,15 @@ module.exports = {
       minify: true,
       navigateFallback: publicUrl + 'index.html',
       staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
+      logger(message) {
+        if (message.indexOf('Total precache size is') === 0) {
+          return;
+        }
+        if (message.indexOf('Skipping static resource') === 0) {
+          return;
+        }
+        console.log(message);
+      },
     }),
     new ManifestPlugin({
       fileName: 'asset-manifest.json',
@@ -153,12 +333,18 @@ module.exports = {
         minifyURLs: true,
       },
     }),
+
     new ScriptExtHtmlWebpackPlugin({
       defaultAttribute: 'async',
       preload: {
         test: /\.js$/,
         chunks: 'async',
       },
+    }),
+    new webpack.DefinePlugin(env.stringified),
+    new MiniCssExtractPlugin({
+      filename: '[name].[contenthash:8].css',
+      chunkFilename: '[name].[contenthash:8].chunk.css',
     }),
     shouldBundleAnalyze &&
       new BundleAnalyzerPlugin({

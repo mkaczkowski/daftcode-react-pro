@@ -2,18 +2,19 @@
   "presets": [
     "env",
     "react",
-    "stage-2"
+    "stage-2",
+    "flow"
   ],
   "env": {
     "production": {
       "plugins": [
+        "transform-export-extensions",
         "transform-flow-strip-types",
-        "transform-export-extensions"
+        "babel-plugin-transform-react-remove-prop-types"
       ]
     },
     "development": {
       "plugins": [
-        "babel-plugin-styled-components",
         "transform-export-extensions"
       ]
     }

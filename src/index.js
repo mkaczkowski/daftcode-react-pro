@@ -1,7 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
 import App from './App';
-import './injectGlobal';
 import registerServiceWorker from './registerServiceWorker';
 
 const rootElement = document.getElementById('root');
