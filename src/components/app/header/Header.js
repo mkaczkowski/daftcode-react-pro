@@ -55,7 +55,7 @@ const InnerWrapper = styled.div`
 `;
 
 type HeaderProps = {
-  children: any,
+  sections: Array<string>,
 };
 
 type HeaderState = {
@@ -63,9 +63,6 @@ type HeaderState = {
 };
 
 class HeaderComponent extends React.Component<HeaderProps, HeaderState> {
-  static Menu = () => <div>2</div>;
-  static Logo = () => <div>2</div>;
-
   rootNode = React.createRef();
   scrollY: number;
   height: number;
@@ -105,12 +102,11 @@ class HeaderComponent extends React.Component<HeaderProps, HeaderState> {
   renderDesktopNavigation = () => (
     <DesktopNavigation>
       <ul>
-        <li>
-          <Button>Sign In</Button>
-        </li>
-        <li>
-          <Button primary>Register</Button>
-        </li>
+        {this.props.sections.map(section => (
+          <li>
+            <Button>{section.toUpperCase()}</Button>
+          </li>
+        ))}
       </ul>
     </DesktopNavigation>
   );
@@ -128,8 +124,6 @@ class HeaderComponent extends React.Component<HeaderProps, HeaderState> {
 
   render() {
     const { isScrolled } = this.state;
-    // const { children } = this.props;
-    // return <HeaderContainer>{children}</HeaderContainer>;
 
     return (
       <HeaderContainer isScrolled={isScrolled} innerRef={this.rootNode}>
@@ -139,10 +133,6 @@ class HeaderComponent extends React.Component<HeaderProps, HeaderState> {
         </InnerWrapper>
       </HeaderContainer>
     );
-
-    // const children = React.Children.map(this.props.children, child => {
-    //   return React.cloneElement(child, {stage, handleClick: this.handleClick})
-    // })
   }
 }
 
