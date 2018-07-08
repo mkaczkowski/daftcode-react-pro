@@ -1,5 +1,5 @@
-// flow-typed signature: bc9e644ba43fa1c4d1fccc5fd47f65e9
-// flow-typed version: d37e775f89/jest_v23.x.x/flow_>=v0.39.x
+// flow-typed signature: f237a17e7f8ec5e8bf98a9a8ff4ef51a
+// flow-typed version: 9dd5475d13/jest_v23.x.x/flow_>=v0.39.x
 
 type JestMockFn<TArguments: $ReadOnlyArray<*>, TReturn> = {
   (...args: TArguments): TReturn,
@@ -65,13 +65,29 @@ type JestMockFn<TArguments: $ReadOnlyArray<*>, TReturn> = {
    */
   mockReturnThis(): void,
   /**
-   * Deprecated: use jest.fn(() => value) instead
+   * Accepts a value that will be returned whenever the mock function is called.
    */
   mockReturnValue(value: TReturn): JestMockFn<TArguments, TReturn>,
   /**
    * Sugar for only returning a value once inside your mock
    */
-  mockReturnValueOnce(value: TReturn): JestMockFn<TArguments, TReturn>
+  mockReturnValueOnce(value: TReturn): JestMockFn<TArguments, TReturn>,
+  /** 
+   * Sugar for jest.fn().mockImplementation(() => Promise.resolve(value))
+   */
+  mockResolvedValue(value: TReturn): JestMockFn<TArguments, Promise<TReturn>>,
+  /**
+   * Sugar for jest.fn().mockImplementationOnce(() => Promise.resolve(value))
+   */
+  mockResolvedValueOnce(value: TReturn): JestMockFn<TArguments, Promise<TReturn>>,
+  /**
+   * Sugar for jest.fn().mockImplementation(() => Promise.reject(value))
+   */
+  mockRejectedValue(value: TReturn): JestMockFn<TArguments, Promise<any>>,
+  /**
+   * Sugar for jest.fn().mockImplementationOnce(() => Promise.reject(value))
+   */
+  mockRejectedValueOnce(value: TReturn): JestMockFn<TArguments, Promise<any>>
 };
 
 type JestAsymmetricEqualityType = {
@@ -637,6 +653,10 @@ interface JestExpectType {
    */
   toMatchObject(object: Object | Array<Object>): void,
   /**
+   * Use .toStrictEqual to check that a javascript object matches a subset of the properties of an object.
+   */
+  toStrictEqual(value: any): void,
+  /**
    * This ensures that an Object matches the most recent snapshot.
    */
   toMatchSnapshot(propertyMatchers?: {[key: string]: JestAsymmetricEqualityType}, name?: string): void,
@@ -992,7 +1012,13 @@ declare var expect: {
   objectContaining(value: Object): Object,
   /** Matches any received string that contains the exact expected string. */
   stringContaining(value: string): string,
-  stringMatching(value: string | RegExp): string
+  stringMatching(value: string | RegExp): string,
+  not: {
+    arrayContaining: (value: $ReadOnlyArray<mixed>) => Array<mixed>,
+    objectContaining: (value: {}) => Object,
+    stringContaining: (value: string) => string,
+    stringMatching: (value: string | RegExp) => string,
+  },
 };
 
 // TODO handle return type

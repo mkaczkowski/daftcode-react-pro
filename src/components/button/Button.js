@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import as from './../utils/as';
 import Box from '../box';
-import { prop, ifProp } from 'styled-tools';
+import { ifProp } from 'styled-tools';
 
 const handleKeyPress = evt => {
   if (evt.charCode === 32 || evt.charCode === 13) {

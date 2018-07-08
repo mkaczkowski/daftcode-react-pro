@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { ifProp } from 'styled-tools';
 import as from './../utils/as';
 import Base from '../base';

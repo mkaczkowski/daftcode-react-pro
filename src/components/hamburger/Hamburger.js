@@ -78,7 +78,6 @@ const Hamburger = styled.a`
   100% {
     transform: rotate(-45deg) translateY(0);
   }
-}
-`;
+}`;
 
 export default Hamburger;
