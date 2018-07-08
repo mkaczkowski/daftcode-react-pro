@@ -4,8 +4,8 @@ import { ParallaxProvider } from 'react-scroll-parallax';
 import styled from 'styled-components';
 import HeroBanner from './HeroBanner';
 import { media } from '@theme'
-import Button from '../../components/button/Button';
-import Heading from '../../components/heading/Heading';
+import Button from '../../components/common/button/Button';
+import Heading from '../../components/common/heading/Heading';
 
 const Intro = styled.div`
   margin: auto 0;

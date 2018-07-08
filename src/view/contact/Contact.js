@@ -1,12 +1,12 @@
 // @flow
 import React from 'react';
 import { Formik } from 'formik';
-import Group from '../../components/group';
-import Field from '../../components/field';
-import Input from '../../components/input';
-import Button from '../../components/button';
-import Label from '../../components/label';
-import Heading from '../../components/heading/Heading';
+import Group from '../../components/common/group';
+import Field from '../../components/form/field';
+import Input from '../../components/common/input';
+import Button from '../../components/common/button';
+import Label from '../../components/common/label';
+import Heading from '../../components/common/heading/Heading';
 
 // ASSETS GENERATED VIA CLOUDINARY
 import castle_ar_1_1_c_fill___auto__c_scale_w_200_webp from '@assets/images/castle_ar_1_1.c_fill.g_auto__c_scale.w_200.webp';

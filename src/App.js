@@ -4,8 +4,8 @@ import { hot } from 'react-hot-loader';
 import { ThemeProvider } from 'styled-components';
 import theme from './theme';
 import Hero from './view/hero/Hero';
-import Header from './components/header/Header';
-import Footer from './components/footer/Footer';
+import Header from './components/app/header/Header';
+import Footer from './components/app/footer/Footer';
 import Contact from './view/contact/Contact';
 
 const App = () => {
