@@ -214,47 +214,6 @@ module.exports = {
           },
         ],
       },
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            cacheDirectory: true,
-          },
-        },
-      },
-      {
-        test: /\.svg$/,
-        use: [
-          'babel-loader',
-          {
-            loader: 'react-svg-loader',
-            options: {
-              jsx: true, // true outputs JSX tags,
-              svgo: {
-                floatPrecision: 3,
-              },
-            },
-          },
-        ],
-      },
-      {
-        test: /\.modernizrrc.js$/,
-        use: ['modernizr-loader'],
-      },
-      {
-        test: /\.modernizrrc(\.json)?$/,
-        use: ['modernizr-loader', 'json-loader'],
-      },
-      {
-        test: /\.(jpe?g|jpg|gif|png|woff|woff2|eot|ttf|webp)$/,
-        loader: require.resolve('file-loader'),
-        options: {
-          name: '[name].[ext]',
-          emitFile: true,
-        },
-      },
     ],
   },
   plugins: [

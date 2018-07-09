@@ -1,18 +1,11 @@
 {
   "presets": [
     "env",
+    "flow",
     "react",
-    "stage-2",
-    "flow"
+    "stage-1"
   ],
   "env": {
-    "production": {
-      "plugins": [
-        "transform-export-extensions",
-        "transform-flow-strip-types",
-        "transform-react-remove-prop-types"
-      ]
-    },
     "development": {
       "plugins": [
         ["transform-runtime", {
@@ -20,8 +13,18 @@
           "polyfill": false,
           "regenerator": true,
           "moduleName": "babel-runtime"
+        }]
+      ]
+    },
+    "production": {
+      "plugins": [
+        ["transform-runtime", {
+          "helpers": false,
+          "polyfill": false,
+          "regenerator": true,
+          "moduleName": "babel-runtime"
         }],
-        "transform-export-extensions"
+        "transform-react-remove-prop-types"
       ]
     }
   }

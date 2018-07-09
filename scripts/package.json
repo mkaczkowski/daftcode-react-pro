@@ -16,7 +16,6 @@
     "build:staging": "cross-env APP_ENV=staging npm run build",
     "build:production": "cross-env APP_ENV=production npm run build",
     "build": "cross-env NODE_ENV=production webpack --config config/webpack.config.prod.js",
-    "postbuild": "react-snap && gulp postbuild",
     "test": "node scripts/test.js --env=jsdom --config=config/jest/jest.config.js",
     "coverage": "node scripts/test.js --env=jsdom --config=config/jest/jest.config.js --coverage"
   },
@@ -39,6 +38,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-1": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "clean-webpack-plugin": "^0.1.19",
     "copy-webpack-plugin": "^4.5.2",

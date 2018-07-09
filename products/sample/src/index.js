@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from 'react-dom';
+import { render, hydrate } from 'react-dom';
 import App from './App';
 import { setupTranslations } from '@core/utils/i18n';
 
@@ -28,9 +28,11 @@ export async function init() {
   }
 
   const rootElement = document.getElementById('root');
-
-  //TODO add react hydrate
-  render(<App />, rootElement);
+  if (rootElement.hasChildNodes()) {
+    hydrate(<App />, rootElement);
+  } else {
+    render(<App />, rootElement);
+  }
 }
 
 init();
