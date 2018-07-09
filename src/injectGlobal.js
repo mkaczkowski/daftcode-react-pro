@@ -8,8 +8,8 @@ injectGlobal`
   }
   
   body {
-    background: #f9f9f9;
-    background: linear-gradient(45deg, #ebf0ff, #fafafa);
+    background: #000000;
+    //background: linear-gradient(45deg, #ebf0ff, #fafafa);
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
     margin:0;
     height:100%;

@@ -5,6 +5,7 @@ import Button from '../../common/button/Button';
 import { media } from '@theme';
 import _throttle from 'lodash/throttle';
 import Hamburger from '../../common/hamburger/Hamburger';
+import LogoImage from '@assets/icon.png';
 
 const HeaderContainer = styled.header`
   height: ${({ isScrolled }) => (isScrolled ? '3.5rem' : '4.5rem')};
@@ -15,13 +16,14 @@ const HeaderContainer = styled.header`
   padding: 0 1rem;
   background-color: ${({ theme, isScrolled }) =>
     isScrolled ? theme.components.header.scrolledBackground : theme.components.header.background};
+  color: ${({ theme }) => theme.components.header.color};
   width: 100%;
   overflow: hidden;
   z-index: 1;
   transition-duration: 0.5s;
   transition-property: transform, height, background-color;
   transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
+  box-shadow: ${({ theme, isScrolled }) => (isScrolled ? '0 2px 5px rgba(0, 0, 0, 0.26)' : 'none')};
 `;
 
 const DesktopNavigation = styled.nav`
@@ -54,8 +56,14 @@ const InnerWrapper = styled.div`
   margin: 0 auto;
 `;
 
-type HeaderProps = {
+const Logo = styled.img`
+  height: 80%;
+  margin-right: auto;
+`;
+
+export type HeaderProps = {
   sections: Array<string>,
+  activeSection?: string,
 };
 
 type HeaderState = {
@@ -94,17 +102,22 @@ class HeaderComponent extends React.Component<HeaderProps, HeaderState> {
   }
 
   handleScroll = () => {
+    //TODO add throttle
     this.scrollY = window.scrollY;
     const isScrolled = this.scrollY !== undefined && this.scrollY > 0;
     this.setState({ isScrolled });
   };
+
+  renderLogo = () => <Logo src={LogoImage} />;
 
   renderDesktopNavigation = () => (
     <DesktopNavigation>
       <ul>
         {this.props.sections.map(section => (
           <li>
-            <Button>{section.toUpperCase()}</Button>
+            <Button flat active={this.props.activeSection === section}>
+              {section.toUpperCase()}
+            </Button>
           </li>
         ))}
       </ul>
@@ -128,6 +141,7 @@ class HeaderComponent extends React.Component<HeaderProps, HeaderState> {
     return (
       <HeaderContainer isScrolled={isScrolled} innerRef={this.rootNode}>
         <InnerWrapper>
+          {this.renderLogo()}
           {this.renderDesktopNavigation()}
           {this.renderMobileNavigation()}
         </InnerWrapper>

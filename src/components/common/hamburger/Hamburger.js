@@ -14,12 +14,12 @@ const Hamburger = styled.a`
     position: relative;
     height: 2px;
     width: 2.5rem;
-    background-color: black;
+    background-color: white;
     &::before,
     &::after {
       content: "";
       display: block;
-      background-color: black;
+      background-color: white;
       width: 2.5rem;
       height: 2px;
       position: absolute;

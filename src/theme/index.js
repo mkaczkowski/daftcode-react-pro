@@ -9,15 +9,21 @@ const breakpoints = {
 };
 
 const colors = {
+  transparent: 'transparent',
   white: '#fff',
+  black: '#000',
   text: '#000',
   blue: '#07c',
   gray: ['#333', '#666', '#999', '#ccc', '#eee', '#f6f6f6'],
 };
 
 const components = {
-  header: { background: colors.gray[4], scrolledBackground: 'rgba(238,238,238,0.41)' },
-  footer: { background: colors.gray[4] },
+  header: {
+    background: colors.transparent,
+    scrolledBackground: 'rgba(238,238,238,0.2)',
+    color: colors.white,
+  },
+  footer: { background: colors.white },
 };
 
 const buttons = {

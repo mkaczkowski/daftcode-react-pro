@@ -22,11 +22,16 @@ const Button = styled(Box)`
   justify-content: center;
   text-decoration: none;
   cursor: pointer;
-  background-color: ${ifProp('primary', '#07c', ifProp('danger', 'red', 'white'))};
-  color: ${ifProp('primary', 'white', ifProp('danger', 'white', 'black'))};
+  background-color: ${ifProp('primary', '#07c', ifProp('danger', 'red', 'transparent'))};
+  color: ${ifProp('primary', 'white', ifProp('danger', 'black', 'white'))};
+  border-color: ${ifProp('primary', 'white', ifProp('danger', 'black', 'white'))};
+  ${ifProp('flat', ifProp("active", "border-top:1px solid rgba(0,0,0,0.2)", "border:none"))};
   height: 2.5em;
   min-width: 2.5em;
   padding: 0 0.68em;
+  &.flat{
+  
+  }
   &:hover,
   &:focus {
     box-shadow: inset 0 0 999em rgba(0, 0, 0, 0.1);
