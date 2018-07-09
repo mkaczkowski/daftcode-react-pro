@@ -5,7 +5,7 @@
 [include]
 
 [libs]
-flow-typed
+<PROJECT_ROOT>/flow-typed
 
 [lints]
 

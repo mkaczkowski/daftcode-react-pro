@@ -1,32 +1,57 @@
 // @flow
 import * as React from 'react';
+import type { ILogger } from '@core/modules/logger';
+import Logger from '@core/modules/logger';
+import { LionessProvider } from '@core/lib/lioness';
+import { setupTranslations } from '@core/utils/i18n';
 
-type I18nProviderState = {
-  language: string,
-};
-
-type I18nProviderProps = {
+export type I18nProviderProps = {
   children: any,
   language: string,
 };
 
+export type I18nProviderState = {
+  language: string,
+  messages: any,
+};
+
 export type I18nContextProps = {
   language: string,
-  changeLanguage: (language: string) => void,
+  changeLanguage: (language: string) => Promise<any>,
 };
 
 export const I18nContext = React.createContext();
 
-class I18nProvider extends React.Component<I18nProviderProps, I18nProviderState> {
+class I18nProvider extends React.PureComponent<I18nProviderProps, I18nProviderState> {
+  logger: ILogger = Logger.getInstance('I18nProvider');
+
   state = {
-    language: this.props.language,
+    messages: window.translations,
+    language: document.documentElement ? document.documentElement.lang : this.props.language,
   };
+
+  changeLanguage = async (language: string) => {
+    this.logger.debug('changeLanguage:', language);
+    const messages = await setupTranslations([language]);
+    this.setState({ messages, language });
+    return true;
+  };
+
   render() {
-    const value = {
+    const { messages, language } = this.state;
+
+    const value: I18nContextProps = {
       language: this.state.language,
-      changeLanguage: language => this.setState({ language }),
+      changeLanguage: this.changeLanguage,
     };
-    return <I18nContext.Provider value={value}>{this.props.children}</I18nContext.Provider>;
+
+    return (
+      <I18nContext.Provider value={value}>
+        <LionessProvider messages={messages} locale={language}>
+          {this.props.children}
+        </LionessProvider>
+      </I18nContext.Provider>
+    );
   }
 }
 

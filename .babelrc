@@ -10,11 +10,17 @@
       "plugins": [
         "transform-export-extensions",
         "transform-flow-strip-types",
-        "babel-plugin-transform-react-remove-prop-types"
+        "transform-react-remove-prop-types"
       ]
     },
     "development": {
       "plugins": [
+        ["transform-runtime", {
+          "helpers": false,
+          "polyfill": false,
+          "regenerator": true,
+          "moduleName": "babel-runtime"
+        }],
         "transform-export-extensions"
       ]
     }

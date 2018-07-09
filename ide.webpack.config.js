@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
   resolve: {
     modules: ['node_modules'],
-    extensions: ['.js', '.json', '.scss', '.css'],
+    extensions: ['.js', '.json', '.scss'],
     alias: {
       '@core': path.resolve(__dirname, 'core/src/'),
       '@components': path.resolve(__dirname, 'components/src/'),
