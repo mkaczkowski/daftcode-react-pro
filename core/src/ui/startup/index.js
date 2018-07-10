@@ -6,9 +6,10 @@ import injectReducer from '@core/store/utils/injectReducer';
 import injectSaga from '@core/store/utils/injectSaga';
 import reducer, { actions as startupActions, selectors as startupSelectors } from '@core/reducers/startup';
 import saga from '@core/sagas/startup';
+import { createStructuredSelector } from 'reselect';
 
-const mapStateToProps = state => ({
-  isLoading: startupSelectors.isLoading(state),
+const mapStateToProps = createStructuredSelector({
+  isLoading: startupSelectors.isLoading(),
 });
 
 const mapDispatchToProps = dispatch => ({

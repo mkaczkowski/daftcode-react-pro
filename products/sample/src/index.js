@@ -29,8 +29,7 @@ export async function init() {
     window.translations = await setupTranslations();
   }
 
-  const initialState = {};
-  const store = createStore(initialState);
+  const store = createStore();
   const MOUNT_NODE = document.getElementById('root');
 
   if (MOUNT_NODE.hasChildNodes()) {

@@ -1,9 +1,7 @@
-import { combineReducers } from 'redux';
-import locationReducer from './../reducers/location';
+import { combineReducers } from 'redux-immutable';
 
 export const makeRootReducer = asyncReducers => {
   return combineReducers({
-    location: locationReducer,
     ...asyncReducers,
   });
 };

@@ -6,8 +6,9 @@ import './App.scss';
 import Hero from './view/hero/Loadable';
 import { shouldUpdate } from 'recompose';
 import { Provider } from 'react-redux';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import Startup from '@core/ui/startup';
+import { ConnectedRouter } from 'connected-react-router/immutable';
 
 type AppProps = {
   store: Object,
@@ -18,19 +19,17 @@ const App = (props: AppProps) => (
   <Provider store={props.store}>
     <I18nProvider language="en">
       <Startup>
-        <BrowserRouter>
+        <ConnectedRouter history={props.store.history} location={'/'} action={''}>
           <React.Fragment>
             <Switch>
               <Route exact path="/" component={Hero} />
               {/*<Route path="" component={NotFoundPage} />*/}
             </Switch>
           </React.Fragment>
-        </BrowserRouter>
+        </ConnectedRouter>
       </Startup>
     </I18nProvider>
   </Provider>
 );
 
-const enchancer = shouldUpdate(() => false);
-
-export default hot(module)(enchancer(App));
+export default hot(module)(App);

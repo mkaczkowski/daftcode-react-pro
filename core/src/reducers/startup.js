@@ -2,6 +2,7 @@
 
 import { fromJS } from 'immutable';
 import { prepareActions, prepareReducers } from '@core/utils/redux';
+import { createSelector } from 'reselect';
 
 export type StartupType = {
   isLoading: boolean,
@@ -28,6 +29,7 @@ export default prepareReducers(
 
 /* ------------- Selectors ------------- */
 
+const selectStartup = state => state.get('startup');
 export const selectors = {
-  isLoading: ({ startup }: any): boolean => startup.get('isLoading'),
+  isLoading: () => createSelector(selectStartup, startup => startup.get('isLoading')),
 };
