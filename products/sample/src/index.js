@@ -4,6 +4,8 @@ import App from './App';
 import routes from './routes';
 import createStore from '@core/store/createStore';
 import { setupTranslations } from '@core/utils/i18n';
+import { ConnectedRouter as Router } from 'connected-react-router/immutable';
+import { Provider } from 'react-redux';
 
 if (process.env.DISABLE_MODERNIZR !== 'true') {
   require('modernizr');
@@ -33,9 +35,23 @@ export async function init() {
   const MOUNT_NODE = document.getElementById('root');
 
   if (MOUNT_NODE.hasChildNodes()) {
-    hydrate(<App store={store} routes={routes} />, MOUNT_NODE);
+    hydrate(
+      <Provider store={store}>
+        <Router history={store.history}>
+          <App />
+        </Router>
+      </Provider>,
+      MOUNT_NODE
+    );
   } else {
-    render(<App store={store} routes={routes} />, MOUNT_NODE);
+    render(
+      <Provider store={store}>
+        <Router history={store.history}>
+          <App />
+        </Router>
+      </Provider>,
+      MOUNT_NODE
+    );
   }
 }
 

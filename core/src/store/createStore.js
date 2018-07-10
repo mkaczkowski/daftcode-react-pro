@@ -2,7 +2,7 @@ import { applyMiddleware, compose, createStore as createReduxStore } from 'redux
 import createSagaMiddleware from 'redux-saga';
 import { fromJS } from 'immutable';
 import { __DEV__ } from '@core/config';
-import makeRootReducer from './reducers';
+import createReducer from './reducers';
 import { createBrowserHistory } from 'history';
 import { connectRouter, routerMiddleware } from 'connected-react-router/immutable';
 
@@ -31,7 +31,7 @@ const createStore = (initialState = {}) => {
   // ======================================================
   // Store Instantiation and HMR Setup
   const store = createReduxStore(
-    connectRouter(history)(makeRootReducer()),
+    connectRouter(history)(createReducer()),
     fromJS(initialState),
     composeEnhancers(applyMiddleware(...middlewares), ...enhancers)
   );
@@ -46,8 +46,8 @@ const createStore = (initialState = {}) => {
 
   if (module.hot) {
     module.hot.accept('./reducers', () => {
-      const reducers = require('./reducers').default;
-      store.replaceReducer(makeRootReducer(history)(reducers(store.injectedReducers)));
+      const createReducer = require('./reducers').default;
+      store.replaceReducer(connectRouter(history)(createReducer(store.injectedReducers)));
     });
   }
 

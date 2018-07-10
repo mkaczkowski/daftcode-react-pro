@@ -4,7 +4,6 @@ import { actions as startupActions } from '@core/reducers/startup';
 
 export function* startup(): any {
   try {
-    console.info('startup go!');
     yield put(startupActions.startupSuccessAction());
   } catch (error) {
     console.log(error);

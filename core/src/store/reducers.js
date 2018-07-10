@@ -1,9 +1,8 @@
 import { combineReducers } from 'redux-immutable';
 
-export const makeRootReducer = asyncReducers => {
+export default function createReducer(injectedReducers) {
   return combineReducers({
-    ...asyncReducers,
+    // startup: startupReducer,
+    ...injectedReducers,
   });
-};
-
-export default makeRootReducer;
+}

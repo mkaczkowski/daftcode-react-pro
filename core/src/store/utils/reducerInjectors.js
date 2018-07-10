@@ -5,6 +5,7 @@ import isString from 'lodash/isString';
 
 import checkStore from './checkStore';
 import createReducer from '../reducers';
+import { connectRouter } from 'connected-react-router/immutable';
 
 export function injectReducerFactory(store, isValid) {
   return function injectReducer(key, reducer) {
@@ -19,7 +20,7 @@ export function injectReducerFactory(store, isValid) {
     if (Reflect.has(store.injectedReducers, key) && store.injectedReducers[key] === reducer) return;
 
     store.injectedReducers[key] = reducer; // eslint-disable-line no-param-reassign
-    store.replaceReducer(createReducer(store.injectedReducers));
+    store.replaceReducer(connectRouter(store.history)(createReducer(store.injectedReducers)));
   };
 }
 

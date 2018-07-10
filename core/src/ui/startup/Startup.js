@@ -1,6 +1,5 @@
 // @flow
 import * as React from 'react';
-import Logger from '@core/modules/logger';
 import type { ActionType } from '@core/constants/flowTypes';
 
 export type StartupProps = {
@@ -11,9 +10,7 @@ export type StartupProps = {
   },
 };
 
-class Startup extends React.PureComponent<StartupProps> {
-  logger = Logger.getInstance('OfferStep');
-
+class Startup extends React.Component<StartupProps> {
   componentDidMount() {
     const { actions } = this.props;
     actions && actions.startupAction();

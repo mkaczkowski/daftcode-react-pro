@@ -3,15 +3,16 @@ import * as React from 'react';
 import Button from '@components/button/Button';
 import Logger from '@core/modules/logger';
 import 'modernizr';
+import type { TranslateType } from '@core/constants/flowTypes';
 
-export type HeroProps = {};
+export type HeroProps = {
+  t: TranslateType,
+};
 
 class Hero extends React.PureComponent<HeroProps> {
   logger = Logger.getInstance('Hero');
 
-  componentDidMount() {
-    this.logger.debug('heja');
-  }
+  componentDidMount() {}
 
   render() {
     return (
