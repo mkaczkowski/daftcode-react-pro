@@ -1,6 +1,8 @@
 import React from 'react';
 import { render, hydrate } from 'react-dom';
 import App from './App';
+import routes from './routes';
+import createStore from '@core/store/createStore';
 import { setupTranslations } from '@core/utils/i18n';
 
 if (process.env.DISABLE_MODERNIZR !== 'true') {
@@ -27,11 +29,14 @@ export async function init() {
     window.translations = await setupTranslations();
   }
 
-  const rootElement = document.getElementById('root');
-  if (rootElement.hasChildNodes()) {
-    hydrate(<App />, rootElement);
+  const initialState = {};
+  const store = createStore(initialState);
+  const MOUNT_NODE = document.getElementById('root');
+
+  if (MOUNT_NODE.hasChildNodes()) {
+    hydrate(<App store={store} routes={routes} />, MOUNT_NODE);
   } else {
-    render(<App />, rootElement);
+    render(<App store={store} routes={routes} />, MOUNT_NODE);
   }
 }
 

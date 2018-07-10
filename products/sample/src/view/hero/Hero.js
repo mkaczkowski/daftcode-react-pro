@@ -4,8 +4,10 @@ import Button from '@components/button/Button';
 import Logger from '@core/modules/logger';
 import 'modernizr';
 
-class Hero extends React.PureComponent<any> {
-  logger = Logger.getInstance('OfferStep');
+export type HeroProps = {};
+
+class Hero extends React.PureComponent<HeroProps> {
+  logger = Logger.getInstance('Hero');
 
   componentDidMount() {
     this.logger.debug('heja');
