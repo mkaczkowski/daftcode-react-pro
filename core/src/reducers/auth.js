@@ -19,19 +19,28 @@ export type AuthActions = {
   authSuccessAction: any,
 };
 
-export const actions: AuthActions = prepareActions({}, ['auth', true]);
+//prettier-ignore
+export const actions: AuthActions = prepareActions({},
+  ['auth', true]
+);
 
+//prettier-ignore
 export default prepareReducers(
   {
     [actions.authAction]: state => state.set('isLoading', true),
-    [actions.authSuccessAction]: (state, { payload }) => state.set('isLoading', false).set('user', payload),
+    [actions.authSuccessAction]: (state, { payload }) => {
+      return state
+        .set('isLoading', false)
+        .set('user', payload)
+    }
   },
   initialState
 );
 
 /* ------------- Selectors ------------- */
-const selectAuth = state => state.get('auth');
+const selectAuth = (state: AuthType) => state.get('auth');
 export const selectors = {
+  selectAuth,
   isLoading: () => createSelector(selectAuth, auth => auth.get('isLoading')),
   getUser: () => createSelector(selectAuth, auth => auth.get('user')),
 };
