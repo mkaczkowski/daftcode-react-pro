@@ -2,34 +2,17 @@
 import * as React from 'react';
 import { hot } from 'react-hot-loader';
 import Hero from './view/hero/Loadable';
-import { Link, Route, Switch, Redirect } from 'react-router-dom';
+import { Link, Route, Switch } from 'react-router-dom';
 import I18nProvider from '@core/providers/i18n';
-import { createStructuredSelector } from 'reselect';
 import Startup from '@core/ui/startup';
+import Main from './view/main';
 import './app.scss';
+import PrivateRoute from '@core/ui/privateRoute';
 
 type AppProps = {
   store: Object,
   routes: Object,
 };
-
-const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route
-    {...rest}
-    render={props =>
-      props.isAuthenticated === true ? (
-        <Component {...props} />
-      ) : (
-        <Redirect
-          to={{
-            pathname: '/login',
-            state: { from: props.location },
-          }}
-        />
-      )
-    }
-  />
-);
 
 const App = (props: AppProps) => (
   <Startup>
@@ -45,8 +28,9 @@ const App = (props: AppProps) => (
         </ul>
 
         <Switch>
-          <Route exact path="/" component={Hero} />
-          <Route path="/test" render={() => <div>test</div>} />
+          <Route exact path="/" component={Main} />
+          <Route path="/login" render={() => <div>login</div>} />
+          <PrivateRoute path="/hero" component={Hero} />
           <Route path="" render={() => <div>404</div>} />
         </Switch>
       </div>

@@ -1,10 +1,12 @@
 // @flow
 import { put, takeLatest } from 'redux-saga/effects';
 import { actions as startupActions } from '@core/reducers/startup';
+import type { User } from '@core/constants/flowTypes';
 
 export function* startup(): any {
   try {
-    yield put(startupActions.startupSuccessAction());
+    const user: User = { id: '123' };
+    yield put(startupActions.startupSuccessAction(user));
   } catch (error) {
     console.log(error);
   }
