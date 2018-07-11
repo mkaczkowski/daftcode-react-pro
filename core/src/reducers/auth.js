@@ -9,7 +9,9 @@ export type AuthType = {
   user: User,
 };
 
-export const initialState: AuthType = fromJS({
+export type AuthStoreType = Map<string, AuthType>;
+
+export const initialState: AuthStoreType = fromJS({
   isLoading: true,
   user: null,
 });
@@ -38,7 +40,8 @@ export default prepareReducers(
 );
 
 /* ------------- Selectors ------------- */
-const selectAuth = (state: AuthType) => state.get('auth');
+
+const selectAuth = (state: Map<string, any>): any => state.get('auth');
 export const selectors = {
   selectAuth,
   isLoading: () => createSelector(selectAuth, auth => auth.get('isLoading')),

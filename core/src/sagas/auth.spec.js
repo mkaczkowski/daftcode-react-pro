@@ -13,7 +13,6 @@ it('watchForAuth', () => {
 
 it('auth', () => {
   testSaga(auth)
-    // .next({ id: '123' })
     .next()
     .put(authActions.authSuccessAction({ id: '123' }))
     .next()
