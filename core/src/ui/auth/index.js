@@ -1,21 +1,21 @@
 // @flow
 import { connect } from 'react-redux';
 import { bindActionCreators, compose } from 'redux';
-import Startup from './Startup';
+import Auth from './Auth';
 import injectReducer from '@core/store/utils/injectReducer';
 import injectSaga from '@core/store/utils/injectSaga';
-import reducer, { actions as startupActions, selectors as startupSelectors } from '@core/reducers/startup';
-import saga from '@core/sagas/startup';
+import reducer, { actions as authActions, selectors as authSelectors } from '@core/reducers/auth';
+import saga from '@core/sagas/auth';
 import { createStructuredSelector } from 'reselect';
 
 const mapStateToProps = createStructuredSelector({
-  isLoading: startupSelectors.isLoading(),
+  isLoading: authSelectors.isLoading(),
 });
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     {
-      startupAction: startupActions.startupAction,
+      authAction: authActions.authAction,
     },
     dispatch
   ),
@@ -23,7 +23,7 @@ const mapDispatchToProps = dispatch => ({
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-const withReducer = injectReducer({ key: 'startup', reducer });
-const withSaga = injectSaga({ key: 'startup', saga });
+const withReducer = injectReducer({ key: 'auth', reducer });
+const withSaga = injectSaga({ key: 'auth', saga });
 
-export default compose(withReducer, withSaga, withConnect)(Startup);
+export default compose(withReducer, withSaga, withConnect)(Auth);

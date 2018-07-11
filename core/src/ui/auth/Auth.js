@@ -2,18 +2,18 @@
 import * as React from 'react';
 import type { ActionType } from '@core/constants/flowTypes';
 
-export type StartupProps = {
+export type AuthProps = {
   children: any,
   isLoading?: boolean,
   actions?: {
-    startupAction: ActionType,
+    authAction: ActionType,
   },
 };
 
-class Startup extends React.Component<StartupProps> {
+class Auth extends React.Component<AuthProps> {
   componentDidMount() {
     const { actions } = this.props;
-    actions && actions.startupAction();
+    actions && actions.authAction();
   }
 
   render() {
@@ -21,4 +21,4 @@ class Startup extends React.Component<StartupProps> {
   }
 }
 
-export default Startup;
+export default Auth;

@@ -1,7 +1,6 @@
 import React from 'react';
 import { render, hydrate } from 'react-dom';
 import App from './App';
-import routes from './routes';
 import createStore from '@core/store/createStore';
 import { setupTranslations } from '@core/utils/i18n';
 import { ConnectedRouter as Router } from 'connected-react-router/immutable';

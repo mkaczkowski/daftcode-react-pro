@@ -19,7 +19,7 @@ export default ({ key, reducer }) => WrappedComponent => {
       store: PropTypes.object.isRequired,
     };
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
       const { injectReducer } = this.injectors;
 
       injectReducer(key, reducer);

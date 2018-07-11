@@ -4,7 +4,7 @@ import { hot } from 'react-hot-loader';
 import Hero from './view/hero/Loadable';
 import { Link, Route, Switch } from 'react-router-dom';
 import I18nProvider from '@core/providers/i18n';
-import Startup from '@core/ui/startup';
+import Auth from '@core/ui/auth';
 import Main from './view/main';
 import './app.scss';
 import PrivateRoute from '@core/ui/privateRoute';
@@ -15,7 +15,7 @@ type AppProps = {
 };
 
 const App = (props: AppProps) => (
-  <Startup>
+  <Auth>
     <I18nProvider language={'en'}>
       <div>
         <ul>
@@ -35,7 +35,7 @@ const App = (props: AppProps) => (
         </Switch>
       </div>
     </I18nProvider>
-  </Startup>
+  </Auth>
 );
 
 export default hot(module)(App);
