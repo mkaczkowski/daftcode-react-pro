@@ -3,7 +3,7 @@ import * as React from 'react';
 import type { ActionType } from '@core/constants/flowTypes';
 
 export type AuthProps = {
-  children: any,
+  children?: any,
   isLoading?: boolean,
   actions?: {
     authAction: ActionType,

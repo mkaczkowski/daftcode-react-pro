@@ -17,6 +17,7 @@
     "build:production": "cross-env APP_ENV=production npm run build",
     "build": "cross-env NODE_ENV=production webpack --config config/webpack.config.prod.js",
     "test": "jest --env=jsdom --config=../jest.config.js",
+    "test:update": "jest --updateSnapshot --env=jsdom --config=../jest.config.js",
     "coverage": "jest --env=jsdom --config=../jest.config.js --coverage"
   },
   "dependencies": {

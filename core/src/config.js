@@ -19,6 +19,13 @@ type ConfigType = {|
   urls: {
     terms: any,
   },
+  api: {
+    apiUrl: any,
+    authUser: any,
+    authPassword: any,
+    userLogin: any,
+    userPassword: any,
+  },
   formValidation: boolean,
   logs: {
     browser: boolean,
@@ -39,6 +46,13 @@ export const CONFIG: ConfigType = {
   productUrl: process.env.PRODUCT_URL,
   urls: {
     terms: process.env.TERMS_URL,
+  },
+  api: {
+    apiUrl: process.env.API_URL,
+    authUser: process.env.AUTH_USER,
+    authPassword: process.env.AUTH_PASSWORD,
+    userLogin: process.env.USER_LOGIN,
+    userPassword: process.env.USER_PASSWORD,
   },
   formValidation: process.env.DISABLE_FORM_VALIDATION !== 'true',
   logs: {

@@ -16,6 +16,7 @@
     "start": "cross-env PRODUCT_NAME=sample scripts start:dev",
     "build": "cross-env PRODUCT_NAME=sample scripts build:production",
     "test": "scripts test",
+    "test:update": "scripts test:update",
     "serve": "serve -s -p 5000 build",
     "storybook": "start-storybook -c components/.storybook -p 6006",
     "flow-typed": "flow-mono install-types --ignoreDeps=peer --overwrite"

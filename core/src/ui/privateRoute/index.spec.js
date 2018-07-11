@@ -12,7 +12,7 @@ describe('PrivateRoute - connected', () => {
     const result = renderWithReduxAndRouter(<PrivateRoute path="" component={ProtectedComponent} />, {
       initialState: { auth: { user: { id: '1' } } },
     });
-    const { queryByTestId, debug } = result;
+    const { queryByTestId } = result;
     const routeContent = queryByTestId('route-content');
     expect(routeContent).toBeDefined();
   });
@@ -22,7 +22,7 @@ describe('PrivateRoute - connected', () => {
     const result = renderWithReduxAndRouter(<PrivateRoute path="" component={ProtectedComponent} />, {
       initialState: { auth: { user: null } },
     });
-    const { queryByTestId, debug } = result;
+    const { queryByTestId } = result;
     const routeContent = queryByTestId('route-content');
     expect(routeContent).toBeNull();
   });

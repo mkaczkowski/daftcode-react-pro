@@ -1,10 +1,21 @@
+process.env.APP_ENV = 'test';
+process.env.PRODUCT_NAME = 'sample';
+
+process.env = {
+  ...process.env,
+  TEST_URL: 'http://localhost',
+  API_URL: 'http://localhost:3000/api',
+  USER_LOGIN: 'user@gmail.com',
+  USER_PASSWORD: 'pa$$w0rD',
+};
+
 module.exports = {
   roots: ['<rootDir>'],
   collectCoverageFrom: ['core/src/**/*.js'],
   setupFiles: ['<rootDir>scripts/config/polyfills.js'],
   testMatch: ['<rootDir>core/src/**/?(*.)spec.js'],
   testEnvironment: 'node',
-  testURL: 'http://localhost',
+  testURL: process.env.TEST_URL,
   transform: {
     '^.+\\.js$': '<rootDir>scripts/config/jest/babelTransform.js',
     '^.+\\.css$': '<rootDir>scripts/config/jest/cssTransform.js',

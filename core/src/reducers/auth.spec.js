@@ -48,6 +48,7 @@ describe('getUser', () => {
         user,
       },
     });
-    expect(selectors.getUser(mockedState)).toEqual(user);
+    //prettier-ignore
+    expect(selectors.getUser()(mockedState).toJS()).toEqual(user);
   });
 });

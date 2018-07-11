@@ -4,7 +4,11 @@ const fs = require('fs');
 const path = require('path');
 const paths = require('./paths');
 
-const packageJson = require(paths.appRoot + '/package.json');
+let packageJson;
+try{
+  packageJson = require(paths.appRoot + '/package.json');
+}catch(err){}
+
 
 const APP_ENV = process.env.APP_ENV;
 if (!APP_ENV) throw new Error('APP_ENV is not defined');
@@ -46,7 +50,7 @@ function getClientEnvironment(env, publicUrl) {
         NODE_ENV: env || 'development',
         APP_ENV: process.env.APP_ENV || 'development',
         PUBLIC_URL: publicUrl,
-        PRODUCT_VERSION: packageJson.version,
+        PRODUCT_VERSION: packageJson && packageJson.version,
       },
     }
   );
