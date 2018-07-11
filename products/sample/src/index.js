@@ -5,6 +5,7 @@ import createStore from '@core/store/createStore';
 import { setupTranslations } from '@core/utils/i18n';
 import { ConnectedRouter as Router } from 'connected-react-router/immutable';
 import { Provider } from 'react-redux';
+import '@core/api';
 
 if (process.env.DISABLE_MODERNIZR !== 'true') {
   require('modernizr');

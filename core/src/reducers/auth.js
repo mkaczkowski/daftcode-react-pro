@@ -40,7 +40,6 @@ export default prepareReducers(
 );
 
 /* ------------- Selectors ------------- */
-
 const selectAuth = (state: Map<string, any>): any => state.get('auth');
 export const selectors = {
   selectAuth,

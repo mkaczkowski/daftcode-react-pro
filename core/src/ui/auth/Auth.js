@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react';
 import type { ActionType } from '@core/constants/flowTypes';
+import { CONFIG } from '@core/config';
 
 export type AuthProps = {
   children?: any,
@@ -13,7 +14,14 @@ export type AuthProps = {
 class Auth extends React.Component<AuthProps> {
   componentDidMount() {
     const { actions } = this.props;
-    actions && actions.authAction();
+
+    //TODO remove data
+    actions &&
+      actions.authAction({
+        email: CONFIG.api.userLogin,
+        password: CONFIG.api.userPassword,
+        remember_me: '0',
+      });
   }
 
   render() {
