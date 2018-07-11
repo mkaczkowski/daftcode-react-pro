@@ -16,8 +16,8 @@
     "build:staging": "cross-env APP_ENV=staging npm run build",
     "build:production": "cross-env APP_ENV=production npm run build",
     "build": "cross-env NODE_ENV=production webpack --config config/webpack.config.prod.js",
-    "test": "node scripts/test.js --env=jsdom --config=config/jest/jest.config.js",
-    "coverage": "node scripts/test.js --env=jsdom --config=config/jest/jest.config.js --coverage"
+    "test": "jest --env=jsdom --config=../jest.config.js",
+    "coverage": "jest --env=jsdom --config=../jest.config.js --coverage"
   },
   "dependencies": {
     "@storybook/addon-actions": "^3.4.8",
