@@ -46,7 +46,7 @@ export class Logger {
 
   getInstance = (name: string): ILogger => {
     const instance = jsLogger.get(name);
-    instance.apiLog = this.apiLog;
+    // instance.apiLog = this.apiLog;
     return instance;
   };
 

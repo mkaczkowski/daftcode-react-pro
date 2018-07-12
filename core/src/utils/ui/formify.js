@@ -1,8 +1,8 @@
 //@flow
 import * as React from 'react';
 import { Formik } from 'formik';
-// import { INPUTS } from '@core/constants/inputs';
 import { validation } from '@core/utils/validation/validators';
+import { onSubmitHandler } from '@core/utils/form/submit';
 import { ERROR_CODES } from '@core/constants/errorCodes';
 import { CONFIG } from '@core/config';
 
@@ -18,9 +18,11 @@ type InputType = {
 export type FormifyProps = {
   t: (value: any) => string,
   children: any,
-  onSubmitHandler: (values: any, successHandler: any, errorHandler: any) => void,
   initialValues?: Object,
   inputs: InputType,
+  onCall: (value: Object) => any,
+  onSuccess: (value: any) => any,
+  onError: (value: any) => any,
 };
 
 const onFormSubmit = (props: any, inputs: InputType) => e => {
@@ -49,7 +51,7 @@ function getInitialValues(inputs: InputType): { [key: string]: Validator } {
   return initialValues;
 }
 
-const FormikWrapper = ({ t, children, onSubmitHandler, inputs, ...other }: FormifyProps) => {
+const FormikWrapper = ({ t, children, onCall, onSuccess, onError, inputs, ...other }: FormifyProps) => {
   // console.table(inputs)
   return (
     <Formik
@@ -66,7 +68,7 @@ const FormikWrapper = ({ t, children, onSubmitHandler, inputs, ...other }: Formi
           // setFieldError(INPUTS.GLOBAL, error);
         };
         setSubmitting(true);
-        onSubmitHandler(values, successCallback, errorCallback);
+        return onSubmitHandler(values, successCallback, errorCallback, onCall, onSuccess, onError);
       }}
       render={({ onSubmit, ...restProps }) => {
         return children({

@@ -20,8 +20,14 @@ describe('authReducer', () => {
 
   it('should handle the changeUsername action correctly', () => {
     const fixture = { id: '321' };
-    const expectedResult = state.set('isLoading', false).set('user', fixture);
-    expect(authReducer(state, actions.authSuccessAction(fixture))).toEqual(expectedResult);
+
+    const expectedResult = {
+      isLoading: false,
+      user: fixture,
+    };
+
+    const result = authReducer(state, actions.authSuccessAction(fixture));
+    expect(result.toJS()).toEqual(expectedResult);
   });
 });
 
