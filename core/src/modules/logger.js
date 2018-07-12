@@ -18,7 +18,7 @@
  * logger.timeEnd();
  *
  */
-import { CONFIG } from '@core/config';
+import CONFIG from '@core/config';
 
 const jsLogger = require('js-logger');
 

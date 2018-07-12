@@ -4,7 +4,8 @@ import { Formik } from 'formik';
 import { validation } from '@core/utils/validation/validators';
 import { onSubmitHandler } from '@core/utils/form/submit';
 import { ERROR_CODES } from '@core/constants/errorCodes';
-import { CONFIG } from '@core/config';
+import INPUTS from '@components/constants/inputs';
+import CONFIG from '@core/config';
 
 type Validator = (value: string) => string | Array<(value: string) => string>;
 
@@ -21,8 +22,6 @@ export type FormifyProps = {
   initialValues?: Object,
   inputs: InputType,
   onCall: (value: Object) => any,
-  onSuccess: (value: any) => any,
-  onError: (value: any) => any,
 };
 
 const onFormSubmit = (props: any, inputs: InputType) => e => {
@@ -51,7 +50,7 @@ function getInitialValues(inputs: InputType): { [key: string]: Validator } {
   return initialValues;
 }
 
-const FormikWrapper = ({ t, children, onCall, onSuccess, onError, inputs, ...other }: FormifyProps) => {
+const FormikWrapper = ({ t, children, onCall, inputs, ...other }: FormifyProps) => {
   // console.table(inputs)
   return (
     <Formik
@@ -62,13 +61,13 @@ const FormikWrapper = ({ t, children, onCall, onSuccess, onError, inputs, ...oth
       validate={values => (CONFIG.formValidation ? validation(values, getValidators(inputs)) : {})}
       onSubmit={(values, { setSubmitting, setFieldError, resetForm /* setValues and other goodies */ }) => {
         const successCallback = () => setSubmitting(false);
-        const errorCallback = ({ error = ERROR_CODES.UNEXPECTED_ERROR, newValues }) => {
+        const errorCallback = ({ error = ERROR_CODES.API.UNEXPECTED_ERROR, newValues }) => {
           setSubmitting(false);
           newValues && resetForm({ ...values, ...newValues });
-          // setFieldError(INPUTS.GLOBAL, error);
+          setFieldError(INPUTS.GLOBAL, error);
         };
         setSubmitting(true);
-        return onSubmitHandler(values, successCallback, errorCallback, onCall, onSuccess, onError);
+        return onSubmitHandler(values, successCallback, errorCallback, onCall);
       }}
       render={({ onSubmit, ...restProps }) => {
         return children({

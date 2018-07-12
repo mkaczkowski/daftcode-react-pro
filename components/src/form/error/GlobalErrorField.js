@@ -1,13 +1,12 @@
 import * as React from 'react';
 import { ERROR_MESSAGES } from '@core/constants/errorCodes';
 import { Field } from 'formik';
-import { T } from '@core/lib/lioness/index';
-import { INPUTS } from '@core/constants/inputs';
+import INPUTS from '@components/constants/inputs';
 
 const GlobalErrorField = ({ t, className, name = INPUTS.GLOBAL }) => (
   <Field name={name}>
-    {({ form: { errors } }) =>
-      errors[name] ? <T className={className} message={ERROR_MESSAGES[errors[name]]} /> : null
+    {props =>
+      props.form.errors[name] ? <span className={className}>{t(ERROR_MESSAGES[props.form.errors[name]])}</span> : null
     }
   </Field>
 );

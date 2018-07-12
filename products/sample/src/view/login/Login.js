@@ -1,14 +1,18 @@
 // @flow
 import * as React from 'react';
 import Button from '@components/common/button/Button';
-import type { TranslateType } from '@core/constants/flowTypes';
-import LoginForm, { inputs } from '@components/form/login/LoginForm';
-import { ERROR_CODES } from '@core/constants/errorCodes';
+import type { ActionType, TranslateType } from '@core/constants/flowTypes';
+import LoginForm from '@components/form/login/LoginForm';
 import Logger from '@core/modules/logger';
+import type { FormPayload } from '@core/constants/flowTypes';
+import INPUTS from '@components/constants/inputs';
 
 export type LoginProps = {
   t: TranslateType,
   isSubmitting?: boolean,
+  actions: {
+    login: ActionType,
+  },
 };
 
 const LoginExtension = ({ t, isSubmitting }: LoginProps) => (
@@ -27,23 +31,21 @@ const LoginExtension = ({ t, isSubmitting }: LoginProps) => (
 class Login extends React.Component<LoginProps> {
   logger = Logger.getInstance('Login');
 
-  onCall = (values: Object) => {
-    this.logger.debug('submit', values);
-    return true;
+  onCall = (payload: FormPayload) => {
+    this.props.actions.login(this.prepareFieldsToReset(payload));
   };
 
-  onSuccess = (result: any) => {
-    this.logger.debug('success', result);
-  };
+  prepareFieldsToReset = (payload: FormPayload) => ({
+    ...payload,
+    onError: ({ error }: any) =>
+      payload.onError({
+        error,
+        newValues: {
+          [INPUTS.PASSWORD]: '',
+        },
+      }),
+  });
 
-  onError = (errorCallback: any, onErrorResult: any) => {
-    this.logger.debug('onError', onErrorResult);
-    if (onErrorResult === false) return;
-    errorCallback({
-      error: ERROR_CODES.UNEXPECTED_ERROR,
-      ...onErrorResult,
-    });
-  };
   render() {
     const { t } = this.props;
     return (
@@ -52,14 +54,7 @@ class Login extends React.Component<LoginProps> {
         <div className="form">
           <h2 className="title">{t('REGISTER.EMAIL.FORM.TITLE')}</h2>
           <h3 className="description">{t('REGISTER.EMAIL.FORM.DESCRIPTION')}</h3>
-          <LoginForm
-            {...this.props}
-            inputs={inputs}
-            onCall={this.onCall}
-            onSuccess={this.onSuccess}
-            onError={this.onError}
-            render={LoginExtension}
-          />
+          <LoginForm {...this.props} onCall={this.onCall} render={LoginExtension} />
         </div>
       </div>
     );

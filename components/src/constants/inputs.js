@@ -6,6 +6,7 @@ const INPUTS = {
   //EMAIL
   EMAIL: 'email',
   PASSWORD: 'password',
+  REMEMBER_ME: 'rememberMe',
 
   //CCN
   CC_NAME: 'ccName',

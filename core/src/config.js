@@ -33,7 +33,7 @@ type ConfigType = {|
   },
 |};
 
-export const CONFIG: ConfigType = {
+const CONFIG: ConfigType = {
   environment: ENV,
   productName: process.env.PRODUCT_NAME,
   version: process.env.PRODUCT_VERSION,
@@ -60,3 +60,5 @@ export const CONFIG: ConfigType = {
     api: !__PRODUCTION__ || __TEST__,
   },
 };
+
+export default CONFIG;

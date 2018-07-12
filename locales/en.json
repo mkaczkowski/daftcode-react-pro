@@ -5,9 +5,11 @@
   "BUTTON.BACK"                          : "Back",
   "BUTTON.CHANGE"                        : "Change",
 
-  "ERROR.API.UNEXPECTED"                 : "Unexpected error. Please try again.",
   "ERROR.VALIDATION.REQUIRED"            : "Field is required",
   "ERROR.VALIDATION.EMAIL_IS_INVALID"    : "Email is invalid",
+
+  "ERROR.API.UNEXPECTED"                 : "Unexpected error. Please try again.",
+  "ERROR.API.BAD_CREDENTIALS"            : "Cannot log in. Try again later.",
 
   "SECTION.CCN.FORM.TITLE"               : "Verify your free account",
   "SECTION.CCN.FORM.DESCRIPTION"         : "Great choice! Create a free account that will {{ strong:save and track your progress }}",

@@ -5,27 +5,31 @@ import type { ILogger } from '@core/modules/logger';
 
 const logger: ILogger = Logger.getInstance('AuthApi');
 
-axios.interceptors.request.use(
-  function(request) {
-    logger.debug({ [`[${request.method.toUpperCase()}] ${request.url}`]: { data: request.data } });
-    return request;
-  },
-  function(error) {
-    logger.debug({ error });
-    return Promise.reject(error);
-  }
-);
+if (process.env.NODE_ENV === 'development') {
+  axios.interceptors.request.use(
+    function(request) {
+      logger.debug({ [`[${request.method.toUpperCase()}] ${request.url}`]: { data: request.data } });
+      return request;
+    },
+    function(error) {
+      logger.debug({ error });
+      return Promise.reject(error);
+    }
+  );
 
-axios.interceptors.response.use(
-  function(response) {
-    logger.debug({ [`[${response.status}] ${response.config.url}`]: { data: response.data, status: response.status } });
-    return response;
-  },
-  function(error) {
-    logger.debug({ error });
-    return Promise.reject(error);
-  }
-);
+  axios.interceptors.response.use(
+    function(response) {
+      logger.debug({
+        [`[${response.status}] ${response.config.url}`]: { data: response.data, status: response.status },
+      });
+      return response;
+    },
+    function(error) {
+      logger.debug({ error });
+      return Promise.reject(error);
+    }
+  );
+}
 
 // const instance = axios.create({
 //   baseURL: 'https://some-domain.com/api/',

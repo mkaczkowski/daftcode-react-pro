@@ -1,4 +1,4 @@
-import { CONFIG } from '@core/config';
+import CONFIG from '@core/config';
 import { delay } from '@core/utils/async';
 import { POST } from '@core/constants/rest';
 

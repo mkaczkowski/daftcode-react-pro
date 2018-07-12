@@ -19,22 +19,26 @@ export const initialState: AuthStoreType = fromJS({
 export type AuthActions = {
   authAction: any,
   authSuccessAction: any,
+  loginAction: any,
+  loginSuccessAction: any,
 };
 
 //prettier-ignore
 export const actions: AuthActions = prepareActions({},
-  ['auth', true]
+  ['auth', true],
+  ['login', true]
 );
 
 //prettier-ignore
 export default prepareReducers(
   {
     [actions.authAction]: state => state.set('isLoading', true),
-    [actions.authSuccessAction]: (state, { payload }) => {
-      return state
+    [actions.authSuccessAction]: (state, { payload }) => (
+      state
         .set('isLoading', false)
         .set('user', payload)
-    }
+    ),
+    [actions.loginSuccessAction]: (state, { payload }) => state.set('user', payload)
   },
   initialState
 );

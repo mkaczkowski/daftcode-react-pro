@@ -1,6 +1,6 @@
 //@flow
 import axios from 'axios';
-import { CONFIG } from '@core/config';
+import CONFIG, { __DEV__ } from '@core/config';
 
 export type LoginApi = {
   email: string,
@@ -15,6 +15,12 @@ export const login = async (value: LoginApi) => {
       ...value,
     },
   };
+
+  // if (__DEV__) {
+  //   data.user.email = CONFIG.api.userLogin || data.user.email;
+  // data.user.password = CONFIG.api.userPassword || data.user.password;
+  // }
+
   const response = await axios.post(url, data);
   return response.data;
 };
