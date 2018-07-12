@@ -8,6 +8,7 @@ import Auth from '@core/ui/auth';
 import Main from './view/main';
 import './app.scss';
 import PrivateRoute from '@core/ui/privateRoute';
+import Login from './view/login';
 
 type AppProps = {
   store: Object,
@@ -29,7 +30,7 @@ const App = (props: AppProps) => (
 
         <Switch>
           <Route exact path="/" component={Main} />
-          <Route path="/login" render={() => <div>login</div>} />
+          <Route path="/login" component={Login} />
           <PrivateRoute path="/hero" component={Hero} />
           <Route path="" render={() => <div>404</div>} />
         </Switch>

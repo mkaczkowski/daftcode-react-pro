@@ -1,7 +1,6 @@
 import React from 'react';
 import { configure } from '@storybook/react';
 import { setOptions } from '@storybook/addon-options';
-import '@components/theme/commons.scss';
 
 setOptions({
   name: 'APP-UI',
@@ -13,7 +12,9 @@ setOptions({
 });
 
 const commonReq = require.context('../../components/src', true, /.stories.js$/);
+const productReq = require.context('../../products/sample/src', true, /.stories.js$/);
 
 configure(() => {
   commonReq.keys().forEach(filename => commonReq(filename));
+  productReq.keys().forEach(filename => productReq(filename));
 }, module);

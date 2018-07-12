@@ -6,7 +6,7 @@ module.exports = {
       {
         oneOf: [
           {
-            test: /\.(js|jsx)$/,
+            test: /\.js$/,
             include: [
               path.resolve(__dirname, '../.storybook/'),
               path.resolve(__dirname, '../../core/src/'),
@@ -35,7 +35,7 @@ module.exports = {
           {
             test: /\.css$/,
             loader: 'style-loader!css-loader',
-            include: /flexboxgrid2|normalize.css/,
+            // include: /flexboxgrid2|normalize.css/,
           },
           {
             test: /\.s(a|c)ss$/,
@@ -98,7 +98,8 @@ module.exports = {
       '@core': path.resolve(__dirname, '../../core/src/'),
       '@components': path.resolve(__dirname, '../../components/src/'),
       '@lib': path.resolve(__dirname, '../../core/src/lib/'),
-      modernizr$: path.resolve(__dirname, '../.modernizrrc'),
+      '@story': path.resolve(__dirname, '../.storybook'),
+      modernizr$: path.resolve(__dirname, '../../.modernizrrc'),
     },
   },
 };

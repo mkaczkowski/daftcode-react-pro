@@ -6,4 +6,4 @@ import Main from './Main';
 
 const props: any = {};
 
-storiesOf('Sections|Main', module).add('basic', () => <Main {...props} />);
+storiesOf('Sections|Main', module).add('sample', () => <Main {...props} />);

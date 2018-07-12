@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import Button from '@components/button/Button';
+import Button from '@components/common/button/Button';
 import 'modernizr';
 import type { TranslateType } from '@core/constants/flowTypes';
 

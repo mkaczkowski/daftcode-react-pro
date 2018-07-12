@@ -1,7 +1,8 @@
 import 'regenerator-runtime/runtime';
 import { testSaga } from 'redux-saga-test-plan';
-import watchForAuth, { auth } from './auth';
+import watchForAuth, { auth } from '../auth';
 import { actions as authActions } from '@core/reducers/auth';
+import { login } from '@core/api/auth';
 
 it('watchForAuth', () => {
   testSaga(watchForAuth)
@@ -12,9 +13,14 @@ it('watchForAuth', () => {
 });
 
 it('auth', () => {
-  testSaga(auth)
+  const payload = { email: 'test@gmail.com' };
+  const mockedUser = { id: '123' };
+
+  testSaga(auth, { payload })
     .next()
-    .put(authActions.authSuccessAction({ id: '123' }))
+    .call(login, payload)
+    .next(mockedUser)
+    .put(authActions.authSuccessAction(mockedUser))
     .next()
     .isDone();
 });

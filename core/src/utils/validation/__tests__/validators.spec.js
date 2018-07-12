@@ -1,5 +1,5 @@
-import { email, number, password, password_confirmation, required, ccn, tooShort } from './validators';
-import { ERROR_CODES } from '../../constants/errorCodes';
+import { email, number, password, password_confirmation, required, ccn, tooShort } from '../validators';
+import { ERROR_CODES } from '../../../constants/errorCodes';
 
 describe('Validators', () => {
   describe('required', () => {

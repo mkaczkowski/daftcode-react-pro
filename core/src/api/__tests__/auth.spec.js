@@ -1,4 +1,4 @@
-import { login } from './auth';
+import { login } from '../auth';
 import { CONFIG } from '@core/config';
 
 describe('Api Auth IT', () => {

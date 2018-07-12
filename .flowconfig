@@ -26,6 +26,7 @@ suppress_comment=\\(.\\|\n\\)*\\$FlowExpectedError
 module.file_ext=.js
 module.file_ext=.json
 module.file_ext=.scss
+module.file_ext=.png
 
 module.name_mapper='^@assets\/\(.*\)$' -> '<PROJECT_ROOT>/src/assets/\1'
 module.name_mapper='^@core\/\(.*\)$' -> '<PROJECT_ROOT>/core/src/\1'

@@ -1,6 +1,6 @@
 import React from 'react';
 import { cleanup } from 'react-testing-library';
-import PrivateRoute from '@core/ui/privateRoute';
+import PrivateRoute from '@core/ui/privateRoute/index';
 import { renderWithReduxAndRouter } from '@core/utils/test/test';
 
 describe('PrivateRoute - connected', () => {

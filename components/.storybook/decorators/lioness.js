@@ -1,5 +1,5 @@
 import React from 'react';
-import { LionessProvider } from '@lib/lioness/index';
+import { LionessProvider } from '@lib/lioness';
 
 export const getLioness = (translations = {}, lang = 'en') => storyFn => {
   return (

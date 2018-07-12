@@ -1,7 +1,7 @@
 /**
  * Test store addons
  */
-import configureStore from './createStore';
+import configureStore from '../createStore';
 
 describe('configureStore', () => {
   let store;

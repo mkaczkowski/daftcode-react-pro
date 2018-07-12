@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, cleanup } from 'react-testing-library';
-import Auth from './Auth';
+import Auth from '../Auth';
 
 describe('Auth - dumb', () => {
   afterEach(cleanup);

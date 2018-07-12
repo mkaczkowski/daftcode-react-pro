@@ -1,4 +1,4 @@
-import authReducer, { actions, selectors } from './auth';
+import authReducer, { actions, selectors } from '../auth';
 import { fromJS } from 'immutable';
 
 //-----------------

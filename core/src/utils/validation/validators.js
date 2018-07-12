@@ -1,6 +1,8 @@
 // @flow
 import { ERROR_CODES } from '@core/constants/errorCodes';
 
+export type ErrorCodeType = string | boolean;
+
 export type InputConfig = {|
   value?: any,
   isRequired?: ErrorCodeType,
@@ -8,8 +10,6 @@ export type InputConfig = {|
   isCCN?: ErrorCodeType,
   hasMinChars?: ErrorCodeType,
 |};
-
-export type ErrorCodeType = string | boolean;
 
 export function validation(values: Object, validators: Array<any>) {
   let errors = {};
@@ -30,11 +30,10 @@ export const multi = (validators: Array<any>) => (value: any) => {
   return invalidValidator ? invalidValidator(value) : undefined;
 };
 
-export const getValidators = (config: InputConfig) => {
+export const getValidators = (config: InputConfig | any) => {
   const validators = [];
   if (config.isRequired) validators.push(required(config.isRequired));
   if (config.isEmail) validators.push(email(config.isEmail));
-  if (config.isCCN) validators.push(ccn(config.isCCN));
   if (config.hasMinChars) validators.push(tooShort(config.hasMinChars));
   return validators;
 };
