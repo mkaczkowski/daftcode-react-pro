@@ -1,0 +1,6 @@
+/server-push-path
+  Link: </1.c860cb0ee7a1aedb55f2.js>; rel=preload; as=script
+  Link: </2.c860cb0ee7a1aedb55f2.js>; rel=preload; as=script
+  Link: </main.c860cb0ee7a1aedb55f2.js>; rel=preload; as=script
+  Link: </heroBackgroud.webp>; rel=preload; as=image
+  Link: </Ubuntu-subset.woff2>; rel=preload; as=font
