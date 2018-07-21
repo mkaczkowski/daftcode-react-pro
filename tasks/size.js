@@ -4,7 +4,6 @@
 const gulp = require('gulp');
 const sizereport = require('gulp-sizereport');
 const path = require('path');
-// const wait = require('gulp-wait');
 
 const config = require('./config.json');
 

@@ -1,7 +1,6 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components';
-import LanguageChooser from '../languageChooser';
 import Button from '../button/Button';
 import { media } from '@theme';
 import _throttle from 'lodash/throttle';
@@ -64,7 +63,6 @@ type HeaderState = {
 };
 
 class HeaderComponent extends React.Component<HeaderProps, HeaderState> {
-  static LanguageChooser = LanguageChooser;
   static Menu = () => <div>2</div>;
   static Logo = () => <div>2</div>;
 
@@ -89,6 +87,7 @@ class HeaderComponent extends React.Component<HeaderProps, HeaderState> {
     if (!this.scrollListener) {
       this.scrollListener = _throttle(this.handleScroll, 50);
       window.addEventListener('scroll', this.scrollListener);
+      //$FlowFixMe
       const { height } = this.rootNode.current.getBoundingClientRect();
       this.scrollY = window.scrollY;
       this.height = height + 200; //y offset
@@ -130,8 +129,6 @@ class HeaderComponent extends React.Component<HeaderProps, HeaderState> {
 
   render() {
     const { isScrolled } = this.state;
-    // const { children } = this.props;
-    // return <HeaderContainer>{children}</HeaderContainer>;
 
     return (
       <HeaderContainer isScrolled={isScrolled} innerRef={this.rootNode}>
@@ -141,10 +138,6 @@ class HeaderComponent extends React.Component<HeaderProps, HeaderState> {
         </InnerWrapper>
       </HeaderContainer>
     );
-
-    // const children = React.Children.map(this.props.children, child => {
-    //   return React.cloneElement(child, {stage, handleClick: this.handleClick})
-    // })
   }
 }
 
