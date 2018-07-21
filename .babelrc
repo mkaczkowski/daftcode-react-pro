@@ -13,6 +13,11 @@
     },
     "development": {
       "plugins": [
+        "transform-decorators-legacy",
+        ["flow-runtime", {
+          "assert": true,
+          "annotate": true
+        }],
         "babel-plugin-styled-components",
         "transform-export-extensions"
       ]
