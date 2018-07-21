@@ -21,4 +21,4 @@
     # COMMENT: Multi-key header rules are expressed with multi-line strings
     Link = '''
     </heroBackgroud.webp>; rel=preload; as=image, \
-    </Ubuntu-subset.woff2>; rel=preload; as=font'''
+    </Ubuntu-subset.woff2>; rel=preload; as=font; type="font/woff2"'''
