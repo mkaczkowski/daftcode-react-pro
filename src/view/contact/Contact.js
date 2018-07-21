@@ -9,41 +9,13 @@ import Label from '../../components/label';
 import Heading from '../../components/heading/Heading';
 
 // ASSETS GENERATED VIA CLOUDINARY
-import castle_ar_1_1_c_fill___auto__c_scale_w_200_webp from '@assets/images/castle_ar_1_1.c_fill.g_auto__c_scale.w_200.webp';
-import castle_ar_4_3_c_fill_g_auto__c_scale_w_538_webp from '@assets/images/castle_ar_4_3.c_fill.g_auto__c_scale.w_538.webp';
-import castle_ar_16_9_c_fill_g_auto__c_scale_w_874_webp from '@assets/images/castle_ar_16_9.c_fill.g_auto__c_scale.w_874.webp';
-import castle_ar_1_1_c_fill___auto__c_scale_w_200 from '@assets/images/castle_ar_1_1.c_fill.g_auto__c_scale.w_200.jpg';
-import castle_ar_4_3_c_fill_g_auto__c_scale_w_538 from '@assets/images/castle_ar_4_3.c_fill.g_auto__c_scale.w_538.jpg';
 import castle_ar_16_9_c_fill_g_auto__c_scale_w_874 from '@assets/images/castle_ar_16_9.c_fill.g_auto__c_scale.w_874.jpg';
 
 type ContactProps = {};
 
 class Contact extends React.Component<ContactProps> {
   renderAvatar = () => {
-    return (
-      <picture>
-        {/* Portrait Phones  - WEBP*/}
-        <source media="(max-width: 767px)" srcSet={castle_ar_1_1_c_fill___auto__c_scale_w_200_webp} type="image/webp" />
-        {/* Tablets  - WEBP*/}
-        <source
-          media="(min-width: 768px) and (max-width: 991px)"
-          srcSet={castle_ar_4_3_c_fill_g_auto__c_scale_w_538_webp}
-          type="image/webp"
-        />
-        {/* Desktops  - WEBP*/}
-        <source
-          media="(min-width: 992px)"
-          srcSet={castle_ar_16_9_c_fill_g_auto__c_scale_w_874_webp}
-          type="image/webp"
-        />
-        {/* Portrait Phones */}
-        <source media="(max-width: 767px)" srcSet={castle_ar_1_1_c_fill___auto__c_scale_w_200} />
-        {/* Tablets */}
-        <source media="(min-width: 768px) and (max-width: 991px)" srcSet={castle_ar_4_3_c_fill_g_auto__c_scale_w_538} />
-        {/* Desktops */}
-        <img media="(min-width: 992px)" srcSet={castle_ar_16_9_c_fill_g_auto__c_scale_w_874} alt="" />
-      </picture>
-    );
+    return <img src={castle_ar_16_9_c_fill_g_auto__c_scale_w_874} width="200" height="200" alt="" />;
   };
 
   render() {

@@ -3,7 +3,7 @@ import * as React from 'react';
 import { ParallaxProvider } from 'react-scroll-parallax';
 import styled from 'styled-components';
 import HeroBanner from './HeroBanner';
-import { media } from '@theme/index';
+import { media } from '@theme';
 import Button from '../../components/button/Button';
 import Heading from '../../components/heading/Heading';
 
@@ -30,20 +30,6 @@ const ButtonIntro = styled(Button)`
   ${media.phone`min-width: 358px;`};
   font-weight: 500;
 `;
-
-/*
-const ScrollDown = styled.div`
-  width: 3.8rem;
-  text-align: center;
-  margin-bottom: 10rem;
-  box-shadow: 0 0 2px 0 white;
-  border-radius: 8px;
-
-  &:hover {
-    box-shadow: 0 0 4px 0 white;
-  }
-`;
-*/
 
 class Hero extends React.PureComponent<{}> {
   render() {

@@ -17,8 +17,7 @@ module.exports = {
     extensions: ['.js', '.json'],
     alias: {
       '@assets': path.resolve('src/assets'),
-      '@theme': path.resolve('src/theme'),
-      modernizr$: path.resolve('.modernizrrc'),
+      '@theme': path.resolve('src/theme')
     },
   },
   output: {
@@ -77,14 +76,6 @@ module.exports = {
             },
           },
         ],
-      },
-      {
-        test: /\.modernizrrc.js$/,
-        use: ['modernizr-loader'],
-      },
-      {
-        test: /\.modernizrrc(\.json)?$/,
-        use: ['modernizr-loader', 'json-loader'],
       },
       {
         test: /\.(jpe?g|jpg|gif|png|woff|woff2|eot|ttf|webp)$/,
