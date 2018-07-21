@@ -17,6 +17,6 @@ if (rootElement.hasChildNodes()) {
   render(<App />, rootElement);
 }
 
-if (process.env.SERVICE_WORKER === 'true') {
-  registerServiceWorker();
-}
+// if (process.env.SERVICE_WORKER === 'true') {
+//   registerServiceWorker();
+// }
