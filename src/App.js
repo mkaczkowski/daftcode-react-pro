@@ -31,9 +31,6 @@ export const App = () => {
       <React.Fragment>
         <Header sections={['offer', 'skills', 'clients', 'contact']} activeSection={'skills'} />
         <Hero id="hero" />
-        <Introduction id="introduction"/>
-        <Skills id="skills"/>
-        <Clients id="clients"/>
         <Contact id="contact" />
         <Footer icons={socialIcons} />
       </React.Fragment>
