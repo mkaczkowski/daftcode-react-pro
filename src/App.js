@@ -10,9 +10,7 @@ import Footer from './components/footer/Footer';
 
 const App = () => {
   const Contact = loadableVisibility(() => import('./view/contact/Contact'));
-  const add = (a: number, b: number): number => a + b;
-  console.log(add(1, 2));
-  console.log(add(1, false));
+
   return (
     <ThemeProvider theme={theme}>
       <React.Fragment>
