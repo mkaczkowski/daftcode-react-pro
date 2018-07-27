@@ -9,5 +9,5 @@ gulp.task('optimize', cb => {
 });
 
 gulp.task('postbuild', cb => {
-  runSequence('gzip', 'size', cb);
+  runSequence('gzip','brotli', 'size', cb);
 });
