@@ -23,22 +23,23 @@ Taken: 17 May 2018
 
 ## 🕹 Features
 * [PWA](https://developers.google.com/web/progressive-web-apps/) - progressive Web App ready
-* [React (v16.3)](https://reactjs.org) - a JavaScript library for building user interfaces
+* [React (v16.4)](https://reactjs.org) - a JavaScript library for building user interfaces
 * [Babel](https://babeljs.io) - a JavaScript compiler
 * [Flow](https://github.com/facebook/flow) - Adds static typing to JavaScript
-* [React Hot Loader (v4)](https://github.com/gaearon/react-hot-loader) - tweak React components in real time
-* [Webpack (v4)](https://webpack.js.org) with plugins - a module bundler
+* [Webpack (v4.15.1)](https://webpack.js.org) with plugins - a module bundler
 * [Styled-Components] (https://styled-components.com) - CSS in JS - add a bit of style to your website + theming
 * [React Snap](https://github.com/stereobooster/react-snap) - prerendering static sites
 * [Lodable Components](https://github.com/smooth-code/loadable-components) - react code splitting made easy
-* [Jest](https://facebook.github.io/jest/) - complete testing solution
+* [Jest (v.23)](https://facebook.github.io/jest/) - complete testing solution
 * [Storybook](https://github.com/storybooks/storybook) - interactive UI component dev & test
+* [React Hot Loader (v4)](https://github.com/gaearon/react-hot-loader) - tweak React components in real time
 * Assets optimization (png/jpg/svg/webp)
 * Responsive images
-* Critical fonts optimisation
-* Async/Defer/Preload scripts
+* SVG inliner
+* Critical fonts optimization
+* Async/Defer and preloaded scripts
 * Modernizr - feature detection
-* GZip compression
+* GZip & Brotli compression
 * Netlify CI integrated
 
 Tweak React components in real time ⚛️⚡️
