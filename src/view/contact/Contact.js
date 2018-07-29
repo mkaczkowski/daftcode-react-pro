@@ -21,28 +21,24 @@ type ContactProps = {};
 class Contact extends React.Component<ContactProps> {
   renderAvatar = () => {
     return (
-      <picture>
-        {/* Portrait Phones  - WEBP*/}
-        <source media="(max-width: 767px)" srcSet={castle_ar_1_1_c_fill___auto__c_scale_w_200_webp} type="image/webp" />
-        {/* Tablets  - WEBP*/}
-        <source
-          media="(min-width: 768px) and (max-width: 991px)"
-          srcSet={castle_ar_4_3_c_fill_g_auto__c_scale_w_538_webp}
-          type="image/webp"
-        />
-        {/* Desktops  - WEBP*/}
-        <source
-          media="(min-width: 992px)"
-          srcSet={castle_ar_16_9_c_fill_g_auto__c_scale_w_874_webp}
-          type="image/webp"
-        />
-        {/* Portrait Phones */}
-        <source media="(max-width: 767px)" srcSet={castle_ar_1_1_c_fill___auto__c_scale_w_200} />
-        {/* Tablets */}
-        <source media="(min-width: 768px) and (max-width: 991px)" srcSet={castle_ar_4_3_c_fill_g_auto__c_scale_w_538} />
-        {/* Desktops */}
-        <img media="(min-width: 992px)" srcSet={castle_ar_16_9_c_fill_g_auto__c_scale_w_874} alt="" />
-      </picture>
+      <div>
+        <picture>
+          <source
+            type="image/webp"
+            srcset={`${castle_ar_1_1_c_fill___auto__c_scale_w_200_webp} 200w,
+              ${castle_ar_4_3_c_fill_g_auto__c_scale_w_538_webp} 538w,
+              ${castle_ar_16_9_c_fill_g_auto__c_scale_w_874_webp} 874w`}
+            sizes="(max-width: 767px) 200px, (max-width: 991px) 538px, 874px"
+          />
+          <source
+            srcset={`${castle_ar_1_1_c_fill___auto__c_scale_w_200} 200w,
+              ${castle_ar_4_3_c_fill_g_auto__c_scale_w_538} 538w,
+              ${castle_ar_16_9_c_fill_g_auto__c_scale_w_874} 874w`}
+            sizes="(max-width: 767px) 200px, (max-width: 991px) 538px, 874px"
+          />
+          <img src={castle_ar_16_9_c_fill_g_auto__c_scale_w_874} alt="" />
+        </picture>
+      </div>
     );
   };
 
