@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>WarsawJS Slides: Template</title>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+    <meta name="viewport" content="width=device-width"/>
+
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,900&amp;subset=latin-ext" rel="stylesheet"/>
+
+    <!-- Shower Theme -->
+    <link rel="stylesheet" href="vendors/shower-ribbon/styles/screen-16x9.css"/>
+    <link rel="stylesheet" href="vendors/shower-warsawjs/styles/main.css"/>
+
+    <!-- Prism.js -->
+    <link rel="stylesheet" href="vendors/prism/prism.css"/>
+    <link rel="stylesheet" href="modules/custom-prism.css"/>
+</head>
+<body class="shower list">
+<header class="caption">
+    <h1>WarsawJS Slides: Template</h1>
+    <p>We talk about JavaScript. Each month in Warsaw, Poland.</p>
+</header>
+
+<section class="slide front-page">
+    <div class="logo">
+        <!-- Logo WarsawJS -->
+        <img src="vendors/shower-warsawjs/images/logo.svg" width="400">
+    </div>
+    <div class="details">
+        <!-- 1. Avatar -->
+        <img src="pictures/my-avatar.jpg" alt="Speaker"/>
+
+        <!-- 2. Speaker -->
+        <h2>Mariusz Kaczkowski</h2>
+
+        <!-- 3. Presentation title -->
+        <!--<h2><strong>"Wymierne korzyści poprawy czasu ładowania strony - techniki optymalizacji" [PL]</strong></h2>-->
+        <h2><strong>"How page load time affects your revenue? <br/> - optimization techniques" [EN]</strong></h2>
+
+        <!-- 4. Presentation date -->
+        <h2>2018-08-08</h2>
+
+        <!-- 5. Contact the speaker -->
+        <h2><a href="http://twitter.com/kaczkowm">@kaczkowm</a></h2>
+    </div>
+</section>
+
+<section class="slide compact">
+    <h2>How page is being displayed?</h2>
+    <img class="cover"
+         src="https://developers.google.com/web/fundamentals/performance/images/perf-metrics-load-timeline.png" alt="">
+    <!--https://developers.google.com/web/fundamentals/performance/user-centric-performance-metrics-->
+
+    <div style="display:none">
+        NOTE::
+        1. First Paint – the first pixel changes on the screen
+        2. First Contentful Paint – some content appears in the DOM and is painted on the screen
+        3. First Meaningful Paint – primary elements visible on the page – “hero elements”
+        4. Visually Ready – page is not missing any visual components in the users’ perception
+        5. Time to Interactive – page is able to respond the users’ input
+        6. Fully Loaded – page is fully functional
+
+    </div>
+
+</section>
+
+<section class="slide compact">
+    <h2>Load time impact</h2>
+    <h3>According to surveys done by Akamai and Gomez.com:</h3>
+    <!--https://neilpatel.com/blog/loading-time/-->
+    <ul>
+        <li>47% expect a page to load in < 2 seconds.</li>
+        <li>40% of users will abandon a webpage if it takes > 3 seconds to load.</li>
+        <li>A 1s of extra delay decreases customer satisfaction by 16%.</li>
+        <li>79% of shoppers who are a dissatisfied with website performance are less likely to buy from same site
+            again
+        </li>
+        <li class="next">
+            <mark>Slow loading sites frustrate users</mark>
+        </li>
+    </ul>
+
+    <div style="display:none">
+        NOTE::
+        Slow loading sites frustrate users and negatively impact publishers.
+        47% expect a page to load in 2 seconds of less.
+        40% of users will abandon a webpage if it takes more than 3 seconds to load.
+        A 1 second delay (or 3 seconds of waiting) decreases customer satisfaction by 16%.
+        79% of shoppers are less likely to buy again.
+    </div>
+</section>
+
+
+<section class="slide compact">
+    <h2>Conversion rate vs load time</h2>
+    <div style="text-align: center"><img src="pictures/graph-bar.png" alt="" style="border:1px solid #dddddd"></div>
+    <div style="text-align: center; font-size: .5em">graph by Walmart 2014</div>
+</section>
+
+<section class="slide compact">
+    <h2>Bounce rate vs load time</h2>
+    <div style="text-align: center"><img src="pictures/abandon24.jpg"  width="50%" alt="" style="border:1px solid #dddddd"></div>
+    <div style="text-align: center; font-size: .5em">graph by Walmart 2014</div>
+</section>
+
+<section class="slide compact">
+    <h2>Is it worth the effort?</h2>
+    <ul>
+        <li class="next">Pinterest: -40% in wait time ➡ +15% signups.</li>
+        <li class="next">AliExpress: -36% in load time ➡ +27% conversion rates for new customers.
+        <li class="next">Zitmaxx Wonen: 3s of load time ➡ +50.2% conversions.</li>
+        <li class="next">COOK: -0.85s in load time ➡ +7% conversion rate and -7% bounce rate.</li>
+        <li class="next">
+            <mark>A fast site is a good user experience.</mark>
+        </li>
+        <li class="next">
+            <mark>Makes difference on slow 3G</mark>
+        </li>
+        <li class="next">
+            <mark>Leads to increase your sales revenue 💰.</mark>
+        </li>
+    </ul>
+
+    <div style="display:none">
+        NOTE::
+    </div>
+</section>
+
+
+<section class="slide compact">
+    <h2>Challenge accepted!</h2>
+    <ol>
+        <li><a href="https://nervous-bhaskara-5a0eba.netlify.com">https://nervous-bhaskara-5a0eba.netlify.com</a> [default]</li>
+        <li><a href="https://www.mkaczkowski.com">https://www.mkaczkowski.com</a> [optimized]</li>
+    </ol>
+
+    <div style="display: flex; justify-content: center">
+        <div>
+            <img src="pictures/app1.png" alt="" height="300px" style="margin-left: 20px; border:1px solid #dddddd">
+        </div>
+        <div>
+            <img src="pictures/app2.png" alt="" height="300px" style="margin-left: 20px; border:1px solid #dddddd">
+        </div>
+    </div>
+
+
+    <div style="display:none">
+        NOTE::
+
+    </div>
+
+</section>
+
+<section class="slide compact">
+    <h2>Default result</h2>
+    <div style="text-align: center">
+        <img src="pictures/Screenshot 2018-07-25 23.14.05.png" alt="" width="100%" style="border:1px solid #dddddd">
+    </div>
+    <table class="striped">
+        <tr>
+            <th scope="col"></th>
+            <th>Total Size</th>
+            <th>JS</th>
+            <th>Images</th>
+            <th>Fonts</th>
+            <th>First Meaningful Paint (3G)</th>
+        </tr>
+        <tr>
+            <th scope="row"></th>
+            <td>548KB</td>
+            <td>92KB</td>
+            <td>355KB</td>
+            <td>98KB</td>
+            <td>2570ms</td>
+        </tr>
+    </table>
+</section>
+
+<section class="slide compact">
+    <h2>Optimized result</h2>
+    <div style="text-align: center">
+        <img src="pictures/Screenshot 2018-07-25 23.13.43.png" alt="" width="100%" style="border:1px solid #dddddd">
+    </div>
+
+    <table class="striped">
+        <tr>
+            <th scope="col"></th>
+            <th>Total Size</th>
+            <th>JS</th>
+            <th>Images</th>
+            <th>Fonts</th>
+            <th>First Meaningful Paint (3G)</th>
+        </tr>
+        <tr style="color:#464646">
+            <th scope="row"></th>
+            <td>548KB</td>
+            <td>92KB</td>
+            <td>355KB</td>
+            <td>98KB</td>
+            <td>2570ms</td>
+        </tr>
+        <tr>
+            <th scope="row"></th>
+            <td style="color:forestgreen">208KB</td>
+            <td style="color:forestgreen">79KB</td>
+            <td style="color:forestgreen">98KB</td>
+            <td style="color:forestgreen">12KB</td>
+            <td style="color:forestgreen">970ms</td>
+        </tr>
+    </table>
+</section>
+
+<section class="slide compact">
+    <h2>JS optimization</h2>
+    <ol>
+        <li>Minify your code (uglifyJS)</li>
+        <li>Removing unused code (tree shaking)</li>
+        <li>Babel-preset-env</li> <!--Use babel-preset-env and browserlist to avoid transpiling features already in modern browsers.-->
+        <li>Compress with Gzip and Brotli (7-15%☝️)</li>
+        <li>Code splitting / Dynamic imports </li><!--lodadable-components +  react-loadable-visibility-->
+        <li>Preload / prefetch
+            <ul>
+                <li>&lt;link rel=&quot;preload&quot; href=&quot;image.png&quot;&gt;</li>
+            </ul>
+        </li>
+
+        <li>Scripts as async / defer</li> <!--ScriptExtHtmlWebpackPlugin / preload? body end?-->
+    </ol>
+</section>
+
+<section class="slide compact">
+    <h2>Sync / Async / Defer</h2>
+
+    <!--Normal-Execution.png-->
+    <!--Async-Execution.png-->
+    <!--Defer-Execution.png-->
+    <div style="display: flex; align-items: center; justify-content: space-around">
+        <div>&lt;script src=&quot;script.js&quot;&gt;</div>
+        <img src="pictures/Normal-Execution.png" alt="" width="65%" style="border: 1px solid #dddddd; margin-left: auto;">
+    </div>
+
+    <div style="display: flex; align-items: center; margin-top: 20px">
+        <div>&lt;script <mark>async</mark> src=&quot;script.js&quot;&gt;</div>
+        <img src="pictures/Async-Execution.png" alt="" width="65%" style="border: 1px solid #dddddd; margin-left: auto;">
+    </div>
+
+    <div style="display: flex; align-items: center; margin-top: 20px">
+        <div>&lt;script <mark>defer</mark> src=&quot;script.js&quot;&gt;</div>
+        <img src="pictures/Defer-Execution.png" alt="" width="65%" style="border: 1px solid #dddddd; margin-left: auto;">
+    </div>
+    <!--Without async or defer, browser will run your script immediately, before rendering the elements that's below your script tag.-->
+    <!--With async (asynchronous), browser will continue to load the HTML page and render it while the browser load and execute the script at the same time.-->
+    <!--With defer, browser will run your script when the page finished parsing. (not necessary finishing downloading all image files. This is good.)-->
+    <!--You should use [async] for scripts which can be executed in any order, and [defer] for scripts which have to be executed after HTML is parsed.-->
+    <!--for DOM manipulatin defer is better-->
+
+    <!--good for third parties-->
+
+    <!--no need to put async on script loaded at the bottom of body-->
+    <!--@ Chris Coyier: Both are discoverable by the preload scanner. But if you have (say) two scripts that aren’t interdependent, marking each with the async flag lets the browser run them in either order, and so if (say) the first one is being being slow to download, the browser is free to go ahead and run the second one before the first one finishes downloading and gets run. If you leave off the async, the second still has to wait for the first. So it still has a useful purpose, even when the scripts are right at the end of the HTML.-->
+</section>
+
+<section class="slide compact">
+    <h2>webpack-bundle-analyzer</h2>
+    <div style="text-align: center">
+        <img src="pictures/analyze.png" alt="" width="80%" style="border:1px solid #dddddd">
+    </div>
+</section>
+
+<section class="slide compact">
+    <h2>HTML / CSS optimization</h2>
+    <ol>
+        <li>Remove unused CSS (PurifyCSS / UnCSS)</li> <!--Bootstrap-->
+        <li>Prerender (ReactSnap)</li> <!--+SEO-->
+        <li>Critical CSS</li>
+    </ol>
+</section>
+
+<section class="slide compact">
+    <h2>Images optimization</h2>
+    <ol>
+        <li>Choose the right format (jpeg > png, mp4 > gif )</li> <!--optimize images ( svgo , optipng , jpegtran ) | gulp gulp-imagemin"-->
+        <li>Use modern formats (webp)</li> <!--modernizr , css supports-->
+        <li>Optimize your images (imagemin)</li> <!--optimize images ( svgo , optipng , jpegtran ) | gulp gulp-imagemin"-->
+        <li>Lazy loading / Skeleton placeholders</li> <!--“Content jumps” : min height OR skeleton placeholders-->
+        <li>RWD picture</li>
+    </ol>
+</section>
+
+<section class="slide compact">
+    <h2>RWD Picture</h2>
+    <div style="text-align: center">
+        <img src="pictures/carbon.png" width="80%" alt="carbon"/>
+    </div>
+
+    <!--<picture>-->
+        <!--{/* Portrait Phones  - WEBP*/}-->
+        <!--<source media="(max-width: 991px)" srcSet="castle_1_1.webp" type="image/webp" />-->
+        <!--{/* Desktops  - WEBP*/}-->
+        <!--<source media="(min-width: 992px)" srcSet="castle_16_9.webp" type="image/webp"/>-->
+        <!--{/* Portrait Phones */}-->
+        <!--<source media="(max-width: 991px)" srcSet="castle_1_1.jpeg" />-->
+        <!--{/* Desktops */}-->
+        <!--<img media="(min-width: 992px)" srcSet="castle_16_9.jpeg" alt="castle" />-->
+    <!--</picture>-->
+
+</section>
+
+<section class="slide compact">
+    <h2>Fonts optimization</h2>
+    <ol>
+        <li>Use web fonts
+            <ul>
+                <li>url(Gotham.woff2) format("woff2"), url(Gotham.zopfli.woff) format("woff")</li>
+            </ul>
+        </li>
+        <li>unicode-range
+            <ul>
+                <li>unicode-range: U+20,U+2E,U+45-47,U+49,U+4A,U+4D;</li>
+            </ul>
+        </li>
+        <!--The purpose of this descriptor is to allow the font resources to be segmented so that
+        a browser only needs to download the font resource needed for the text content of a particular page.
+         For example, a site with many localizations could provide separate font resources for English,
+          Greek and Japanese. For users viewing the English version of a page, the font resources for
+          Greek and Japanese fonts wouldn't need to be downloaded, saving bandwidth.-->
+        <li>font-display: swap</li>
+        <li>Critical font
+            <ol>
+                <li>https://fontsquirrel.com</li>
+                <li>glyphhanger http://localhost:5000 --family='Gotham' --subset=build/*.ttf --css</li>
+            </ol>
+        </li>
+
+    </ol>
+</section>
+
+<section class="slide compact">
+    <h2>Other topics</h2>
+    <ol>
+        <li>Content Delivery Network (CDN)</li> <!--(netlify / cloud flare)-->
+        <li>PWA (service workers)</li> <!--service worker (PWA) pwa / prpl-->
+        <li>Long term caching</li>
+        <li>Gzip during the build</li>
+        <li>http/2 push</li>
+    </ol>
+</section>
+
+<section class="slide">
+    <h2 class="shout grow">Questions?</h2>
+</section>
+
+<div class="progress"></div>
+
+<footer class="badge">
+    <a href="https://github.com/warsawjs/warsawjs-slides-template">Fork me on GitHub</a>
+</footer>
+
+<footer class="badge badge-top-left">
+    <a href="#" class="fullscreen">Fullscreen</a>
+</footer>
+
+<script src="vendors/gamepad/gamepad.js"></script>
+<script src="vendors/shower/shower.min.js"></script>
+<script src="vendors/shower-gamepad/shower.gamepad.js"></script>
+<script src="vendors/shower-warsawjs/scripts/fullscreen.js"></script>
+
+<!-- Prism.js -->
+<script src="vendors/prism/prism.js"></script>
+<script src="modules/custom-prism.js"></script>
+</body>
+</html>
