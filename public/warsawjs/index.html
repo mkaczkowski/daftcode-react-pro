@@ -30,14 +30,14 @@
     </div>
     <div class="details">
         <!-- 1. Avatar -->
-        <img src="pictures/my-avatar.jpg" alt="Speaker"/>
+        <img src="pictures/mariusz.png" alt="Speaker" width="130"/>
 
         <!-- 2. Speaker -->
         <h2>Mariusz Kaczkowski</h2>
 
         <!-- 3. Presentation title -->
-        <!--<h2><strong>"Wymierne korzyści poprawy czasu ładowania strony - techniki optymalizacji" [PL]</strong></h2>-->
-        <h2><strong>"How page load time affects your revenue? <br/> - optimization techniques" [EN]</strong></h2>
+        <!--Wpływ szybkości ładowania strony na konwersję - Techniki optymalizacji [PL]-->
+        <h2><strong>"How page load time affects your conversion? <br/> - optimization techniques"</strong></h2>
 
         <!-- 4. Presentation date -->
         <h2>2018-08-08</h2>
@@ -48,8 +48,8 @@
 </section>
 
 <section class="slide compact">
-    <h2>How page is being displayed?</h2>
-    <img class="cover"
+    <h2>How web pages are displayed?</h2>
+    <img class="cover" style="margin-top:20px"
          src="https://developers.google.com/web/fundamentals/performance/images/perf-metrics-load-timeline.png" alt="">
     <!--https://developers.google.com/web/fundamentals/performance/user-centric-performance-metrics-->
 
@@ -68,41 +68,63 @@
 
 <section class="slide compact">
     <h2>Load time impact</h2>
-    <h3>According to surveys done by Akamai and Gomez.com:</h3>
-    <!--https://neilpatel.com/blog/loading-time/-->
+    <h3>According to surveys done by Akamai and Gomez.com: <a href="https://neilpatel.com/blog/loading-time/">more here</a></h3>
+
     <ul>
         <li>47% expect a page to load in < 2 seconds.</li>
         <li>40% of users will abandon a webpage if it takes > 3 seconds to load.</li>
-        <li>A 1s of extra delay decreases customer satisfaction by 16%.</li>
-        <li>79% of shoppers who are a dissatisfied with website performance are less likely to buy from same site
+        <li>79% of shoppers who are dissatisfied with website performance are less likely to buy from same site
             again
-        </li>
-        <li class="next">
-            <mark>Slow loading sites frustrate users</mark>
         </li>
     </ul>
 
     <div style="display:none">
         NOTE::
         Slow loading sites frustrate users and negatively impact publishers.
-        47% expect a page to load in 2 seconds of less.
-        40% of users will abandon a webpage if it takes more than 3 seconds to load.
         A 1 second delay (or 3 seconds of waiting) decreases customer satisfaction by 16%.
-        79% of shoppers are less likely to buy again.
+
+        In 2010, Strangeloop Networks (now part of Radware) found “a site that loads in 3 seconds can expect 22% fewer page views,
+        a 50% higher bounce rate, and 22% fewer conversions than a site that loads in 1 second,
     </div>
 </section>
-
 
 <section class="slide compact">
     <h2>Conversion rate vs load time</h2>
     <div style="text-align: center"><img src="pictures/graph-bar.png" alt="" style="border:1px solid #dddddd"></div>
     <div style="text-align: center; font-size: .5em">graph by Walmart 2014</div>
+
+    <div style="display:none">
+        NOTE::
+        https://www.eactive.pl/pozycjonowanie-stron/co-to-jest-konwersja/
+
+        „przekształcanie postaci czegoś” PWN -
+        dowolne działanie użytkownika tej strony, które jest działaniem pożądanym przez właściciela tejże strony
+
+        - zapis na newsletter,
+        - pozostawienie danych kontaktowych (tzw. lead),
+        - dokonanie jakiegokolwiek zakupu,
+        - dokonanie zakupów na kwotę powyżej 200 zł,
+        - kliknięcie w baner reklamowy umieszczony na naszej stronie,
+        - wyświetlenie przez odwiedzającego powyżej 3 podstron naszej witryny podczas jednej wizyty (głębokość wizyty),
+        - wyświetlenie kluczowej dla nas podstrony witryny,
+        - obejrzenie filmu zamieszczonego na stronie,
+        - ściągnięcie pliku
+        - rejestracja konta klienta.
+
+        Wskaźnik konwersji pokazuje liczbę konwersji w przeliczeniu jej na liczbę wszystkich odwiedzin strony.
+        Dzięki niemu możemu sprawdzić efektywnoś swojej strony internetowej czy sklepu internetowego. Wylicza się go tak:
+
+        jeśli wskaźnik konwersji dla strony, którą odwiedziło w ciągu miesiąca 15 000 osób wynosi 1.4 proc,
+        to oznacza, że 1.4 proc odwiedzających zrealizowało cel konwersji – a więc dokonało zakupów w sklepie
+        / zainteresowało się katalogiem / spędziło kilka minut na stronie przeglądając materiały.
+    </div>
+
 </section>
 
 <section class="slide compact">
     <h2>Bounce rate vs load time</h2>
     <div style="text-align: center"><img src="pictures/abandon24.jpg"  width="50%" alt="" style="border:1px solid #dddddd"></div>
-    <div style="text-align: center; font-size: .5em">graph by Walmart 2014</div>
+    <!--WSPOLCZYNNIK ODRZUCEN-->
 </section>
 
 <section class="slide compact">
@@ -227,6 +249,47 @@
         </li>
 
         <li>Scripts as async / defer</li> <!--ScriptExtHtmlWebpackPlugin / preload? body end?-->
+
+        <div style="display:none">
+            NOTE::
+
+            pierwsze wydanie babel-preset-env w 2016
+
+        Tree shaking is a term commonly used in the JavaScript context for dead-code elimination.
+        It relies on the static structure of ES2015 module syntax, i.e. import and export.
+        The name and concept have been popularized by the ES2015 module bundler rollup.
+        It only works with import and export. It won’t work with CommonJS require syntax.
+            > USe flag sideEffects=false for Webpack4 package.json
+
+
+            Preload resources you have high-confidence will be used in the current page. Prefetch resources
+            likely to be used for future navigations across multiple navigation boundaries.
+            Preload is an early fetch instruction to the browser to request a resource needed for a page (key scripts, Web Fonts, hero images).
+
+
+            As such, preloads declared in markup are optimized in Chrome by the preload scanner.
+            This means that in many cases, the preload will be fetched
+            (with the indicated priority) before the HTML parser has even reached the tag.
+
+            Use preload to move the start download time of an asset closer to the initial request
+
+            Using <link rel="preload">, browsers can be informed to prefetch resources without having to execute them, allowing fine-grained control over when and how resources are loaded.
+            CAN I USE PRELOAD: 70.29% (no firefox and IE)
+            CAN I USE PREFETCH: 80.29% ( no safari, no ie 10)
+            polyfill : https://github.com/digitalkaoz/preload-polyfill
+
+            When a request to a resource is render-blocking, it means that the window.onload
+            event will not be triggered until that request finishes.
+            In modern single page apps, most of the frameworks rely on this event in order to start operating. That means that parts of the UI will not start rendering until the render-blocking requests have finished loading.
+
+            <link
+                    rel="preload"
+                    as="style"
+                    onload="this.rel = 'stylesheet'"
+                    href='https://fonts.googleapis.com/css?family=Roboto:100,900|Material+Icons'>
+
+            Prefetching works similarly to preloading, with the difference that the browser considers the resource as low priority.
+        </div>
     </ol>
 </section>
 
@@ -281,70 +344,195 @@
 <section class="slide compact">
     <h2>Images optimization</h2>
     <ol>
-        <li>Choose the right format (jpeg > png, mp4 > gif )</li> <!--optimize images ( svgo , optipng , jpegtran ) | gulp gulp-imagemin"-->
+        <li>Choose the right format (svg > jpeg > png, mp4 > gif )</li> <!--optimize images ( svgo , optipng , jpegtran ) | gulp gulp-imagemin"-->
         <li>Use modern formats (webp)</li> <!--modernizr , css supports-->
         <li>Optimize your images (imagemin)</li> <!--optimize images ( svgo , optipng , jpegtran ) | gulp gulp-imagemin"-->
-        <li>Lazy loading / Skeleton placeholders</li> <!--“Content jumps” : min height OR skeleton placeholders-->
-        <li>RWD picture</li>
+        <li>Lazy loading</li> <!--“Content jumps” : min height OR skeleton placeholders-->
+        <li>Responsive picture</li>
     </ol>
 </section>
 
 <section class="slide compact">
-    <h2>RWD Picture</h2>
+    <h2>Responsive Picture</h2>
     <div style="text-align: center">
         <img src="pictures/carbon.png" width="80%" alt="carbon"/>
     </div>
-
-    <!--<picture>-->
-        <!--{/* Portrait Phones  - WEBP*/}-->
-        <!--<source media="(max-width: 991px)" srcSet="castle_1_1.webp" type="image/webp" />-->
-        <!--{/* Desktops  - WEBP*/}-->
-        <!--<source media="(min-width: 992px)" srcSet="castle_16_9.webp" type="image/webp"/>-->
-        <!--{/* Portrait Phones */}-->
-        <!--<source media="(max-width: 991px)" srcSet="castle_1_1.jpeg" />-->
-        <!--{/* Desktops */}-->
-        <!--<img media="(min-width: 992px)" srcSet="castle_16_9.jpeg" alt="castle" />-->
-    <!--</picture>-->
 
 </section>
 
 <section class="slide compact">
     <h2>Fonts optimization</h2>
     <ol>
-        <li>Use web fonts
+        <li>Use proper web fonts
             <ul>
-                <li>url(Gotham.woff2) format("woff2"), url(Gotham.zopfli.woff) format("woff")</li>
+                <li>woff2, woff, eot, otf, ttf</li>
             </ul>
         </li>
-        <li>unicode-range
+
+        <li>unicode-range (fontsquirrel.com)
             <ul>
                 <li>unicode-range: U+20,U+2E,U+45-47,U+49,U+4A,U+4D;</li>
             </ul>
         </li>
+
+        <!--<li>Cache it</li>-->
         <!--The purpose of this descriptor is to allow the font resources to be segmented so that
         a browser only needs to download the font resource needed for the text content of a particular page.
          For example, a site with many localizations could provide separate font resources for English,
           Greek and Japanese. For users viewing the English version of a page, the font resources for
           Greek and Japanese fonts wouldn't need to be downloaded, saving bandwidth.-->
+        <li>Critical font (glyphhanger)</li>
         <li>font-display: swap</li>
-        <li>Critical font
-            <ol>
-                <li>https://fontsquirrel.com</li>
-                <li>glyphhanger http://localhost:5000 --family='Gotham' --subset=build/*.ttf --css</li>
-            </ol>
-        </li>
 
     </ol>
+
+    <div style="display:none">
+    NOTES:
+
+    CAN I USE font-display:: ff, chrome, safari (71%)
+
+
+    Web fonts as a technology have been supported in Internet Explorer since version 4!
+    https://creativemarket.com/blog/the-missing-guide-to-font-formats
+
+    TTF, OTF, EOT, WOFF, WOFF2, SVG
+    Serve TTF variant to old Android (below 4.4) browsers.
+    Serve EOT variant to old IE (below IE9) browsers.
+    WOFF2 30% less size than woff
+
+    Consider using Zopfli compression for the EOT, TTF, and WOFF formats.
+    Zopfli is a zlib compatible compressor that delivers ~5% file-size reduction over gzip.
+
+
+    USE https://www.fontsquirrel.com/tools/webfont-generator for generating webfonts
+
+
+    CAN I USE WOFF2:
+    https://caniuse.com/#feat=woff2
+
+    https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/webfont-optimization
+
+    @font-face {
+    font-family: 'ciclefina';
+    src: url('fonts/cicle_fina-webfont.eot');
+    src: url('fonts/cicle_fina-webfont.eot?#iefix') format('embedded-opentype'),
+    url('fonts/cicle_fina-webfont.woff2') format('woff2'),
+    url('fonts/cicle_fina-webfont.woff') format('woff'),
+    url('fonts/cicle_fina-webfont.ttf') format('truetype'),
+    url('fonts/cicle_fina-webfont.svg#ciclefina') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    }
+
+    Multiple declarations can be listed, separated by commas —
+    the browser will search through them and use the first one it can find that it understands —
+    it is therefore best to put newer, better formats like WOFF2 earlier on, and older,
+    not so good formats like TTF later on. The one exception to this is the EOT fonts —
+    they are placed first to fix a couple of bugs in older versions of IE whereby it will
+    try to use the first thing it finds,
+    even if it can't actually use the font.
+
+
+    Web Font Optimization
+    Ilya Grigorik
+    By Ilya Grigorik
+    Ilya is a Developer Advocate and Web Perf Guru
+    Typography is fundamental to good design, branding, readability, and accessibility. Webfonts enable all of the above and more: the text is selectable, searchable, zoomable, and high-DPI friendly, providing consistent and sharp text rendering regardless of the screen size and resolution. Webfonts are critical to good design, UX, and performance.
+
+    Webfont optimization is a critical piece of the overall performance strategy. Each font is an additional resource, and some fonts may block rendering of the text, but just because the page is using webfonts doesn't mean that it has to render slower. On the contrary, optimized fonts, combined with a judicious strategy for how they are loaded and applied on the page, can help reduce the total page size and improve page rendering times.
+
+    Anatomy of a webfont
+    TL;DR
+    Unicode fonts can contain thousands of glyphs.
+    There are four font formats: WOFF2, WOFF, EOT, and TTF.
+    Some font formats require the use of compression.
+    A webfont is a collection of glyphs, and each glyph is a vector shape that describes a letter or symbol. As a result, two simple variables determine the size of a particular font file: the complexity of the vector paths of each glyph and the number of glyphs in a particular font. For example, Open Sans, which is one of the most popular webfonts, contains 897 glyphs, which include Latin, Greek, and Cyrillic characters.
+
+    Font glyph table
+
+    When picking a font, it's important to consider which character sets are supported. If you need to localize your page content to multiple languages, you should use a font that can deliver a consistent look and experience to your users. For example, Google's Noto font family aims to support all the world's languages. Note, however, that the total size of Noto, with all languages included, results in a 1.1GB+ ZIP download.
+
+    Clearly, using fonts on the web requires careful engineering to ensure that the typography doesn't impede performance. Thankfully, the web platform provides all the necessary primitives, and the rest of this guide provides a hands-on look at how to get the best of both worlds.
+
+    Webfont formats
+    Today there are four font container formats in use on the web: EOT, TTF, WOFF, and WOFF2. Unfortunately, despite the wide range of choices, there isn't a single universal format that works across all old and new browsers: EOT is IE only, TTF has partial IE support, WOFF enjoys the widest support but is not available in some older browsers, and WOFF 2.0 support is a work in progress for many browsers.
+
+    So, where does that leave us? There isn't a single format that works in all browsers, which means that we need to deliver multiple formats to provide a consistent experience:
+
+    Serve WOFF 2.0 variant to browsers that support it.
+    Serve WOFF variant to the majority of browsers.
+    Serve TTF variant to old Android (below 4.4) browsers.
+    Serve EOT variant to old IE (below IE9) browsers.
+    Note: There's technically another container format, the SVG font container, but IE and Firefox never supported it, and it is now deprecated in Chrome. As such, it's of limited use and it's intentionally omitted it in this guide.
+    Reducing font size with compression
+    A font is a collection of glyphs, each of which is a set of paths describing the letter form. The individual glyphs are different, but they contain a lot of similar information that can be compressed with GZIP or a compatible compressor:
+
+    EOT and TTF formats are not compressed by default. Ensure that your servers are configured to apply GZIP compression when delivering these formats.
+    WOFF has built-in compression. Ensure that your WOFF compressor is using optimal compression settings.
+    WOFF2 uses custom preprocessing and compression algorithms to deliver ~30% file-size reduction over other formats. For more information, see the WOFF 2.0 evaluation report.
+    Finally, it's worth noting that some font formats contain additional metadata, such as font hinting and kerning information that may not be necessary on some platforms, which allows for further file-size optimization. Consult your font compressor for available optimization options, and if you take this route, ensure that you have the appropriate infrastructure to test and deliver these optimized fonts to each browser. For example, Google Fonts maintains 30+ optimized variants for each font and automatically detects and delivers the optimal variant for each platform and browser.
+
+    Note: Consider using Zopfli compression for the EOT, TTF, and WOFF formats. Zopfli is a zlib compatible compressor that delivers ~5% file-size reduction over gzip.
+    Defining a font family with @font-face
+    TL;DR
+    Use the format() hint to specify multiple font formats.
+    Subset large Unicode fonts to improve performance. Use Unicode-range subsetting and provide a manual subsetting fallback for older browsers.
+    Reduce the number of stylistic font variants to improve the page- and text-rendering performance.
+    The @font-face CSS at-rule allows you to define the location of a particular font resource, its style characteristics, and the Unicode codepoints for which it should be used. A combination of such `@font-face declarations can be used to construct a "font family," which the browser will use to evaluate which font resources need to be downloaded and applied to the current page.
+
+    Format selection
+    Each @font-face declaration provides the name of the font family, which acts as a logical group of multiple declarations, font properties such as style, weight, and stretch, and the src descriptor, which specifies a prioritized list of locations for the font resource.
+
+    @font-face {
+    font-family: 'Awesome Font';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Awesome Font'),
+    url('/fonts/awesome.woff2') format('woff2'),
+    url('/fonts/awesome.woff') format('woff'),
+    url('/fonts/awesome.ttf') format('truetype'),
+    url('/fonts/awesome.eot') format('embedded-opentype');
+    }
+
+    @font-face {
+    font-family: 'Awesome Font';
+    font-style: italic;
+    font-weight: 400;
+    src: local('Awesome Font Italic'),
+    url('/fonts/awesome-i.woff2') format('woff2'),
+    url('/fonts/awesome-i.woff') format('woff'),
+    url('/fonts/awesome-i.ttf') format('truetype'),
+    url('/fonts/awesome-i.eot') format('embedded-opentype');
+    }
+    First, note that the above examples define a single Awesome Font family with two styles (normal and italic), each of which points to a different set of font resources. In turn, each src descriptor contains a prioritized, comma-separated list of resource variants:
+
+    The local() directive allows you to reference, load, and use locally installed fonts.
+    The url() directive allows you to load external fonts, and are allowed to contain an optional format() hint indicating the format of the font referenced by the provided URL.
+    Note: Unless you're referencing one of the default system fonts, it is rare for the user to have it locally installed, especially on mobile devices, where it is effectively impossible to "install" additional fonts. You should always start with a local() entry "just in case," and then provide a list of url() entries.
+    When the browser determines that the font is needed, it iterates through the provided resource list in the specified order and tries to load the appropriate resource. For example, following the example above:
+
+    The browser performs page layout and determines which font variants are required to render the specified text on the page.
+    For each required font, the browser checks if the font is available locally.
+    If the font is not available locally, the browser iterates over external definitions:
+    If a format hint is present, the browser checks if it supports the hint before initiating the download. If the browser doesn't support the hint, the browser advances to the next one.
+    If no format hint is present, the browser downloads the resource.
+    The combination of local and external directives with appropriate format hints allows you to specify all of the available font formats and let the browser handle the rest. The browser determines which resources are required and selects the optimal format.
+
+    Note: The order in which the font variants are specified matters. The browser picks the first format it supports. Therefore, if you want the newer browsers to use WOFF2, then you should place the WOFF2 declaration above WOFF, and so on.
+    Unicode-range subsetting
+    In addition to font properties such as style, weight, and stretch, the @font-face rule allows us to define a set of
+    Unicode codepoints supported by each resource. This enables us to split a large Unicode font into smaller subsets
+    (for example, Latin, Cyrillic, and Greek subsets) and only download the glyphs required to render the text on a particular page.
+    </div>
 </section>
 
 <section class="slide compact">
     <h2>Other topics</h2>
     <ol>
         <li>Content Delivery Network (CDN)</li> <!--(netlify / cloud flare)-->
+        <li>http/2 push</li>
         <li>PWA (service workers)</li> <!--service worker (PWA) pwa / prpl-->
         <li>Long term caching</li>
-        <li>Gzip during the build</li>
-        <li>http/2 push</li>
     </ol>
 </section>
 
